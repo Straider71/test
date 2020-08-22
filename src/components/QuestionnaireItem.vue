@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "QuestionauryItem"
+  name: "QuestionnaireItem",
 };
 </script>
 

@@ -1,19 +1,23 @@
 <template>
   <div class="home">
-<!--    <img alt="Vue logo" src="../assets/logo.png">-->
-    <QuestionauryItem/>
-<!--    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
+    <QuestionnaireItem />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-import QuestionauryItem from "../components/QuestionauryItem";
+import QuestionnaireItem from "../components/QuestionnaireItem.vue";
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-      QuestionauryItem,
-  }
-}
+    QuestionnaireItem,
+  },
+};
 </script>
+
+<style scoped lang="scss">
+.home {
+  background-color: #f3f4f8;
+  height: 100vh;
+  width: 100vw;
+}
+</style>

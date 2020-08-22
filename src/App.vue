@@ -12,7 +12,7 @@
 * {
   @font-face {
     font-family: shabnam;
-    src: url("./assets/Shabnam.ttf") format("truetype");
+    src: url('./assets/Shabnam.ttf') format('truetype');
   }
 }
 

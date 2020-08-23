@@ -29,4 +29,10 @@ export default {
   z-index: 2;
   align-items: center;
 }
+
+@media (max-width: 576px) {
+  Logo {
+    display: none;
+  }
+}
 </style>

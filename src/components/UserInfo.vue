@@ -42,5 +42,11 @@ export default {
     width: 12.1px;
     height: 6.9px;
   }
+
+  @media (max-width: 450px) {
+    .navbar-username-text {
+      display: none;
+    }
+  }
 }
 </style>

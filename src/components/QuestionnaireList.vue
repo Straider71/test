@@ -50,4 +50,10 @@ export default {
 .container {
   z-index: 2;
 }
+
+@media (max-width: 890px) {
+  .container {
+    width: 100%;
+  }
+}
 </style>

@@ -66,4 +66,12 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 640px) {
+  .button {
+    width: 300px;
+    height: 40px;
+    margin-top: 10px;
+  }
+}
 </style>

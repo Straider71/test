@@ -36,4 +36,10 @@ export default {
     color: #7f86aa;
   }
 }
+
+@media (max-width: 640px) {
+  .status {
+    margin-top: 10px;
+  }
+}
 </style>

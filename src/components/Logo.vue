@@ -16,4 +16,10 @@ export default {
   height: 36.7px;
   object-fit: contain;
 }
+
+@media (max-width: 576px) {
+  .navbar-logo {
+    display: none;
+  }
+}
 </style>

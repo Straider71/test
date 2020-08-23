@@ -43,5 +43,13 @@ export default {
     height: 13.3px;
     padding-right: 10px;
   }
+
+  @media (max-width: 640px) {
+    .container {
+      flex-direction: column-reverse;
+      height: auto;
+      padding: 15px 0px;
+    }
+  }
 }
 </style>

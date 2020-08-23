@@ -1,6 +1,6 @@
 <template>
   <div class="list-count">
-    <p>پرسشنامه{{ count }}</p>
+    <p>پرسشنامه &rlm;{{ count }}</p>
   </div>
 </template>
 

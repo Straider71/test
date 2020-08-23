@@ -26,7 +26,7 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 23px 45px;
-  z-index: 2;
+  // z-index: 3;
   align-items: center;
 }
 

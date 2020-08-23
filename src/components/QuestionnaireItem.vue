@@ -18,27 +18,27 @@
 </template>
 
 <script>
-import CustomButton from "./CustomButton";
-import QuestionnaireTitle from "./QuestionnaireTitle";
-import QuestionnaireStatus from "./QuestionnaireStatus";
+import CustomButton from './CustomButton';
+import QuestionnaireTitle from './QuestionnaireTitle';
+import QuestionnaireStatus from './QuestionnaireStatus';
 
 export default {
-  name: "QuestionnaireItem",
+  name: 'QuestionnaireItem',
   components: {
     CustomButton,
     QuestionnaireTitle,
-    QuestionnaireStatus
+    QuestionnaireStatus,
   },
   props: {
     status: String,
     title: String,
-    count: String
+    count: String,
   },
   methods: {
     customButtonDisabled() {
-      return this.status === "2";
-    }
-  }
+      return this.status === '2';
+    },
+  },
 };
 </script>
 
@@ -60,13 +60,12 @@ export default {
     height: 13.3px;
     padding-right: 10px;
   }
-
-  @media (max-width: 640px) {
-    .container {
-      flex-direction: column-reverse;
-      height: auto;
-      padding: 15px 0px;
-    }
+}
+@media (max-width: 640px) {
+  .container {
+    flex-direction: column-reverse;
+    height: auto;
+    padding: 15px 0px;
   }
 }
 </style>

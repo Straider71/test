@@ -29,7 +29,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 .button {
   width: 119px;
   height: 50px;

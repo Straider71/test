@@ -26,7 +26,7 @@ export default {
   height: 100vh;
   width: 100vw;
   position: relative;
-  z-index: -2;
+  // z-index: -2;
 
   .list {
     display: flex;
@@ -37,7 +37,7 @@ export default {
   }
 
   .circle {
-    z-index: -1;
+    // z-index: -1;
     width: 1009px;
     height: 1009px;
     opacity: 0.3;

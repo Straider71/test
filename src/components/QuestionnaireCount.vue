@@ -1,6 +1,6 @@
 <template>
   <div class="list-count">
-    <p>پرسشنامه &rlm;{{ count }}</p>
+    <p> {{ count }} پرسشنامه</p>
   </div>
 </template>
 
@@ -19,5 +19,7 @@ export default {
   line-height: 1.36;
   letter-spacing: -0.14px;
   color: #7f86aa;
+  text-align:right;
+  direction: rtl;
 }
 </style>

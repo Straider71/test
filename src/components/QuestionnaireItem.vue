@@ -39,7 +39,7 @@ export default {
   padding: 0 10px;
 
   & .arrow {
-    width: 20px;
+    width: 25px;
     height: 13.3px;
     padding-right: 10px;
   }

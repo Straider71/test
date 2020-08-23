@@ -1,7 +1,7 @@
 <template>
   <div class="navbar-username">
     <img src="../assets/arrow.svg" alt="arrow" class="navbar-username-arrow" />
-    <p class="navbar-username-text">علی خرامان, خوش آمدید</p>
+    <p class="navbar-username-text">{{ userName }}, خوش آمدید</p>
     <img
       src="../assets/avatar.svg"
       alt="avatar"
@@ -13,16 +13,16 @@
 <script>
 export default {
   name: 'UserInfo',
-  // props: {
-  //   userName,
-  // },
+  props: {
+    userName: String,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .navbar-username {
   display: flex;
-  align-items: safe center;
+  align-items: center;
 
   &-avatar {
     width: 26px;
@@ -35,6 +35,7 @@ export default {
     letter-spacing: -0.14px;
     // text-align: left;
     color: #4b5a94;
+    padding: 5px;
   }
 
   &-arrow {

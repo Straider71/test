@@ -4,21 +4,23 @@
       ><img src="../assets/arrow-white.svg" alt="arrow" class="arrow" /> شروع
     </CustomButton>
 
-    <div class="status">
-      <p>وضعیت</p>
-      <p>تعداد پرسش</p>
-    </div>
+    <QuestionnaireStatus count="30" status="پاسخ داده شده" />
 
-    <p>پرسشنامه</p>
+    <QuestionnaireTitle title="پرسشنامه فرهنگ و هنر" />
   </div>
 </template>
 
 <script>
 import CustomButton from './CustomButton';
+import QuestionnaireTitle from './QuestionnaireTitle';
+import QuestionnaireStatus from './QuestionnaireStatus';
+
 export default {
   name: 'QuestionnaireItem',
   components: {
     CustomButton,
+    QuestionnaireTitle,
+    QuestionnaireStatus,
   },
 };
 </script>
@@ -36,13 +38,8 @@ export default {
   margin-top: 20px;
   padding: 0 10px;
 
-  & .status {
-    display: flex;
-    align-items: center;
-  }
-
   & .arrow {
-    width: 16px;
+    width: 20px;
     height: 13.3px;
     padding-right: 10px;
   }

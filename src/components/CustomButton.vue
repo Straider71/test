@@ -1,9 +1,9 @@
 <template>
   <div>
-    <a v-if="href" :href="href" class="button">
+    <a v-if="href" :href="href" class="button ">
       <slot />
     </a>
-    <button v-else class="button">
+    <button v-else class="button ">
       <slot />
     </button>
   </div>
@@ -45,6 +45,7 @@ export default {
   color: #fff;
   display: flex;
   justify-content: center;
+
   align-items: center;
 }
 
@@ -53,7 +54,7 @@ export default {
   height: 50px;
   border-radius: 10px;
   opacity: 0.3;
-  background-color: #e6e6e6;
+  background-color: #f1f1f2;
   border: none;
   font-size: 16px;
   letter-spacing: -0.16px;

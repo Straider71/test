@@ -27,5 +27,6 @@ export default {
   justify-content: space-between;
   padding: 23px 45px;
   z-index: 2;
+  align-items: center;
 }
 </style>

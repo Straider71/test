@@ -7,7 +7,7 @@
 <style lang="scss">
 @font-face {
   font-family: shabnam;
-  src: url('./assets/Shabnam.woff');
+  src: url('./assets/fonts/Shabnam-FD.woff');
 }
 * {
   margin: 0;

@@ -1,15 +1,21 @@
 <template>
   <div class="home">
-    <QuestionnaireItem />
+    <div class="circle"></div>
+    <Navbar />
+    <div class="list">
+      <QuestionnaireList />
+    </div>
   </div>
 </template>
 
 <script>
-import QuestionnaireItem from "../components/QuestionnaireItem.vue";
+import QuestionnaireList from '../components/QuestionnaireList.vue';
+import Navbar from '../components/Navbar';
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
-    QuestionnaireItem,
+    QuestionnaireList,
+    Navbar,
   },
 };
 </script>
@@ -19,5 +25,32 @@ export default {
   background-color: #f3f4f8;
   height: 100vh;
   width: 100vw;
+  position: relative;
+  z-index: -2;
+
+  .list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 150px;
+  }
+
+  .circle {
+    z-index: -1;
+    width: 1009px;
+    height: 1009px;
+    opacity: 0.3;
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 0px solid transparent;
+    border-top: none;
+    position: absolute;
+    // top: -400px;
+    // left: 400px;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 </style>

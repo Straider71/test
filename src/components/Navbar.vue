@@ -1,23 +1,24 @@
 <template>
   <nav class="navbar">
-    <div class="navbar-logo">
-      <img src="../assets/logo.svg" alt="logo" />
-    </div>
-    <div class="navbar-title">
-      <p>لیست پرسشنامه ها</p>
-    </div>
     <div class="navbar-username">
-      <img
-        src="../assets/avatar.svg"
-        alt="avatar"
-        class="navbar-username-avatar"
-      />
-      <p class="navbar-username-text">علی خرامانو خوش آمدید</p>
       <img
         src="../assets/arrow.svg"
         alt="arrow"
         class="navbar-username-arrow"
       />
+      <p class="navbar-username-text">علی خرامان, خوش آمدید</p>
+      <img
+        src="../assets/avatar.svg"
+        alt="avatar"
+        class="navbar-username-avatar"
+      />
+    </div>
+
+    <div class="navbar-title">
+      <p>‌لیست پرسشنامه‌ها</p>
+    </div>
+    <div class="navbar-logo">
+      <img src="../assets/logo.svg" alt="logo" />
     </div>
   </nav>
 </template>
@@ -32,6 +33,8 @@ export default {
 .navbar {
   display: flex;
   justify-content: space-between;
+  padding: 23px 45px;
+  z-index: 2;
 
   &-logo {
     width: 80.2px;
@@ -48,6 +51,7 @@ export default {
 
   &-username {
     display: flex;
+    align-items: safe center;
 
     &-avatar {
       width: 26px;

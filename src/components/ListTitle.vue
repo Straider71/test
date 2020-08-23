@@ -19,6 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 .list-title {
+  width: 845px;
   display: flex;
   justify-content: space-between;
   align-items: center;

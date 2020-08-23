@@ -1,27 +1,44 @@
 <template>
   <div class="container">
-    <CustomButton :disable="true"
-      ><img src="../assets/arrow-white.svg" alt="arrow" class="arrow" /> شروع
+    <CustomButton :disable="customButtonDisabled()">
+      <img
+        v-if="customButtonDisabled()"
+        src="../assets/arrow-gray.svg"
+        alt="arrow"
+        class="arrow"
+      />
+      <img v-else src="../assets/arrow-white.svg" alt="arrow" class="arrow" />
+      شروع
     </CustomButton>
 
-    <QuestionnaireStatus count="30" status="پاسخ داده شده" />
+    <QuestionnaireStatus :count="count" :status="status" />
 
-    <QuestionnaireTitle title="پرسشنامه فرهنگ و هنر" />
+    <QuestionnaireTitle :title="title" />
   </div>
 </template>
 
 <script>
-import CustomButton from './CustomButton';
-import QuestionnaireTitle from './QuestionnaireTitle';
-import QuestionnaireStatus from './QuestionnaireStatus';
+import CustomButton from "./CustomButton";
+import QuestionnaireTitle from "./QuestionnaireTitle";
+import QuestionnaireStatus from "./QuestionnaireStatus";
 
 export default {
-  name: 'QuestionnaireItem',
+  name: "QuestionnaireItem",
   components: {
     CustomButton,
     QuestionnaireTitle,
-    QuestionnaireStatus,
+    QuestionnaireStatus
   },
+  props: {
+    status: String,
+    title: String,
+    count: String
+  },
+  methods: {
+    customButtonDisabled() {
+      return this.status === "2";
+    }
+  }
 };
 </script>
 

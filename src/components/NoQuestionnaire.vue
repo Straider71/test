@@ -32,6 +32,7 @@ export default {
     letter-spacing: -0.2px;
     color: #2a3774;
     margin-top: 70px;
+    direction: rtl;
   }
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <a v-if="href" :href="href" class="button ">
+    <a v-if="href" :href="href" :class="classFunc()">
       <slot />
     </a>
-    <button v-else class="button ">
+    <button v-else :class="classFunc()">
       <slot />
     </button>
   </div>
@@ -17,13 +17,13 @@ export default {
       default: null,
     },
     disable: {
-      type: String,
+      type: Boolean,
       default: false,
     },
   },
   methods: {
-    funcClass() {
-      if (this.disable === 'true') return 'disable';
+    classFunc() {
+      if (this.disable) return 'disable';
       else return 'button';
     },
   },
@@ -54,7 +54,7 @@ export default {
   height: 50px;
   border-radius: 10px;
   opacity: 0.3;
-  background-color: #f1f1f2;
+  background-color: #e6e6e6;
   border: none;
   font-size: 16px;
   letter-spacing: -0.16px;

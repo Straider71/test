@@ -3,9 +3,9 @@
     <ListTitle />
     <!-- <div class="question-list" v-if="questionnaires && questionnaires.length"> -->
     <div class="question-list" v-if="true">
-      <QuestionnaireItem />
-      <QuestionnaireItem />
-      <QuestionnaireItem />
+      <QuestionnaireItem count="30" title="پرسشنامه فرهنگ و هنر" status="0"/>
+      <QuestionnaireItem count="20" title="پرسشنامه هنر" status="1"/>
+      <QuestionnaireItem count="10" title="پرسشنامه فرهنگ" status="2"/>
     </div>
     <div v-else>
       <NoQuestionnaire />

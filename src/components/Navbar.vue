@@ -17,15 +17,18 @@
     <div class="navbar-title">
       <p>‌لیست پرسشنامه‌ها</p>
     </div>
-    <div class="navbar-logo">
-      <img src="../assets/logo.svg" alt="logo" />
-    </div>
+
+    <Logo />
   </nav>
 </template>
 
 <script>
+import Logo from './Logo';
 export default {
   name: 'QuestionnaireItem',
+  components: {
+    Logo,
+  },
 };
 </script>
 
@@ -35,12 +38,6 @@ export default {
   justify-content: space-between;
   padding: 23px 45px;
   z-index: 2;
-
-  &-logo {
-    width: 80.2px;
-    height: 36.7px;
-    object-fit: contain;
-  }
 
   &-title {
     font-size: 17px;

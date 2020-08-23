@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <ListTitle />
+    <!-- <div class="question-list" v-if="questionnaires && questionnaires.length"> -->
     <div class="question-list" v-if="true">
       <QuestionnaireItem />
       <QuestionnaireItem />
@@ -16,6 +17,7 @@
 import QuestionnaireItem from '../components/QuestionnaireItem.vue';
 import ListTitle from './ListTitle';
 import NoQuestionnaire from './NoQuestionnaire';
+// import axios from 'axios';
 
 export default {
   name: 'QuestionnaireList',
@@ -24,6 +26,23 @@ export default {
     ListTitle,
     NoQuestionnaire,
   },
+  // data() {
+  //   return {
+  //     questionnaires: [],
+  //     errors: [],
+  //   };
+  // },
+
+  // created() {
+  //   axios
+  //     .get('http://127.0.0.1/questionnaire')
+  //     .then(res => {
+  //       this.questionnaires = res.data;
+  //     })
+  //     .catch(e => {
+  //       this.errors.push(e);
+  //     });
+  // },
 };
 </script>
 

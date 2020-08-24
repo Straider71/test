@@ -93,13 +93,16 @@ export default {
 
 
 
-  .select-box {
+  & .select-box {
     position: relative;
     display: block;
     /*width: 100%;*/
+    /*min-width: 100px;*/
+    /*width: 130px;*/
 
-    /*width: 104px;*/
-    /*height: 36px;*/
+    width: 130px;
+    /*width: 70%;*/
+    /*max-height: 36px;*/
     margin: 0 auto;
     /*font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;*/
     font-size: 14px;
@@ -151,7 +154,7 @@ export default {
     &__icon {
       position: absolute;
       top: 50%;
-      left: 15px;
+      left: 30px;
       transform: translateY(-50%);
       opacity: 0.3;
       transition: 0.2s ease;
@@ -175,9 +178,11 @@ export default {
 
     &__input-text {
       display: none;
-      width: 100%;
+      /*width: 100%;*/
+      width: 130px;
       margin: 0;
-      padding: 15px;
+      /*height: 36px;*/
+      padding: 10px 8px;
       background-color: #fff;
     }
 

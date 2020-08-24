@@ -15,9 +15,15 @@ export default {
 
 <style lang="scss" scoped>
 .navbar-title {
-  font-size: 17px;
-  font-weight: 500;
-  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  // transform: translate(-50%, -50%);
+  // position: absolute;
+  // left: 50%;
+  // top: 20px;
+  // flex: 1;
+  // justify-self: center;
+
   color: #4570f5;
 }
 </style>

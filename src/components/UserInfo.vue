@@ -23,6 +23,8 @@ export default {
 .navbar-username {
   display: flex;
   align-items: center;
+  // flex: 1;
+  // justify-self: flex-end;
 
   &-avatar {
     width: 26px;

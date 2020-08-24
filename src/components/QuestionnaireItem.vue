@@ -8,12 +8,16 @@
         class="arrow"
       />
       <img v-else src="../assets/arrow-white.svg" alt="arrow" class="arrow" />
-      شروع
+      <p>شروع</p>
     </CustomButton>
 
-    <QuestionnaireStatus :count="count" :status="status" />
+    <div class="status">
+      <QuestionnaireStatus :count="count" :status="status" />
+    </div>
 
-    <QuestionnaireTitle :title="title" />
+    <div class="title">
+      <QuestionnaireTitle :title="title" />
+    </div>
   </div>
 </template>
 
@@ -55,10 +59,22 @@ export default {
   margin-top: 20px;
   padding: 0 10px;
 
+  & .status {
+    width: 350px;
+  }
+
+  & .title {
+    width: 150px;
+  }
+
   & .arrow {
     width: 25px;
     height: 13.3px;
     padding-right: 10px;
+  }
+
+  & p {
+    padding-bottom: 6px;
   }
 }
 @media (max-width: 640px) {

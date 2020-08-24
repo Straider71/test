@@ -25,8 +25,9 @@ export default {
   background-color: #f3f4f8;
   height: 100vh;
   width: 100vw;
-  position: relative;
-  // z-index: -2;
+  position: absolute;
+  z-index: -2;
+  overflow: hidden;
 
   .list {
     display: flex;
@@ -34,12 +35,13 @@ export default {
     align-items: center;
     position: relative;
     top: 150px;
+    z-index: 100;
   }
 
   .circle {
-    // z-index: -1;
-    width: 1009px;
-    height: 1009px;
+    z-index: -1;
+    width: 1209px;
+    height: 1209px;
     opacity: 0.3;
     background-color: #ffffff;
     border-radius: 50%;

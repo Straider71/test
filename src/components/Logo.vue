@@ -1,7 +1,7 @@
 <template>
-  <div class="navbar-logo">
+  <figure class="navbar-logo">
     <img src="../assets/logo.svg" alt="logo" />
-  </div>
+  </figure>
 </template>
 
 <script>
@@ -15,6 +15,8 @@ export default {
   width: 80.2px;
   height: 36.7px;
   object-fit: contain;
+  // flex: 1;
+  // justify-self: flex-start;
 }
 
 @media (max-width: 576px) {

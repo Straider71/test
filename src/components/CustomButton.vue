@@ -60,7 +60,7 @@ export default {
   letter-spacing: -0.16px;
   line-height: 1.38;
   text-decoration: none;
-  cursor: pointer;
+
   color: #b9b9b9;
   display: flex;
   justify-content: center;

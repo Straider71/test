@@ -1,5 +1,7 @@
 <template>
-  <p class="title">{{ title }}</p>
+  <div class="title">
+    <p>{{ title }}</p>
+  </div>
 </template>
 
 <script>
@@ -18,5 +20,17 @@ export default {
   line-height: 1.38;
   letter-spacing: -0.16px;
   color: #2a3774;
+  max-width: 150px;
+  // width: 150px;
+  text-align: right;
+
+  p {
+    direction: rtl;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // overflow: hidden;
 }
 </style>

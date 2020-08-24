@@ -1,11 +1,18 @@
 <template>
   <div class="container">
-    <ListTitle />
+    <ListTitle :questionCount="questionCount" />
     <!-- <div class="question-list" v-if="questionnaires && questionnaires.length"> -->
-    <div class="question-list" v-if="true">
-      <QuestionnaireItem count="30" title="پرسشنامه فرهنگ و هنر" status="0" />
+    <div class="question-list" v-if="noQuestion">
+      <div v-for="questionnaire in questionnaires" :key="questionnaire">
+        <QuestionnaireItem
+          :count="questionnaire.question_num.toString()"
+          :title="questionnaire.title"
+          :status="questionnaire.state"
+        />
+      </div>
+      <!-- <QuestionnaireItem count="30" title="پرسشنامه فرهنگ و هنر" status="0" />
       <QuestionnaireItem count="20" title="پرسشنامه هنر" status="1" />
-      <QuestionnaireItem count="10" title="پرسشنامه فرهنگ" status="2" />
+      <QuestionnaireItem count="10" title="پرسشنامه فرهنگ" status="2" /> -->
     </div>
     <div v-else>
       <NoQuestionnaire />
@@ -17,7 +24,7 @@
 import QuestionnaireItem from '../components/QuestionnaireItem.vue';
 import ListTitle from './ListTitle';
 import NoQuestionnaire from './NoQuestionnaire';
-// import axios from 'axios';
+import axios from 'axios';
 
 export default {
   name: 'QuestionnaireList',
@@ -26,31 +33,40 @@ export default {
     ListTitle,
     NoQuestionnaire,
   },
-  // data() {
-  //   return {
-  //     questionnaires: [],
-  //     errors: [],
-  //   };
-  // },
+  data() {
+    return {
+      questionnaires: [],
+      errors: [],
+      noQuestion: false,
+      questionCount: 0,
+    };
+  },
 
-  // created() {
-  //   axios
-  //     .get('http://127.0.0.1/questionnaire')
-  //     .then(res => {
-  //       this.questionnaires = res.data;
-  //     })
-  //     .catch(e => {
-  //       this.errors.push(e);
-  //     });
-  // },
+  mounted() {
+    axios({
+      method: 'GET',
+
+      url: 'http://127.0.0.1:3000/questionnaire/',
+    }).then(res => {
+      console.log(res.data);
+      this.questionnaires = res.data.data;
+      console.log(res.data.data);
+      if (res.data.data.length) {
+        this.questionCount = res.data.result_number;
+        this.noQuestion = true;
+      }
+      this.count;
+    });
+  },
 };
 </script>
 
 <style scoped lang="scss">
-// .container {
-//   z-index: 2;
-// }
-
+.question-list {
+  max-height: 535px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 @media (max-width: 890px) {
   .container {
     width: 100%;

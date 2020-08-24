@@ -8,13 +8,29 @@
       <a href="#">Link 2</a>
       <a href="#">Link 3</a>
     </div>
+    <!-- <Dropdown :on-click="changeInstrument" :items="instruments" /> -->
+
     <p>مرتب‌سازی براساس</p>
   </div>
 </template>
 
 <script>
+// import Dropdown from './Dropdown';
+
 export default {
   name: 'QuestionnaireSort',
+  // components: {
+  //   Dropdown,
+  // },
+  // data: {
+  //   activeInstrument: 'Piano',
+  //   instruments: ['Piano', 'Acoustic Guitar', 'Drums', 'Trumpet'],
+  // },
+  // methods: {
+  //   changeInstrument: function(instrument) {
+  //     this.activeInstrument = instrument;
+  //   },
+  // },
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="list-count">
-    <p> {{ count }} پرسشنامه</p>
+    <p>{{ count }} پرسشنامه</p>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: 'QuestionnaireCount',
   props: {
-    count: Number,
+    count: String,
   },
 };
 </script>
@@ -19,7 +19,7 @@ export default {
   line-height: 1.36;
   letter-spacing: -0.14px;
   color: #7f86aa;
-  text-align:right;
+  text-align: right;
   direction: rtl;
 }
 </style>

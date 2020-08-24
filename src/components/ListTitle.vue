@@ -1,7 +1,7 @@
 <template>
   <div class="list-title">
     <QuestionnaireSort />
-    <QuestionnaireCount count="3" />
+    <QuestionnaireCount :count="questionCount" />
   </div>
 </template>
 
@@ -13,6 +13,9 @@ export default {
   components: {
     QuestionnaireCount,
     QuestionnaireSort,
+  },
+  props: {
+    questionCount: Number,
   },
 };
 </script>

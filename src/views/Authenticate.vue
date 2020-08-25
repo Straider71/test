@@ -10,8 +10,8 @@
         <p class="subhead">
           چنانچه شما دارای حساب کاربری دارید لطفا وارد شوید
         </p>
-        <router-view />
       </div>
+      <router-view />
     </div>
   </div>
 </template>
@@ -30,37 +30,46 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-template {
-  width: 100vw;
-  height: 100vh;
-  background: #f3f4f8;
-  position: absolute;
+.navbar-logo {
+  width: 98px;
+  height: 45px;
+  object-fit: contain;
 }
-
-// .navbar-logo {
-//   position: absolute;
-//   top: 48px;
-//   right: 153px;
-//   width: 98px;
-//   height: 45px;
-// }
 
 .auth {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  position: relative;
+  padding-right: 160px;
+  // position: relative;
   //   top: 200px;
-  left: auto;
+  // left: auto;
+  width: 100vw;
+  height: 100vh;
+  background: #f3f4f8;
+  // position: absolute;
+  overflow: hidden;
+
+  & .hand-image {
+    width: 60٪;
+    height: 500px;
+    margin-right: 100px;
+    margin-top: 100px;
+  }
 
   & .right-div {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding: 5px;
+    height: 720px;
+    width: 40%;
+
+    // padding: 5px;
+    // margin-right: -350px;
 
     & .title {
       text-align: right;
+      margin-top: 50px;
 
       & .head {
         font-weight: bold;
@@ -74,7 +83,7 @@ template {
         font-size: 14px;
         line-height: 1.36;
         letter-spacing: -0.14px;
-        margin-top: 10px;
+        margin-top: 15px;
       }
     }
   }

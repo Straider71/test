@@ -81,6 +81,7 @@ export default {
       }
       &:last-child {
         padding-right: 9px;
+        padding-top: 2px;
         /*line-height: 18px;*/
       }
     }

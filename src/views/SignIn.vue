@@ -1,5 +1,5 @@
 <template>
-    <div class="hi">
+<!--    <div class="hi">-->
   <div class="sign-in-container">
     <p class="sub-header">چنانچه دارای حساب کاربری نیستید، لطفا ابتدا ثبت نام کنید</p>
     <form class="input-list">
@@ -23,7 +23,7 @@
         <a>رمز عبور را فراموش کرده‌اید؟</a>
       </div>
       <div class="remember-me">
-        <CustomCheckBox text="من را به خاطر داشته باش" />
+        <CustomCheckBox text="مرا به خاطر داشته باش" />
       </div>
     </div>
     <div class="buttons">
@@ -35,7 +35,7 @@
       </CustomButton>
     </div>
   </div>
-    </div>
+<!--    </div>-->
 </template>
 
 <script>
@@ -49,15 +49,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.hi {
-  background-color: #f3f4f8;
-  width: 100vw;
-  height: 100vh;
+/*.hi {*/
+/*  background-color: #f3f4f8;*/
+/*  width: 100vw;*/
+/*  height: 100vh;*/
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*}*/
 
 .sign-in-container {
   width: 375px;
@@ -67,11 +67,14 @@ export default {
   flex-direction: column;
 
   & .sub-header {
+    /*display: flex;*/
+    text-align: right;
     color: #7f86aa;
     font-size: 14px;
     line-height: 1.36;
     letter-spacing: -0.14px;
     margin-bottom: 35px;
+    margin-top: 10px;
   }
 
   .input-list {
@@ -140,6 +143,10 @@ export default {
       /* opacity is my opinion*/
       opacity: 0.9;
       color: white;
+    }
+
+    & .custom-button::v-deep .button:focus {
+      outline: none;
     }
   }
 }

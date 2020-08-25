@@ -21,31 +21,34 @@
       >
         <img src="../assets/input-img/lock.svg" />
       </custom-input>
+      <div class="buttons">
+        <CustomButton class="enter">
+          <p>ورود</p>
+        </CustomButton>
+        <CustomButton class="signup">
+          <p>ثبت نام</p>
+        </CustomButton>
+      </div>
     </form>
   </div>
 </template>
 
 <script>
-import CustomInput from "../components/global/CustomInput";
+import CustomInput from '../components/global/CustomInput';
+import CustomButton from '../components/global/CustomButton';
+
 export default {
-  name: "SingUp",
-  components: { CustomInput }
+  name: 'SingUp',
+  components: { CustomInput, CustomButton },
 };
 </script>
 
 <style scoped lang="scss">
-.hi {
-  background-color: #eee;
-  width: 100vw;
-  height: 100vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .input-list {
   box-shadow: 10px 8px 6px 0 #edeef5;
+  width: 375px;
+  height: 136px;
+  margin-top: 40px;
 
   & > * {
     margin-top: 1px;
@@ -59,6 +62,12 @@ export default {
   & .round-bottom-border {
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
+  }
+
+  & .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
   }
 }
 </style>

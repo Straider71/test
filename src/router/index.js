@@ -25,29 +25,17 @@ const routes = [
       {
         path: 'sign-up',
         component: SignUp,
-      }
-    ]
+      },
+    ],
   },
   {
     path: '/questionnaires',
     name: 'QuestionnaireListPage',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () =>
       import(
         /* webpackChunkName: "about" */ '../views/QuestionnaireListPage.vue'
       ),
-    // children: [
-    //   {
-    //     path: 'contact',
-    //     component: Signin,
-    //   },
-    //   {
-    //     path: 'info',
-    //     component: Signin,
-    //   }, //router-view
-    // ],
   },
 ];
 

@@ -23,6 +23,8 @@ export default {
 .navbar-username {
   display: flex;
   align-items: center;
+  flex-shrink: 1;
+  flex-basis: 50%;
   // flex: 1;
   // justify-self: flex-end;
 

@@ -22,6 +22,16 @@ const routes = [
       import(
         /* webpackChunkName: "about" */ '../views/QuestionnaireListPage.vue'
       ),
+    // children: [
+    //   {
+    //     path: 'contact',
+    //     component: Signin,
+    //   },
+    //   {
+    //     path: 'info',
+    //     component: Signin,
+    //   }, //router-view
+    // ],
   },
 ];
 

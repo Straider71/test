@@ -15,8 +15,10 @@ export default {
   width: 80.2px;
   height: 36.7px;
   object-fit: contain;
-  // flex: 1;
-  // justify-self: flex-start;
+  flex-shrink: 1;
+  flex-basis: 50%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media (max-width: 576px) {

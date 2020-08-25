@@ -1,8 +1,7 @@
 <template>
   <div class="container">
-    <ListTitle :questionCount="questionCount" />
-    <!-- <div class="question-list" v-if="questionnaires && questionnaires.length"> -->
     <div class="question-list" v-if="noQuestion">
+      <ListTitle :questionCount="questionCount" />
       <div v-for="questionnaire in questionnaires" :key="questionnaire">
         <QuestionnaireItem
           :count="questionnaire.question_num.toString()"
@@ -25,6 +24,7 @@ import QuestionnaireItem from '../components/QuestionnaireItem.vue';
 import ListTitle from './ListTitle';
 import NoQuestionnaire from './NoQuestionnaire';
 import axios from 'axios';
+// import API from '../../api/API'
 
 export default {
   name: 'QuestionnaireList',

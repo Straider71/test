@@ -17,6 +17,8 @@ export default {
 .navbar-title {
   font-size: 20px;
   font-weight: 700;
+  flex-shrink: 0;
+
   // transform: translate(-50%, -50%);
   // position: absolute;
   // left: 50%;
@@ -25,5 +27,13 @@ export default {
   // justify-self: center;
 
   color: #4570f5;
+}
+
+@media (max-width: 576px) {
+  .navbar-title {
+    flex-shrink: 1;
+    flex-basis: 50%;
+    text-align: right;
+  }
 }
 </style>

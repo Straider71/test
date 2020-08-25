@@ -3,11 +3,11 @@
     <CustomButton :disable="customButtonDisabled()">
       <img
         v-if="customButtonDisabled()"
-        src="../assets/arrow-gray.svg"
+        src="../../assets/arrow-gray.svg"
         alt="arrow"
         class="arrow"
       />
-      <img v-else src="../assets/arrow-white.svg" alt="arrow" class="arrow" />
+      <img v-else src="../../assets/arrow-white.svg" alt="arrow" class="arrow" />
       <p>شروع</p>
     </CustomButton>
 
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import CustomButton from './CustomButton';
+import CustomButton from '../global/CustomButton';
 import QuestionnaireTitle from './QuestionnaireTitle';
 import QuestionnaireStatus from './QuestionnaireStatus';
 

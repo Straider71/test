@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import QuestionnaireList from '../components/QuestionnaireList.vue';
-import Navbar from '../components/Navbar';
+import QuestionnaireList from '../components/question-list/QuestionnaireList.vue';
+import Navbar from '../components/global/Navbar';
 export default {
   name: 'Home',
   components: {

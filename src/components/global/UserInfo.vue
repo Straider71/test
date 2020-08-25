@@ -1,9 +1,9 @@
 <template>
   <div class="navbar-username">
-    <img src="../assets/arrow.svg" alt="arrow" class="navbar-username-arrow" />
+    <img src="../../assets/arrow.svg" alt="arrow" class="navbar-username-arrow" />
     <p class="navbar-username-text">{{ userName }}, خوش آمدید</p>
     <img
-      src="../assets/avatar.svg"
+      src="../../assets/avatar.svg"
       alt="avatar"
       class="navbar-username-avatar"
     />

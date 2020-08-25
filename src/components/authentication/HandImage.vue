@@ -1,6 +1,6 @@
 <template>
   <figure class="figure-hand-image">
-    <img alt="hand writing image" src="../assets/34shndow.png" />
+    <img alt="hand writing image" src="../../assets/34shndow.png" />
   </figure>
 </template>
 

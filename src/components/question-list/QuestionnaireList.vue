@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import QuestionnaireItem from '../components/QuestionnaireItem.vue';
+import QuestionnaireItem from './QuestionnaireItem.vue';
 import ListTitle from './ListTitle';
 import NoQuestionnaire from './NoQuestionnaire';
 import axios from 'axios';

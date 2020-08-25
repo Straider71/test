@@ -26,7 +26,7 @@
           <input class="select-box__input" type="radio" id="2" value="3" name="Ben" checked="checked"/>
           <p class="select-box__input-text">جدید ترین</p>
         </div>
-        <img class="select-box__icon" src="../assets/arrow.svg" alt="Arrow Icon" aria-hidden="true"/>
+        <img class="select-box__icon" src="../../assets/arrow.svg" alt="Arrow Icon" aria-hidden="true"/>
       </div>
 
 

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <figure>
-      <img src="../assets/cancel.svg" alt="No List" />
+      <img src="../../assets/cancel.svg" alt="No List" />
     </figure>
     <p>هم اکنون پرسش‌نامه‌ای وجود ندارد !</p>
   </div>

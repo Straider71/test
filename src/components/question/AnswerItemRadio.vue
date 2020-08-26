@@ -1,108 +1,112 @@
 <template>
-  <div class="option">
-    <label class="radio" :for="id">
-      <input
-        type="radio"
-        :id="id"
-        class="radio-button"
-        :value="label"
-        :name="name"
-        v-model="value"
-      />
-      <span class="radio-circle"> </span>
-      <span class="radio-circle__inner"> </span>
-      <span class="radio-button__label">{{ label }}</span>
-    </label>
-  </div>
+  <label class="radio">
+    <input type="radio" name="r" :value="text" @change="onChanged($event)" />
+    <span>{{ text }}</span>
+  </label>
 </template>
 
 <script>
 export default {
-  name: 'CustomRadio',
-  props: ['name', 'lable', 'id', 'value'],
-  computed: {
-    radioButtonValue: {
-      get: function() {
-        return this.value;
-      },
-      set: function() {
-        // Communicate the change to parent component so that selectedValue can be updated
-        this.$emit('change', this.label);
-      },
-    },
+  name: "CustomRadio",
+  props: {
+    text: String
   },
+  methods: {
+    onChanged(event) {
+      this.$emit("change-option", event.target.value);
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.option {
+$radioSize: 19px;
+$radioBorder: #d1d7e3;
+$radioActive: #5d9bfb;
+.radio {
+  margin: 0;
   width: 413px;
-  height: 60px;
+  min-height: 55px;
+  direction: rtl;
+  text-align: justify;
+  text-justify: inter-word;
   border-radius: 10px;
   background-color: #e6e9ef;
-
-  [type='radio']:checked,
-  [type='radio']:not(:checked) {
-    position: absolute;
-    left: -9999px;
+  cursor: pointer;
+  @media screen and (max-width: 844px) {
+    width: 350px;
+    min-height: 30px;
   }
-
-  // [type='radio']:checked + label,
-  // [type='radio']:not(:checked) + label {
-  //   position: relative;
-  //   padding-left: 28px;
-  //   cursor: pointer;
-  //   line-height: 20px;
-  //   display: inline-block;
-  //   color: #666;
-  // }
-
-  // [type='radio']:checked + label:before,
-  // [type='radio']:not(:checked) + label:before {
-  //   content: '';
-  //   position: absolute;
-  //   left: 0;
-  //   top: 0;
-  //   width: 18px;
-  //   height: 18px;
-  //   border: 1px solid #ddd;
-  //   border-radius: 100%;
-  //   background: #fff;
-  // }
-  // [type='radio']:checked + label:after,
-  // [type='radio']:not(:checked) + label:after {
-  //   content: '';
-  //   width: 12px;
-  //   height: 12px;
-  //   background: #f87da9;
-  //   position: absolute;
-  //   top: 4px;
-  //   left: 4px;
-  //   border-radius: 100%;
-  //   -webkit-transition: all 0.2s ease;
-  //   transition: all 0.2s ease;
-  // }
-  // [type='radio']:not(:checked) + label:after {
-  //   opacity: 0;
-  //   -webkit-transform: scale(0);
-  //   transform: scale(0);
-  // }
-  // [type='radio']:checked + label:after {
-  //   opacity: 1;
-  //   -webkit-transform: scale(1);
-  //   transform: scale(1);
-  // }
-}
-
-.option-select {
-  width: 413px;
-  height: 60px;
-  border-radius: 10px;
-  background-color: #95d7a4;
+  @media screen and (max-width: 450px) {
+    width: 80%;
+  }
+  input {
+    display: none;
+    & + span {
+      font-size: 16px;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      color: #4b5a9f;
+      background-color: #e6e9ef;
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      direction: rtl;
+      padding-right: 56px;
+      position: relative;
+      @media screen and (max-width: 450px) {
+        font-size: 13px;
+        padding-right: 35px;
+      }
+      &:not(:empty) {
+        padding-left: $radioSize + 8;
+      }
+      &:before,
+      &:after {
+        content: "";
+        width: $radioSize;
+        height: $radioSize;
+        display: block;
+        border-radius: 50%;
+        border: solid 2px #4b5a9f;
+        right: 22px;
+        @media screen and (max-width: 450px) {
+          right: 10px;
+          width: 15px;
+          height: 15px;
+        }
+        top: 0;
+        bottom: 0;
+        margin-top: auto;
+        margin-bottom: auto;
+        text-align: center;
+        position: absolute;
+      }
+      &:before {
+        transition: background 0.2s ease,
+          transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+      }
+    }
+    &:checked + span {
+      background-color: #95d7a4;
+      color: #286d3e;
+      &:before {
+        border-color: #286d3e;
+      }
+      &:after {
+        border-color: #286d3e;
+        background-color: #286d3e;
+        transform: scale(0.6);
+        transition: transform 0.3s ease;
+      }
+    }
+  }
+  &:hover {
+    & span:hover {
+      background-color: rgba(235, 235, 205, 0.69);
+    }
+  }
 }
 </style>
-
-// // // <CustomRadio // name="options" // label="1" // :value="selectedValue"
-// @change="changeValue" // /> // data: function() { // return { //
-selectedValue: "1" // }; // }, // methods: { // changeValue: function(newValue)
-{ // this.selectedValue = newValue; // } // }

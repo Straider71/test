@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-// import Home from '../views/Home.vue';
+import Home from "../views/Home.vue";
 import QuestionnaireListPage from "../views/QuestionnaireListPage.vue";
 import Question from "../views/Question";
 import Authenticate from "../views/Authenticate.vue";
@@ -13,7 +13,19 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: QuestionnaireListPage
+    component: Home,
+    children: [
+      {
+        path: "",
+        name: "QuestionnaireListPage",
+        component: QuestionnaireListPage
+      },
+      {
+        path: "questions",
+        name: "Question",
+        component: Question
+      }
+    ]
   },
   {
     path: "/",
@@ -29,11 +41,6 @@ const routes = [
       }
     ]
   },
-  {
-    path: "/question",
-    name: "Question",
-    component: Question
-  }
   // {
   //   path: '/questionnaires',
   //   name: 'QuestionnaireListPage',

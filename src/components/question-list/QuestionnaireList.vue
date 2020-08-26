@@ -71,6 +71,7 @@ export default {
   max-height: 535px;
   overflow-y: auto;
   overflow-x: hidden;
+  scrollbar-width: thin;
 }
 @media (max-width: 890px) {
   .container {

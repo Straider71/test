@@ -37,21 +37,20 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 160px;
-  // position: relative;
-  //   top: 200px;
-  // left: auto;
+  // padding-right: 160px;
+
   width: 100vw;
   height: 100vh;
   background: #f3f4f8;
-  // position: absolute;
   overflow: hidden;
 
   & .hand-image {
     width: 60٪;
     height: 500px;
-    margin-right: 100px;
-    margin-top: 100px;
+    margin-right: 190px;
+    margin-top: 230px;
+    // padding-right: 190px;
+    // padding-top: 50px;
   }
 
   & .right-div {
@@ -60,9 +59,8 @@ export default {
     align-items: flex-end;
     height: 720px;
     width: 40%;
-
-    // padding: 5px;
-    // margin-right: -350px;
+    padding-right: 190px;
+    padding-top: 50px;
 
     & .title {
       text-align: right;
@@ -83,6 +81,52 @@ export default {
         margin-top: 15px;
       }
     }
+  }
+}
+
+@media (max-width: 1270px) {
+  .auth {
+    & .right-div {
+      & .title {
+        & .head {
+          font-size: 22px;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1100px) {
+  .auth {
+    & .right-div {
+      & .title {
+        & .head {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1010px) {
+  .auth {
+    & .hand-image {
+      display: none;
+    }
+
+    & .right-div {
+      align-items: center;
+      height: 500px;
+      width: 100%;
+      padding: 0;
+      padding-top: -50px;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-logo {
+    display: block;
+    padding-top: -50px;
   }
 }
 </style>

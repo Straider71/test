@@ -50,9 +50,9 @@ export default {
   // }
 }
 
-@media (max-width: 576px) {
-  Logo {
-    display: none;
-  }
-}
+// @media (max-width: 576px) {
+//   Logo::v-deep .navbar-logo {
+//     display: none;
+//   }
+// }
 </style>

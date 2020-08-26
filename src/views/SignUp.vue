@@ -1,5 +1,8 @@
 <template>
-  <div class="hi">
+  <div class="sign-up-container">
+    <p class="sub-header">
+      چنانچه دارای حساب کاربری هستید، لطفا وارد شود
+    </p>
     <form class="input-list">
       <custom-input
         class="round-top-border"
@@ -22,11 +25,11 @@
         <img src="../assets/input-img/lock.svg" />
       </custom-input>
       <div class="buttons">
-        <CustomButton class="enter">
+        <CustomButton class="custom-button">
           <p>ورود</p>
         </CustomButton>
-        <CustomButton class="signup">
-          <p>ثبت نام</p>
+        <CustomButton class="custom-button">
+          <p>ثبت‌نام</p>
         </CustomButton>
       </div>
     </form>
@@ -44,30 +47,78 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.input-list {
-  box-shadow: 10px 8px 6px 0 #edeef5;
+.sign-up-container {
   width: 375px;
-  height: 136px;
-  margin-top: 40px;
+  max-width: 375px;
+  height: 267px;
+  display: flex;
+  flex-direction: column;
 
-  & > * {
-    margin-top: 1px;
+  & .sub-header {
+    /*display: flex;*/
+    text-align: right;
+    color: #7f86aa;
+    font-size: 14px;
+    line-height: 1.36;
+    letter-spacing: -0.14px;
+    // margin-bottom: 35px;
+    margin-top: 10px;
   }
 
-  & .round-top-border {
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-  }
-
-  & .round-bottom-border {
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-  }
-
-  & .buttons {
-    display: flex;
-    justify-content: space-between;
+  .input-list {
+    box-shadow: 10px 8px 6px 0 #edeef5;
+    width: 375px;
+    height: 136px;
     margin-top: 40px;
+
+    & > * {
+      margin-top: 1px;
+    }
+
+    & .round-top-border {
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+    }
+
+    & .round-bottom-border {
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    & .buttons {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0;
+      margin-top: 40px;
+
+      /*& .custom-button .button{*/
+      /*& .custom-button >>> button {*/
+      & .custom-button::v-deep .button {
+        height: 45px;
+        width: 183px;
+        font-size: 16px;
+        border-radius: 5px;
+      }
+
+      & .custom-button:first-child::v-deep .button {
+        background-color: #f3f4f8;
+        color: #929db3;
+        box-shadow: none;
+        border: solid 1px #d1d1d2;
+      }
+
+      & .custom-button::v-deep .button:hover {
+        background-color: #4570f5;
+        /* opacity is my opinion*/
+        opacity: 0.9;
+        color: white;
+      }
+
+      & .custom-button::v-deep .button:focus {
+        outline: none;
+      }
+    }
   }
 }
 </style>

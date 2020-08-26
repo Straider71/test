@@ -7,9 +7,6 @@
       <Logo />
       <div class="title">
         <p class="head">به سیستم پرسشنامه آنلاین خوش آمدید</p>
-        <p class="subhead">
-          چنانچه شما دارای حساب کاربری دارید لطفا وارد شوید
-        </p>
       </div>
       <router-view />
     </div>

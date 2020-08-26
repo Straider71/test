@@ -26,10 +26,13 @@ export default {
   padding: 19px 19px 19px 15px;
   /*padding-right: 19px;*/
   width: 375px;
+  max-width: 375px;
   height: 68px;
+  max-height: 68px;
 
   & .labels {
     display: flex;
+    color: #7f86aa;
     justify-content: space-between;
     margin-bottom: 5px;
     font-size: 12px;
@@ -51,4 +54,10 @@ export default {
     outline: none;
   }
 }
+
+/*@media (max-width: 576px) {*/
+/*  .container {*/
+/*    width: ;*/
+/*  }*/
+/*}*/
 </style>

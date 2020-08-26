@@ -28,7 +28,7 @@ const routes = [
     ]
   },
   {
-    path: "/",
+    path: "/account/",
     component: Authenticate,
     children: [
       {

@@ -4,7 +4,7 @@
       <img src="../../assets/Group.svg" alt="finish page" />
     </figure>
     <p>شما با <span class="green">موفقیت</span> پرسشنامه را به اتمام رساندید</p>
-    <CustomButton>
+    <CustomButton class="deep">
       <img src="../../assets/arrow-white.svg" alt="arrow" />
       <a href="#">مشاهده پرسشنامه‌ها</a>
     </CustomButton>
@@ -25,8 +25,13 @@ export default {
 <style lang="scss" scoped>
 .finish {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  & figure {
+    margin: 100px 0 60px 0;
+  }
 
   & p {
     font-size: 20px;
@@ -35,9 +40,27 @@ export default {
     letter-spacing: -0.2px;
     text-align: center;
     color: #2a3774;
+    margin-bottom: 60px;
 
     & .green {
       color: #05d667;
+    }
+  }
+
+  .deep::v-deep .button {
+    width: 209px;
+    height: 50px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 0 rgba(69, 112, 245, 0.6);
+    background-color: #4570f5;
+
+    & a {
+      text-decoration: none;
+      font-size: 16px;
+      line-height: 1.38;
+      letter-spacing: -0.16px;
+      color: #ffffff;
+      padding: 0 0 5px 10px;
     }
   }
 }

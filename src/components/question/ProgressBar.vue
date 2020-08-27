@@ -34,6 +34,8 @@ export default {
   border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: auto;
+  // margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;

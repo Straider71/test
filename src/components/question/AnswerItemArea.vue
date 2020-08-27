@@ -1,13 +1,16 @@
 <template>
   <div class="area-container">
     <p class="title">پاسخ تشریحی کامل بدهید</p>
-    <textarea name="cutom-area" id="area"> یسبسیبسیب</textarea>
+    <textarea name="cutom-area" id="area" v-model="text"></textarea>
   </div>
 </template>
 
 <script>
 export default {
   name: 'AnswerItemArea',
+  props: {
+    text: String,
+  },
 };
 </script>
 

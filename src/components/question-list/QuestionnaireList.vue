@@ -23,8 +23,9 @@
 import QuestionnaireItem from './QuestionnaireItem.vue';
 import ListTitle from './ListTitle';
 import NoQuestionnaire from './NoQuestionnaire';
-import axios from 'axios';
+// import axios from 'axios';
 // import API from '../../../api/API';
+import EventService from '../../services/EventService';
 
 // const myApi = new API({ url: 'http://127.0.0.1:3000/questionnaire/' });
 // myApi.createEntity({ name: 'questionnaire' });
@@ -48,11 +49,11 @@ export default {
   mounted() {
     // this.myApi.getAll().then(({ data }) => console.log(data));
 
-    axios({
-      method: 'GET',
+    // axios({
+    //   method: 'GET',
 
-      url: 'http://127.0.0.1:3000/questionnaire/',
-    }).then(res => {
+    //   url: 'http://127.0.0.1:3000/questionnaire/',
+    EventService.getQuestionnaires().then(res => {
       console.log(res.data);
       this.questionnaires = res.data.data;
       console.log(res.data.data);

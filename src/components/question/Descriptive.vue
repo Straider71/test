@@ -1,7 +1,7 @@
 <template>
   <div class="answer-container">
     <p class="title">
-      در دوران رنسانس رویگرد دنیوی به عالم در کدام سطوح آشکار شد؟
+      <QuestionTitle :text="question" />
     </p>
     <AnswerItemArea />
   </div>
@@ -9,15 +9,17 @@
 
 <script>
 import AnswerItemArea from './AnswerItemArea';
+import QuestionTitle from './QuestionTitle';
+
 export default {
   name: 'Descriptive',
   components: {
     AnswerItemArea,
+    QuestionTitle,
   },
-  // },
-  // data() {
-  //   title: 'در دوران رنسانس رویگرد دنیوی به عالم در کدام سطوح آشکار شد؟';
-  // },
+  props: {
+    question: String,
+  },
 };
 </script>
 
@@ -27,15 +29,5 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  & .title {
-    font-size: 22px;
-    font-weight: 500;
-    line-height: 1.36;
-    letter-spacing: -0.22px;
-    text-align: center;
-    color: #2a3774;
-    margin: 160px 0 20px 0;
-  }
 }
 </style>

@@ -1,7 +1,9 @@
 <template>
-<!--    <div class="hi">-->
+  <!--    <div class="hi">-->
   <div class="sign-in-container">
-    <p class="sub-header">چنانچه دارای حساب کاربری نیستید، لطفا ابتدا ثبت نام کنید</p>
+    <p class="sub-header">
+      چنانچه دارای حساب کاربری نیستید، لطفا ابتدا ثبت نام کنید
+    </p>
     <form class="input-list">
       <custom-input
         class="round-top-border"
@@ -35,16 +37,16 @@
       </CustomButton>
     </div>
   </div>
-<!--    </div>-->
+  <!--    </div>-->
 </template>
 
 <script>
-import CustomInput from "../components/global/CustomInput";
-import CustomCheckBox from "../components/global/CustomCheckBox";
-import CustomButton from "../components/global/CustomButton";
+import CustomInput from '../components/global/CustomInput';
+import CustomCheckBox from '../components/global/CustomCheckBox';
+import CustomButton from '../components/global/CustomButton';
 export default {
-  name: "SignIn",
-  components: { CustomInput, CustomCheckBox, CustomButton }
+  name: 'SignIn',
+  components: { CustomInput, CustomCheckBox, CustomButton },
 };
 </script>
 

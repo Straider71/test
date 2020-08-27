@@ -4,10 +4,10 @@
 
 <script>
 export default {
-  name: "QuestionTitle",
+  name: 'QuestionTitle',
   props: {
-    text: String
-  }
+    text: String,
+  },
 };
 </script>
 
@@ -20,6 +20,7 @@ export default {
   font-size: 22px;
   color: #2a3774;
   margin-bottom: 15px;
+  margin-top: 130px;
 
   @media screen and (max-width: 844px) {
     margin-bottom: 10px;

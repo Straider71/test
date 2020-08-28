@@ -24,6 +24,7 @@ import QuestionnaireItem from './QuestionnaireItem.vue';
 import ListTitle from './ListTitle';
 import NoQuestionnaire from './NoQuestionnaire';
 import EventService from '../../services/EventService';
+// import { mapState } from 'vuex';
 
 export default {
   name: 'QuestionnaireList',
@@ -42,17 +43,22 @@ export default {
   },
 
   mounted() {
-    EventService.getQuestionnaires().then(res => {
-      console.log(res.data);
-      this.questionnaires = res.data.data;
-      console.log(res.data.data);
-      if (res.data.data.length) {
-        this.questionCount = res.data.result_number;
-        this.noQuestion = true;
-      }
-      this.count;
-    });
+    // this.$store.dispatch('getQuestionnaire');
+    EventService.getQuestionnaires()
+      .then(res => {
+        console.log(res.data);
+        this.questionnaires = res.data.data;
+        console.log(res.data.data);
+        if (res.data.data.length) {
+          this.questionCount = res.data.result_number;
+          this.noQuestion = true;
+        }
+        this.count;
+      })
+      .catch(err => console.log(err.response));
   },
+
+  // computed: mapState(['questionnaires']),
 };
 </script>
 

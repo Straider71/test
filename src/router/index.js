@@ -11,13 +11,7 @@ const routes = [
     redirect: {
       name: 'QuestionnaireListPage',
     },
-    // beforeEnter(to, from, next) {
-    //   if (store.state.user) {
-    //     next();
-    //   } else {
-    //     next('/account/sign-in');
-    //   }
-    // },
+
     children: [
       {
         path: '',
@@ -66,7 +60,7 @@ router.beforeEach((to, from, next) => {
 
   if (to.matched.some(record => record.meta.requireAuth) && !loggedIn) {
     next('/account/sign-in');
-  }
-  next();
+    // this.$toastr('warning', 'ابتدا وارد شوید');
+  } else next();
 });
 export default router;

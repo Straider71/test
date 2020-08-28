@@ -60,6 +60,7 @@ export default {
     return {
       email: '',
       password: '',
+      error: null,
     };
   },
   methods: {
@@ -69,9 +70,17 @@ export default {
         password: this.password,
       };
       console.log(userData);
-      this.$store.dispatch('signin', userData).then(() => {
-        this.$router.push({ name: 'QuestionnaireListPage' });
-      });
+      this.$store
+        .dispatch('signin', userData)
+        .then(() => {
+          this.$router.push({ name: 'QuestionnaireListPage' });
+          this.$toastr('success', 'شما با موفقیت وارد شدید');
+        })
+        .catch(err => {
+          console.log(err.response);
+          this.error = err.response.data;
+          this.$toastr('warning', 'مشکلی به وجود آمده است');
+        });
     },
   },
 };

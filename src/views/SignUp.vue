@@ -64,6 +64,7 @@ export default {
       email: '',
       password: '',
       checkPassword: '',
+      errors: null,
     };
   },
   methods: {
@@ -74,9 +75,17 @@ export default {
         password: this.password,
       };
       console.log(userData);
-      this.$store.dispatch('signup', userData).then(() => {
-        this.$router.push({ name: 'QuestionnaireListPage' });
-      });
+      this.$store
+        .dispatch('signup', userData)
+        .then(() => {
+          this.$router.push({ name: 'QuestionnaireListPage' });
+          this.$toastr('success', 'اطلاعات شما با موفقیت ثبت گردید');
+        })
+        .catch(err => {
+          console.log(err.response);
+          this.errors = err.response.data;
+          this.$toastr('warning', 'مشکلی به وجود آمده است');
+        });
     },
   },
 };

@@ -1,72 +1,75 @@
 <template>
   <div class="sort-list">
-    <!--    <button class="dropbtn">-->
-    <!--      <img src="../assets/arrow.svg" alt="" /> جدیدترین-->
-    <!--    </button>-->
-    <!--    <div class="dropdown-content">-->
-    <!--      <a href="#">Link 1</a>-->
-    <!--      <a href="#">Link 2</a>-->
-    <!--      <a href="#">Link 3</a>-->
-    <!--    </div>-->
-    <!-- <Dropdown :on-click="changeInstrument" :items="instruments" /> -->
-
-
-
     <div class="select-box">
       <div class="select-box__current" tabindex="1">
         <div class="select-box__value">
-          <input class="select-box__input" type="radio" id="0" value="1" name="Ben" checked="checked"/>
+          <input
+            class="select-box__input"
+            type="radio"
+            id="0"
+            value="1"
+            name="Ben"
+            checked="checked"
+          />
           <p class="select-box__input-text">مجبوب ترین</p>
         </div>
         <div class="select-box__value">
-          <input class="select-box__input" type="radio" id="1" value="2" name="Ben" checked="checked"/>
+          <input
+            class="select-box__input"
+            type="radio"
+            id="1"
+            value="2"
+            name="Ben"
+            checked="checked"
+          />
           <p class="select-box__input-text">قدیمی ترین</p>
         </div>
         <div class="select-box__value">
-          <input class="select-box__input" type="radio" id="2" value="3" name="Ben" checked="checked"/>
+          <input
+            class="select-box__input"
+            type="radio"
+            id="2"
+            value="3"
+            name="Ben"
+            checked="checked"
+          />
           <p class="select-box__input-text">جدید ترین</p>
         </div>
-        <img class="select-box__icon" src="../../assets/arrow.svg" alt="Arrow Icon" aria-hidden="true"/>
+        <img
+          class="select-box__icon"
+          src="../../assets/arrow.svg"
+          alt="Arrow Icon"
+          aria-hidden="true"
+        />
       </div>
-
 
       <ul class="select-box__list">
         <li>
-          <label class="select-box__option" for="0" aria-hidden="aria-hidden">محبوب ترین</label>
+          <label class="select-box__option" for="0" aria-hidden="aria-hidden"
+            >محبوب ترین</label
+          >
         </li>
         <li>
-          <label class="select-box__option" for="1" aria-hidden="aria-hidden">قدیمی ترین</label>
+          <label class="select-box__option" for="1" aria-hidden="aria-hidden"
+            >قدیمی ترین</label
+          >
         </li>
         <li>
-          <label class="select-box__option" for="2" aria-hidden="aria-hidden">جدید ترین</label>
+          <label class="select-box__option" for="2" aria-hidden="aria-hidden"
+            >جدید ترین</label
+          >
         </li>
       </ul>
     </div>
-
 
     <p class="text">مرتب‌سازی براساس</p>
   </div>
 </template>
 
 <script>
-// import Dropdown from './Dropdown';
-
 export default {
-  name: "QuestionnaireSort"
-  // components: {
-  //   Dropdown,
-  // },
-  // data: {
-  //   activeInstrument: 'Piano',
-  //   instruments: ['Piano', 'Acoustic Guitar', 'Drums', 'Trumpet'],
-  // },
-  // methods: {
-  //   changeInstrument: function(instrument) {
-  //     this.activeInstrument = instrument;
-  //   },
-  // },
+  name: 'QuestionnaireSort',
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -83,15 +86,6 @@ export default {
     letter-spacing: -0.14px;
     color: #7f86aa;
   }
-
-
-    /*!*border-radius: 10px;*!*/
-    /*background-color: #ffffff;*/
-    /*color: #aeaeae;*/
-    /*border: none;*/
-
-
-
 
   & .select-box {
     position: relative;
@@ -139,7 +133,6 @@ export default {
 
           .select-box__option {
             cursor: pointer;
-
           }
         }
 
@@ -228,36 +221,7 @@ export default {
     }
   }
 }
-
-
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!--/*.dropbtn {*/-->
 <!--/*  width: 104px;*/-->

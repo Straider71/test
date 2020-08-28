@@ -1,8 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import store from '../store';
-
 Vue.use(VueRouter);
 
 const routes = [
@@ -14,7 +12,7 @@ const routes = [
       name: 'QuestionnaireListPage',
     },
     // beforeEnter(to, from, next) {
-    //   if (store.state.idToken) {
+    //   if (store.state.user) {
     //     next();
     //   } else {
     //     next('/account/sign-in');
@@ -26,7 +24,7 @@ const routes = [
         name: 'QuestionnaireListPage',
         component: () => import('@/views/QuestionnaireListPage.vue'),
         meta: {
-          user: true,
+          requireAuth: true,
         },
       },
       {
@@ -34,7 +32,7 @@ const routes = [
         name: 'Question',
         component: () => import('@/views/Question.vue'),
         meta: {
-          user: true,
+          requireAuth: true,
         },
       },
     ],
@@ -46,23 +44,14 @@ const routes = [
       {
         path: 'sign-in',
         component: () => import('@/views/SignIn.vue'),
-        meta: {
-          guest: true,
-        },
       },
       {
         path: 'sign-up',
         component: () => import('@/views/SignUp.vue'),
-        meta: {
-          guest: true,
-        },
       },
       {
         path: 'forgot-password',
         component: () => import('@/views/ForgotPass.vue'),
-        meta: {
-          guest: true,
-        },
       },
     ],
   },
@@ -72,4 +61,12 @@ const router = new VueRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  const loggedIn = localStorage.getItem('user');
+
+  if (to.matched.some(record => record.meta.requireAuth) && !loggedIn) {
+    next('/account/sign-in');
+  }
+  next();
+});
 export default router;

@@ -17,7 +17,7 @@
       </div>
 
       <div class="buttons">
-        <CustomButton class="send-button custom-button">
+        <CustomButton class="send-button ">
           <p>ارسال</p>
         </CustomButton>
         <div class="two">
@@ -47,18 +47,16 @@ export default {
   data() {
     return {
       email: '',
-      password: '',
     };
   },
   methods: {
     onSubmit() {
       const userData = {
         email: this.email,
-        password: this.password,
       };
       console.log(userData);
-      this.$store.dispatch('signin', userData).then(() => {
-        this.$router.push({ name: 'QuestionnaireListPage' });
+      this.$store.dispatch('forgotPass', userData).then(() => {
+        this.$router.push({ name: 'sign-in' });
       });
     },
   },
@@ -112,13 +110,12 @@ export default {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-
     padding: 0;
     margin-top: 50px;
 
     & .send-button::v-deep .button {
       height: 45px;
-      width: 500px;
+      width: 375px;
       font-size: 16px;
       border-radius: 5px;
     }

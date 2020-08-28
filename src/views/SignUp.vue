@@ -3,31 +3,46 @@
     <p class="sub-header">
       چنانچه دارای حساب کاربری هستید، لطفا وارد شود
     </p>
-    <form class="input-list">
+    <form class="input-list" @submit.prevent="onSubmit">
       <custom-input
         class="round-top-border"
         placeholder="نام و نام خانوادگی خود را وارد کنید"
         label="نام و نام خانوادگی"
+        v-model="name"
       >
         <img src="../assets/input-img/user.svg" />
       </custom-input>
-      <custom-input placeholder="ایمیل خود را وارد کنید" label="ایمیل">
+      <custom-input
+        placeholder="ایمیل خود را وارد کنید"
+        label="ایمیل"
+        v-model="email"
+        type="email"
+      >
         <img src="../assets/input-img/mail.svg" />
       </custom-input>
-      <custom-input placeholder="رمز عبور خود را وارد کنید" label="رمز عبور">
+      <custom-input
+        placeholder="رمز عبور خود را وارد کنید"
+        label="رمز عبور"
+        v-model="password"
+        type="password"
+      >
         <img src="../assets/input-img/lock.svg" />
       </custom-input>
       <custom-input
         class="round-bottom-border"
         placeholder="رمز عبور خود را مجدد وارد کنید"
         label="تکرار رمز عبور"
+        v-model="checkPassword"
+        type="password"
       >
         <img src="../assets/input-img/lock.svg" />
       </custom-input>
       <div class="buttons">
-        <CustomButton class="custom-button">
-          <p>ورود</p>
-        </CustomButton>
+        <router-link to="sign-in" class="link">
+          <CustomButton class="custom-button">
+            <p>ورود</p>
+          </CustomButton>
+        </router-link>
         <CustomButton class="custom-button">
           <p>ثبت‌نام</p>
         </CustomButton>
@@ -43,6 +58,27 @@ import CustomButton from '../components/global/CustomButton';
 export default {
   name: 'SingUp',
   components: { CustomInput, CustomButton },
+  data() {
+    return {
+      name: '',
+      email: '',
+      password: '',
+      checkPassword: '',
+    };
+  },
+  methods: {
+    onSubmit() {
+      const userData = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+      };
+      console.log(userData);
+      this.$store.dispatch('signup', userData).then(() => {
+        this.$router.push({ name: 'QuestionnaireListPage' });
+      });
+    },
+  },
 };
 </script>
 
@@ -92,6 +128,9 @@ export default {
       padding: 0;
       margin-top: 40px;
 
+      & .link {
+        text-decoration: none;
+      }
       /*& .custom-button .button{*/
       /*& .custom-button >>> button {*/
       & .custom-button::v-deep .button {

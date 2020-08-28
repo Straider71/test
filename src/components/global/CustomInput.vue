@@ -4,7 +4,14 @@
       <slot />
       <label v-text="label"></label>
     </div>
-    <input class="input" type="text" id="username" :placeholder="placeholder" />
+    <input
+      class="input"
+      :type="type"
+      :value="value"
+      v-on:input="$emit('input', $event.target.value)"
+      id="username"
+      :placeholder="placeholder"
+    />
   </div>
 </template>
 
@@ -12,8 +19,10 @@
 export default {
   props: {
     placeholder: String,
-    label: String
-  }
+    label: String,
+    value: String,
+    type: String,
+  },
 };
 </script>
 
@@ -21,7 +30,7 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-    background-color: white;
+  background-color: white;
   /*padding-left: 15px;*/
   padding: 19px 19px 19px 15px;
   /*padding-right: 19px;*/

@@ -1,7 +1,7 @@
 <template>
   <div class="list-title">
     <QuestionnaireSort />
-    <QuestionnaireCount :count="questionCount" />
+    <QuestionnaireCount :count="questionCount.toString()" />
   </div>
 </template>
 

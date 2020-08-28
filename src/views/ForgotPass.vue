@@ -1,7 +1,7 @@
 <template>
   <div class="sign-in-container">
     <p class="sub-header">
-      چنانچه دارای حساب کاربری نیستید، لطفا ابتدا ثبت نام کنید
+      لطفا ایمیل خود را وارد فرمایید
     </p>
     <form class="input-list" @submit.prevent="onSubmit">
       <div class="inputs">
@@ -14,36 +14,24 @@
         >
           <img src="../assets/input-img/mail.svg" />
         </custom-input>
-        <custom-input
-          class="round-bottom-border"
-          placeholder="رمز عبور خود را وارد کنید"
-          label="رمز عبور"
-          type="password"
-          v-model="password"
-        >
-          <img src="../assets/input-img/lock.svg" />
-        </custom-input>
       </div>
 
-      <div class="remember-forget">
-        <router-link to="forgot-password">
-          <div class="forget-pass-link">
-            <a>رمز عبور را فراموش کرده‌اید؟</a>
-          </div>
-        </router-link>
-        <div class="remember-me">
-          <CustomCheckBox text="مرا به خاطر داشته باش" />
-        </div>
-      </div>
       <div class="buttons">
-        <router-link to="sign-up" class="link">
-          <CustomButton class="custom-button">
-            <p>ثبت نام</p>
-          </CustomButton>
-        </router-link>
-        <CustomButton class="custom-button">
-          <p>ورود</p>
+        <CustomButton class="send-button custom-button">
+          <p>ارسال</p>
         </CustomButton>
+        <div class="two">
+          <router-link to="sign-up" class="link">
+            <CustomButton class="custom-button">
+              <p>ثبت نام</p>
+            </CustomButton>
+          </router-link>
+          <router-link to="sign-in" class="link">
+            <CustomButton class="custom-button">
+              <p>ورود</p>
+            </CustomButton>
+          </router-link>
+        </div>
       </div>
     </form>
   </div>
@@ -119,30 +107,34 @@ export default {
     }
   }
 
-  & .remember-forget {
-    width: 100%;
-    color: #7f86aa;
-    display: flex;
-    position: relative;
-
-    & .forget-pass-link {
-      position: absolute;
-      font-size: 14px;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-
-    & .remember-me {
-      font-size: 12px;
-    }
-  }
-
   & .buttons {
     width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+
     padding: 0;
-    margin: 0;
+    margin-top: 50px;
+
+    & .send-button::v-deep .button {
+      height: 45px;
+      width: 500px;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    & .two {
+      display: flex;
+      margin-top: 10px;
+      justify-content: space-between;
+
+      & .custom-button::v-deep .button {
+        height: 45px;
+        width: 183px;
+        font-size: 16px;
+        border-radius: 5px;
+      }
+    }
 
     & .link {
       text-decoration: none;

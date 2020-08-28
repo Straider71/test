@@ -2,16 +2,16 @@
   <div class="container">
     <div class="question-list" v-if="noQuestion">
       <ListTitle :questionCount="questionCount" />
-      <div v-for="questionnaire in questionnaires" :key="questionnaire">
+      <div
+        v-for="questionnaire in questionnaires"
+        :key="questionnaire.questionnaire_id"
+      >
         <QuestionnaireItem
           :count="questionnaire.question_num.toString()"
           :title="questionnaire.title"
           :status="questionnaire.state"
         />
       </div>
-      <!-- <QuestionnaireItem count="30" title="پرسشنامه فرهنگ و هنر" status="0" />
-      <QuestionnaireItem count="20" title="پرسشنامه هنر" status="1" />
-      <QuestionnaireItem count="10" title="پرسشنامه فرهنگ" status="2" /> -->
     </div>
     <div v-else>
       <NoQuestionnaire />
@@ -23,12 +23,7 @@
 import QuestionnaireItem from './QuestionnaireItem.vue';
 import ListTitle from './ListTitle';
 import NoQuestionnaire from './NoQuestionnaire';
-// import axios from 'axios';
-// import API from '../../../api/API';
 import EventService from '../../services/EventService';
-
-// const myApi = new API({ url: 'http://127.0.0.1:3000/questionnaire/' });
-// myApi.createEntity({ name: 'questionnaire' });
 
 export default {
   name: 'QuestionnaireList',
@@ -47,12 +42,6 @@ export default {
   },
 
   mounted() {
-    // this.myApi.getAll().then(({ data }) => console.log(data));
-
-    // axios({
-    //   method: 'GET',
-
-    //   url: 'http://127.0.0.1:3000/questionnaire/',
     EventService.getQuestionnaires().then(res => {
       console.log(res.data);
       this.questionnaires = res.data.data;

@@ -80,6 +80,7 @@ export default {
         .then(() => {
           this.$router.push({ name: 'QuestionnaireListPage' });
           this.$toastr('success', 'اطلاعات شما با موفقیت ثبت گردید');
+          // console.log('signup');
         })
         .catch(err => {
           console.log(err.response);

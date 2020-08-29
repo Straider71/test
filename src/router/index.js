@@ -60,7 +60,7 @@ router.beforeEach((to, from, next) => {
 
   if (to.matched.some(record => record.meta.requireAuth) && !loggedIn) {
     next('/account/sign-in');
-    this.$toastr('warning', 'ابتدا وارد شوید');
+    // this.$toastr('warning', 'ابتدا وارد شوید');
   } else next();
 });
 export default router;

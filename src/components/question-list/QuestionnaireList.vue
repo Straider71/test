@@ -44,7 +44,7 @@ export default {
     };
   },
 
-  mounted() {
+  created() {
     this.fetchQuesetionnaires();
     // EventService.getQuestionnaires()
     //   .then(res => {

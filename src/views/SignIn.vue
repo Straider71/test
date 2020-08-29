@@ -77,8 +77,8 @@ export default {
           this.$toastr('success', 'شما با موفقیت وارد شدید');
         })
         .catch(err => {
-          console.log(err.response);
-          this.error = err.response.data;
+          console.log(err);
+          // this.error = err.response.data;
           this.$toastr('warning', 'مشکلی به وجود آمده است');
         });
     },

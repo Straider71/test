@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import EventService from '@/services/EventService.js';
 
 Vue.use(Vuex);
 
@@ -10,7 +11,7 @@ export default new Vuex.Store({
     questionnaires: [],
     questionCount: 0,
     question: {},
-    noQuestion: false,
+    noQuestion: true,
   },
   mutations: {
     SET_USER_DATA(state, userData) {
@@ -40,26 +41,51 @@ export default new Vuex.Store({
   actions: {
     signup({ commit }, credentials) {
       return axios
-        .post('http://127.0.0.1:3001/register', credentials)
-        .then(({ data }) => {
-          console.log(data);
+        .post('http://127.0.0.1:300/users/sign-up/', credentials)
+        .then(data => {
+          console.log('data', data);
           commit('SET_USER_DATA', data);
-        });
+        })
+        .catch(err => console.log(err));
     },
     signin({ commit }, credentials) {
+      // try {
+      //   const res = await EventService.signIn(credentials);
+      //   console.log(res);
+      //   commit('SET_USER_DATA', data);
+      // } catch (error) {
+      //   console.log(error);
+      // }
+
       return axios
-        .post('http://127.0.0.1:3001/login', credentials)
-        .then(({ data }) => {
+        .create({
+          baseURL: 'http://127.0.0.1:3000/',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          timeout: 30000,
+        })
+        .post('users/sign-in/', credentials)
+        .then(data => {
           console.log(data);
           commit('SET_USER_DATA', data);
         });
+
+      // return axios
+      //   .post('http://127.0.0.1:3000/users/sign-in', credentials)
+      //   .then(({ data }) => {
+      //     console.log(data);
+      //     commit('SET_USER_DATA', data);
+      //   });
     },
     logout({ commit }) {
       commit('CLEAR_USER_DATA');
     },
     async fetchQuesetionnaires({ commit }) {
       try {
-        const res = await axios.get('http://127.0.0.1:3000/questionnaire/');
+        // const res = await axios.get('http://127.0.0.1:3000/questionnaire/');
+        const res = await EventService.getQuestionnaires();
         commit('SET_QUESTIONNAIRES', res.data.data);
         console.log(res.data.data);
         // if (res.data.data.length) {

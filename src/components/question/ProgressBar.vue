@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      progress: 20,
+      progress: 50,
     };
   },
   methods: {

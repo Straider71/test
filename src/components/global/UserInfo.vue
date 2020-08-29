@@ -18,6 +18,9 @@
     <div v-if="showDropDown">
       <ul class="menu">
         <li class="list">
+          <a href="#" class="link">پروفایل</a>
+        </li>
+        <li class="list">
           <a href="#" class="link" @click="logout">خروج</a>
         </li>
       </ul>
@@ -50,8 +53,6 @@ export default {
   align-items: center;
   flex-shrink: 1;
   flex-basis: 50%;
-  // flex: 1;
-  // justify-self: flex-end;
 
   &-avatar {
     width: 26px;
@@ -75,14 +76,16 @@ export default {
   & .menu {
     list-style: none;
     position: relative;
-    top: 30px;
+    top: 45px;
     right: 180px;
-    background-color: rgb(100, 125, 235);
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
 
     & .list {
+      margin-top: 1px;
+      background-color: rgb(100, 125, 235);
+      padding: 0 25px;
+      border-radius: 5px;
+      border: none;
+
       a {
         text-decoration: none;
         color: #fff;
@@ -90,9 +93,13 @@ export default {
     }
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 815px) {
     .navbar-username-text {
       display: none;
+      flex-basis: 30%;
+    }
+    .menu {
+      right: 50px;
     }
   }
 }

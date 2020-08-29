@@ -1,7 +1,9 @@
 <template>
   <div class="container">
-    <div class="question-list" v-if="noQuestion">
-      <ListTitle :questionCount="questionCount" />
+    <div v-if="this.$store.state.noQuestion">
+      <ListTitle :questionCount="this.$store.state.questionCount" />
+    </div>
+    <div class="question-list" v-if="this.$store.state.noQuestion">
       <div
         v-for="questionnaire in questionnaires"
         :key="questionnaire.questionnaire_id"
@@ -24,7 +26,7 @@ import QuestionnaireItem from './QuestionnaireItem.vue';
 import ListTitle from './ListTitle';
 import NoQuestionnaire from './NoQuestionnaire';
 import EventService from '../../services/EventService';
-// import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'QuestionnaireList',
@@ -35,30 +37,31 @@ export default {
   },
   data() {
     return {
-      questionnaires: [],
+      // questionnaires: [],
       errors: [],
-      noQuestion: false,
-      questionCount: 0,
+      // noQuestion: true,
+      // questionCount: 0,
     };
   },
 
   mounted() {
-    // this.$store.dispatch('getQuestionnaire');
-    EventService.getQuestionnaires()
-      .then(res => {
-        console.log(res.data);
-        this.questionnaires = res.data.data;
-        console.log(res.data.data);
-        if (res.data.data.length) {
-          this.questionCount = res.data.result_number;
-          this.noQuestion = true;
-        }
-        this.count;
-      })
-      .catch(err => console.log(err.response));
+    this.fetchQuesetionnaires();
+    // EventService.getQuestionnaires()
+    //   .then(res => {
+    //     console.log(res.data);
+    //     this.questionnaires = res.data.data;
+    //     console.log(res.data.data);
+    //     if (res.data.data.length) {
+    //       this.questionCount = res.data.result_number;
+    //       this.noQuestion = true;
+    //     }
+    //     this.count;
+    //   })
+    //   .catch(err => console.log(err.response));
   },
 
-  // computed: mapState(['questionnaires']),
+  computed: { ...mapState(['questionnaires']) },
+  methods: { ...mapActions(['fetchQuesetionnaires']) },
 };
 </script>
 

@@ -1,12 +1,12 @@
 <template>
   <div class="progress-bar">
-    <CustomButton class="deep-left">
+    <CustomButton class="deep-left" @click="makeProgress">
       <img src="../../assets/arrow-white.svg" alt="arrow" />
       <p>سوال بعدی</p>
     </CustomButton>
     <div class="gray">
-      <div class="blue-circle" data-text="پرسش 2 / 15 29٪ تکمیل شده"></div>
-      <div class="blue"></div>
+      <div class="blue-circle" data-text="progress"></div>
+      <div class="blue" :style="{ width: progress + '%' }"></div>
     </div>
 
     <CustomButton class="deep-right">
@@ -21,6 +21,19 @@ export default {
   name: 'ProgressBar',
   components: {
     CustomButton,
+  },
+  data() {
+    return {
+      progress: 20,
+    };
+  },
+  methods: {
+    makeProgress() {
+      console.log('sdfsdf');
+      if (this.progress < 100) {
+        this.progress += 10;
+      }
+    },
   },
 };
 </script>
@@ -73,7 +86,7 @@ export default {
     justify-content: flex-end;
 
     & .blue {
-      width: 290px;
+      // width: 290px;
       height: 5px;
       border-radius: 10px;
       background-color: #4570f5;

@@ -18,14 +18,6 @@ export default {
   font-size: 20px;
   font-weight: 700;
   flex-shrink: 0;
-
-  // transform: translate(-50%, -50%);
-  // position: absolute;
-  // left: 50%;
-  // top: 20px;
-  // flex: 1;
-  // justify-self: center;
-
   color: #4570f5;
 }
 
@@ -34,6 +26,12 @@ export default {
     flex-shrink: 1;
     flex-basis: 50%;
     text-align: right;
+  }
+}
+@media (max-width: 415px) {
+  .navbar-title {
+    flex-shrink: 1;
+    flex-basis: 70%;
   }
 }
 </style>

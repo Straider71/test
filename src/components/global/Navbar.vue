@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar">
-    <UserInfo userName="علی خرامان" />
+    <UserInfo userName="امیر یزدانی" />
     <PageTitle title="لیست پرسشنامه‌ها" />
 
     <Logo />
@@ -35,6 +35,12 @@ export default {
     width: 80.2px;
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar .navbar-logo {
+    display: none;
   }
 }
 </style>

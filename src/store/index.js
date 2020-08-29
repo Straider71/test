@@ -2,13 +2,15 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
-// import router from '../router';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     user: null,
-    // questionnaires: [],
+    questionnaires: [],
+    questionCount: 0,
+    question: {},
+    noQuestion: false,
   },
   mutations: {
     SET_USER_DATA(state, userData) {
@@ -22,9 +24,18 @@ export default new Vuex.Store({
       localStorage.removeItem('user');
       location.reload();
     },
-    // SET_QUESTIONNAIRES(state, questionnaires) {
-    //   state.questionnaires = questionnaires;
-    // },
+    SET_QUESTIONNAIRES(state, questionnaires) {
+      state.questionnaires = questionnaires;
+    },
+    SET_QUESTION_COUNT(state, questionCount) {
+      state.questionCount = questionCount;
+    },
+    SET_QUESTION(state, question) {
+      state.question = question;
+    },
+    SET_NO_QUESTION(state, noQuestion) {
+      state.noQuestion = noQuestion;
+    },
   },
   actions: {
     signup({ commit }, credentials) {
@@ -46,27 +57,19 @@ export default new Vuex.Store({
     logout({ commit }) {
       commit('CLEAR_USER_DATA');
     },
-    // getQuestionnaire({ commit }) {
-    //   return axios
-    //     .get('http://127.0.0.1:3000/questionnaire/', {
-    //       headers: {
-    //         Accept: 'application/json',
-    //         'Content-Type': 'application/json',
-    //       },
-    //     })
-    //     .then(res => {
-    //       console.log(res.data);
-    //       questionnaires = res.data.data;
-    //       commit('SET_QUESTIONNAIRES', questionnaires);
-    //       console.log(res.data.data);
-    //       // if (res.data.data.length) {
-    //       //   this.questionCount = res.data.result_number;
-    //       //   this.noQuestion = true;
-    //       // }
-    //       // this.count;
-    //     })
-    //     .catch(err => console.log(err.response));
-    // },
+    async fetchQuesetionnaires({ commit }) {
+      try {
+        const res = await axios.get('http://127.0.0.1:3000/questionnaire/');
+        commit('SET_QUESTIONNAIRES', res.data.data);
+        console.log(res.data.data);
+        // if (res.data.data.length) {
+        commit('SET_QUESTION_COUNT', res.data.result_number);
+        commit('SET_NO_QUESTION', true);
+        // }
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
   getters: {
     loggedIn(state) {

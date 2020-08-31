@@ -45,5 +45,16 @@ export default {
     padding: 15px;
     font-family: shabnam;
   }
+
+  @media (max-width: 690px) {
+    textarea {
+      width: 500px;
+    }
+  }
+  @media (max-width: 550px) {
+    textarea {
+      width: 350px;
+    }
+  }
 }
 </style>

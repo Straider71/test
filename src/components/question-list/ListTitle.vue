@@ -8,6 +8,7 @@
 <script>
 import QuestionnaireCount from './QuestionnaireCount';
 import QuestionnaireSort from './QuestionnaireSort';
+
 export default {
   name: 'ListTitle',
   components: {

@@ -8,14 +8,14 @@
         class="round-top-border"
         placeholder="نام و نام خانوادگی خود را وارد کنید"
         label="نام و نام خانوادگی"
-        v-model="name"
+        v-model.lazy.trim="name"
       >
         <img src="../assets/input-img/user.svg" />
       </custom-input>
       <custom-input
         placeholder="ایمیل خود را وارد کنید"
         label="ایمیل"
-        v-model="email"
+        v-model.lazy.trim="email"
         type="email"
       >
         <img src="../assets/input-img/mail.svg" />
@@ -54,6 +54,7 @@
 <script>
 import CustomInput from '../components/global/CustomInput';
 import CustomButton from '../components/global/CustomButton';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'SingUp',
@@ -68,25 +69,39 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['signup']),
+
     onSubmit() {
-      const userData = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-      };
-      console.log(userData);
-      this.$store
-        .dispatch('signup', userData)
-        .then(() => {
-          this.$router.push({ name: 'QuestionnaireListPage' });
-          this.$toastr('success', 'اطلاعات شما با موفقیت ثبت گردید');
-          // console.log('signup');
-        })
-        .catch(err => {
-          console.log(err.response);
-          this.errors = err.response.data;
-          this.$toastr('warning', 'مشکلی به وجود آمده است');
-        });
+      if (!this.name || !this.email || !this.password || !this.checkPassword) {
+        this.$toasted.error('وارد کردن تمام فیلدها اجباری است');
+      } else if (!this.validEmail(this.email)) {
+        this.$toasted.error('ایمیل معتبر وارد کنید');
+      } else if (this.password !== this.checkPassword) {
+        this.$toasted.error('رمز عبور خود را دوباره وارد فرمایید');
+      } else {
+        const userData = {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        };
+        this.signup(userData)
+          // this.$store
+          //   .dispatch('signup', userData)
+          .then(() => {
+            this.$router.push({ name: 'QuestionnaireListPage' });
+            this.$toasted.success('اطلاعات شما با موفقیت ثبت گردید');
+          })
+          .catch(err => {
+            console.log(err.response);
+            this.errors = err.response.data;
+            this.$toasted.error('مشکلی به وجود آمده است');
+          });
+      }
+    },
+
+    validEmail: function(email) {
+      let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
     },
   },
 };

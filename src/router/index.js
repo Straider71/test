@@ -47,6 +47,10 @@ const routes = [
         path: 'forgot-password',
         component: () => import('@/views/ForgotPass.vue'),
       },
+      // {
+      //   path: 'forgot-password/:token',
+      //   component: () => import('@/views/ForgotPassForm.vue'),
+      // },
     ],
   },
 ];
@@ -60,7 +64,14 @@ router.beforeEach((to, from, next) => {
 
   if (to.matched.some(record => record.meta.requireAuth) && !loggedIn) {
     next('/account/sign-in');
-    // this.$toastr('warning', 'ابتدا وارد شوید');
-  } else next();
+  } else if (
+    (to.fullPath === '/account/sign-in' ||
+      to.fullPath === '/account/sign-up') &&
+    loggedIn
+  )
+    next('/');
+  else {
+    next();
+  }
 });
 export default router;

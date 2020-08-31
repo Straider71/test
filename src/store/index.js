@@ -8,6 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: null,
+    // error: null,
     questionnaires: [],
     questionCount: 0,
     question: {},
@@ -16,11 +17,13 @@ export default new Vuex.Store({
   mutations: {
     SET_USER_DATA(state, userData) {
       state.user = userData;
+
       localStorage.setItem('user', JSON.stringify(userData));
-      axios.defaults.headers.common[
-        'Authorization'
-      ] = `Bearer ${userData.token}`;
+      // debugger;
+      axios.defaults.headers['Authorization'] = `Bearer ${userData.token}`;
+      console.log('axios', axios.defaults);
     },
+
     CLEAR_USER_DATA() {
       localStorage.removeItem('user');
       location.reload();
@@ -39,44 +42,47 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    signup({ commit }, credentials) {
-      return axios
-        .post('http://127.0.0.1:300/users/sign-up/', credentials)
-        .then(data => {
-          console.log('data', data);
-          commit('SET_USER_DATA', data);
-        })
-        .catch(err => console.log(err));
-    },
-    signin({ commit }, credentials) {
-      // try {
-      //   const res = await EventService.signIn(credentials);
-      //   console.log(res);
-      //   commit('SET_USER_DATA', data);
-      // } catch (error) {
-      //   console.log(error);
-      // }
-
-      return axios
-        .create({
-          baseURL: 'http://127.0.0.1:3000/',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          timeout: 30000,
-        })
-        .post('users/sign-in/', credentials)
-        .then(data => {
-          console.log(data);
-          commit('SET_USER_DATA', data);
+    async signup({ commit }, credentials) {
+      console.log(credentials);
+      try {
+        const res = await EventService.signUp(credentials);
+        commit('SET_USER_DATA', {
+          token: res.data.token,
+          username: res.data.data.user.name,
         });
+      } catch (error) {
+        console.log(error);
+      }
 
       // return axios
-      //   .post('http://127.0.0.1:3000/users/sign-in', credentials)
+      //   .post('http://127.0.0.1:3001/register', credentials)
+      //   .then(data => {
+      //     console.log('data', data);
+      //     commit('SET_USER_DATA', data);
+      //   })
+      //   .catch(err => console.log(err));
+    },
+    async signin({ commit }, credentials) {
+      // console.log('1', credentials);
+      try {
+        const res = await EventService.signIn(credentials);
+        commit('SET_USER_DATA', {
+          token: res.data.token,
+          username: res.data.data.name,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+
+      // console.log('hellllllo');
+      // return axios
+      //   .post('http://127.0.0.1:3001/login', credentials)
       //   .then(({ data }) => {
       //     console.log(data);
       //     commit('SET_USER_DATA', data);
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
       //   });
     },
     logout({ commit }) {
@@ -86,8 +92,8 @@ export default new Vuex.Store({
       try {
         // const res = await axios.get('http://127.0.0.1:3000/questionnaire/');
         const res = await EventService.getQuestionnaires();
-        commit('SET_QUESTIONNAIRES', res.data.data);
-        console.log(res.data.data);
+        commit('SET_QUESTIONNAIRES', res.data.questionnaire);
+        console.log(res.data.questionnaire);
         // if (res.data.data.length) {
         commit('SET_QUESTION_COUNT', res.data.result_number);
         commit('SET_NO_QUESTION', true);
@@ -98,11 +104,7 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    loggedIn(state) {
-      return !!state.user;
-    },
-    // questionnaires(state) {
-    //   return state.questionnaires;
-    // },
+    // userName: JSON.parse(localStorage.getItem(user)).username,
+    userName: state => state.user.username,
   },
 });

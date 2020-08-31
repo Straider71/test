@@ -29,20 +29,20 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'UserInfo',
-  props: {
-    userName: String,
-  },
+
   data() {
     return {
       showDropDown: false,
     };
   },
   methods: {
-    logout() {
-      this.$store.dispatch('logout');
-    },
+    ...mapActions({ logout: 'logout' }),
+  },
+  computed: {
+    ...mapGetters({ userName: 'userName' }),
   },
 };
 </script>

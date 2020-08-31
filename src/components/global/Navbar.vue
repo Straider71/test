@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar">
-    <UserInfo userName="امیر یزدانی" />
+    <UserInfo />
     <PageTitle title="لیست پرسشنامه‌ها" />
 
     <Logo />

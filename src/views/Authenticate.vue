@@ -45,9 +45,9 @@ export default {
   overflow: hidden;
 
   & .hand-image {
-    width: 60٪;
+    width: 50٪;
     height: 500px;
-    margin-right: 190px;
+    // margin-right: 190px;
     margin-top: 230px;
     // padding-right: 190px;
     // padding-top: 50px;
@@ -58,7 +58,7 @@ export default {
     flex-direction: column;
     align-items: flex-end;
     height: 720px;
-    width: 40%;
+    width: 50%;
     padding-right: 190px;
     padding-top: 50px;
 
@@ -87,15 +87,20 @@ export default {
 @media (max-width: 1270px) {
   .auth {
     & .right-div {
+      padding-right: 130px;
       & .title {
         & .head {
           font-size: 22px;
         }
       }
     }
+
+    & .hand-image {
+      margin-right: 50px;
+    }
   }
 }
-@media (max-width: 1100px) {
+@media (max-width: 1130px) {
   .auth {
     & .right-div {
       & .title {

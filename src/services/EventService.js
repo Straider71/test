@@ -1,36 +1,49 @@
 import axios from 'axios';
 import Nprogress from 'nprogress';
 
-const apiClient = axios.create({
-  baseURL: 'http://127.0.0.1:3000',
-  withCredentials: false,
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
+// const apiClient = axios.create({
+//   // baseURL: 'http://127.0.0.1:3000',
+//   withCredentials: false,
+//   headers: {
+//     Accept: 'application/json',
+//     'Content-Type': 'application/json',
+//   },
+// });
+
+axios.defaults.headers['Accept'] = 'application/json';
+axios.defaults.headers['Content-Type'] = 'application/json';
+
+axios.interceptors.request.use(config => {
+  Nprogress.start();
+  // const token = localStorage.getItem(user.token.toString());
+  // config.headers.Authorization = token ? `Bearer ${token}` : '';
+  return config;
 });
 
-// apiClient.interceptors.request.use(config => {
-//   Nprogress.start();
-//   return config;
-// });
-
-// apiClient.interceptors.response.use(response => {
-//   Nprogress.done();
-//   return response;
-// });
+axios.interceptors.response.use(
+  response => {
+    console.log(response);
+    Nprogress.done();
+    return response;
+  }
+  // function(error) {
+  //   Nprogress.done();
+  //   return this.$toasted.error(error.response.data.message);
+  // }
+);
 
 export default {
   async getQuestionnaires() {
-    return await apiClient.get('/questionnaire/');
+    return await axios.get('/questionnaire/');
   },
-  getQuestionnaire(id) {
-    return apiClient.get('/questionnaire/' + id);
+  async getQuestionnaire(id) {
+    return await axios.get('/questionnaire/' + id);
   },
   async signIn(credentials) {
-    return await apiClient.post('/users/sign-in/', credentials);
+    // console.log('here2', credentials);
+    return await axios.post('/users/sign-in/', credentials);
   },
-  async signUp() {
-    return await apiClient.post('/users/sign-up/');
+  async signUp(credentials) {
+    return await axios.post('/users/sign-up/', JSON.stringify(credentials));
   },
 };

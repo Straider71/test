@@ -10,7 +10,7 @@
           placeholder="ایمیل خود را وارد کنید"
           label="ایمیل"
           type="email"
-          v-model="email"
+          v-model.lazy.trim="email"
         >
           <img src="../assets/input-img/mail.svg" />
         </custom-input>
@@ -53,6 +53,8 @@
 import CustomInput from '../components/global/CustomInput';
 import CustomCheckBox from '../components/global/CustomCheckBox';
 import CustomButton from '../components/global/CustomButton';
+import { mapActions } from 'vuex';
+
 export default {
   name: 'SignIn',
   components: { CustomInput, CustomCheckBox, CustomButton },
@@ -64,23 +66,27 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['signin']),
     onSubmit() {
-      const userData = {
-        email: this.email,
-        password: this.password,
-      };
-      console.log(userData);
-      this.$store
-        .dispatch('signin', userData)
-        .then(() => {
-          this.$router.push({ name: 'QuestionnaireListPage' });
-          this.$toastr('success', 'شما با موفقیت وارد شدید');
-        })
-        .catch(err => {
-          console.log(err);
-          // this.error = err.response.data;
-          this.$toastr('warning', 'مشکلی به وجود آمده است');
-        });
+      if (!this.email || !this.password) {
+        this.$toasted.error('ایمیل و رمز عبور خود را وارد فرمایید');
+      } else {
+        const userData = {
+          email: this.email,
+          password: this.password,
+        };
+        this.signin(userData)
+
+          .then(() => {
+            this.$router.push({ name: 'QuestionnaireListPage' });
+            this.$toasted.success('شما با موفقیت وارد شدید');
+          })
+          .catch(err => {
+            console.log(err);
+            this.error = err.response.data;
+            this.$toasted.error('ایمیل یا رمز عبور نادرست می باشد');
+          });
+      }
     },
   },
 };

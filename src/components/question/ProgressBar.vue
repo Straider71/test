@@ -1,17 +1,22 @@
 <template>
   <div class="progress-bar">
-    <CustomButton class="deep-left" @click="makeProgress">
-      <img src="../../assets/arrow-white.svg" alt="arrow" />
-      <p>سوال بعدی</p>
-    </CustomButton>
+    <div @click="makeProgress">
+      <CustomButton class="deep-left">
+        <img src="../../assets/arrow-white.svg" alt="arrow" />
+        <p>سوال بعدی</p>
+      </CustomButton>
+    </div>
+
     <div class="gray">
       <div class="blue-circle" data-text="progress"></div>
       <div class="blue" :style="{ width: progress + '%' }"></div>
     </div>
 
-    <CustomButton class="deep-right">
-      <img src="../../assets/arrow-back.svg" alt="arrow" />
-    </CustomButton>
+    <div @click="minusProgress">
+      <CustomButton class="deep-right">
+        <img src="../../assets/arrow-back.svg" alt="arrow" />
+      </CustomButton>
+    </div>
   </div>
 </template>
 
@@ -24,14 +29,18 @@ export default {
   },
   data() {
     return {
-      progress: 50,
+      progress: 0,
     };
   },
   methods: {
     makeProgress() {
-      console.log('sdfsdf');
       if (this.progress < 100) {
         this.progress += 10;
+      }
+    },
+    minusProgress() {
+      if (this.progress > 0) {
+        this.progress -= 10;
       }
     },
   },
@@ -78,7 +87,7 @@ export default {
   }
 
   & .gray {
-    width: 982px;
+    width: 60%;
     height: 5px;
     border-radius: 10px;
     background-color: #e6e9ef;
@@ -97,40 +106,54 @@ export default {
       height: 12px;
       background-color: #4570f5;
       border-radius: 50%;
-      padding-bottom: 5px;
-      // display: inline;
+      top: -3px;
       position: relative;
 
-      &:after {
-        bottom: 1.35em;
-        color: #fff;
-        content: attr(data-text);
-        display: block;
-        position: absolute;
-        white-space: nowrap;
-        z-index: 98;
-        left: -105px;
-        width: 214px;
-        height: 38px;
-        border-radius: 3px;
-        background-color: #2e3133;
-        font-size: 14px;
-        line-height: 2;
-        letter-spacing: -0.14px;
-        padding-top: 2px;
-      }
+      &:hover {
+        &::after {
+          bottom: 1.35em;
+          color: #fff;
+          content: attr(data-text);
+          display: block;
+          position: absolute;
+          white-space: nowrap;
+          z-index: 98;
+          left: -105px;
+          width: 214px;
+          height: 38px;
+          border-radius: 3px;
+          background-color: #2e3133;
+          font-size: 14px;
+          line-height: 2;
+          letter-spacing: -0.14px;
+          padding-top: 2px;
+        }
 
-      &:before {
-        border: solid;
-        border-color: #111 transparent;
-        border-color: rgba(0, 0, 0, 0.8) transparent;
-        border-width: 0.4em 0.4em 0 0.4em;
-        bottom: 1em;
-        content: '';
-        display: block;
-        // left: 105px;
-        position: absolute;
-        z-index: 99;
+        &::before {
+          border: solid;
+          border-color: #111 transparent;
+          border-color: rgba(0, 0, 0, 0.8) transparent;
+          border-width: 0.4em 0.4em 0 0.4em;
+          bottom: 1em;
+          content: '';
+          display: block;
+          // left: 105px;
+          position: absolute;
+          z-index: 99;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .progress-bar {
+    & .deep-left::v-deep .button {
+      width: 50px;
+      height: 50px;
+
+      & p {
+        display: none;
       }
     }
   }

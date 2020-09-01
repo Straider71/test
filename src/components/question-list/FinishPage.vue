@@ -4,10 +4,12 @@
       <img src="../../assets/Group.svg" alt="finish page" />
     </figure>
     <p>شما با <span class="green">موفقیت</span> پرسشنامه را به اتمام رساندید</p>
-    <CustomButton class="deep">
-      <img src="../../assets/arrow-white.svg" alt="arrow" />
-      <a href="#">مشاهده پرسشنامه‌ها</a>
-    </CustomButton>
+    <router-link to="/">
+      <CustomButton class="deep">
+        <img src="../../assets/arrow-white.svg" alt="arrow" />
+        <a href="#">مشاهده پرسشنامه‌ها</a>
+      </CustomButton> </router-link
+    >>
   </div>
 </template>
 

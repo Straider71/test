@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from '../store';
+// import Toasted from 'vue-toasted';
 
 Vue.use(VueRouter);
 
@@ -7,7 +9,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home.vue'),
+    component: () => import(/* webpackChunkName: "Home" */ '@/views/Home.vue'),
     redirect: {
       name: 'QuestionnaireListPage',
     },
@@ -16,42 +18,64 @@ const routes = [
       {
         path: '',
         name: 'QuestionnaireListPage',
-        component: () => import('@/views/QuestionnaireListPage.vue'),
+        component: () =>
+          import(
+            /* webpackChunkName: "QuestionnaireListPage" */ '@/views/QuestionnaireListPage.vue'
+          ),
         meta: {
           requireAuth: true,
         },
       },
       {
-        path: 'questions',
+        path: 'questions/:id',
         name: 'Question',
-        component: () => import('@/views/Question.vue'),
+        component: () =>
+          import(/* webpackChunkName: "Question" */ '@/views/Question.vue'),
         meta: {
           requireAuth: true,
         },
+        props: true,
+        // beforeEnter(to, from, next) {
+        //   this.$store
+        //     .dispatch('fetchQuestions', to.params.id)
+        //     .then(question => {
+        //       to.params.question = question;
+        //       next();
+        //     })
+        //     .catch(error => {});
+        // },
       },
     ],
   },
   {
     path: '/account/',
-    component: () => import('@/views/Authenticate.vue'),
+    component: () =>
+      import(/* webpackChunkName: "Authenticate" */ '@/views/Authenticate.vue'),
     children: [
       {
         path: 'sign-in',
-        component: () => import('@/views/SignIn.vue'),
+        component: () =>
+          import(/* webpackChunkName: "SignIn" */ '@/views/SignIn.vue'),
       },
       {
         path: 'sign-up',
-        component: () => import('@/views/SignUp.vue'),
+        component: () =>
+          import(/* webpackChunkName: "SignUp" */ '@/views/SignUp.vue'),
       },
       {
         path: 'forgot-password',
-        component: () => import('@/views/ForgotPass.vue'),
+        component: () =>
+          import(/* webpackChunkName: "ForgotPass" */ '@/views/ForgotPass.vue'),
       },
       // {
       //   path: 'forgot-password/:token',
       //   component: () => import('@/views/ForgotPassForm.vue'),
       // },
     ],
+  },
+  {
+    path: '*',
+    component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),
   },
 ];
 
@@ -64,6 +88,7 @@ router.beforeEach((to, from, next) => {
 
   if (to.matched.some(record => record.meta.requireAuth) && !loggedIn) {
     next('/account/sign-in');
+    Vue.toasted.error('ابتدا وارد شوید');
   } else if (
     (to.fullPath === '/account/sign-in' ||
       to.fullPath === '/account/sign-up') &&

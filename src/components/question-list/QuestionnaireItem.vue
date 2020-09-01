@@ -1,15 +1,30 @@
 <template>
   <div class="container">
-    <CustomButton :disable="customButtonDisabled()">
-      <img
-        v-if="customButtonDisabled()"
-        src="../../assets/arrow-gray.svg"
-        alt="arrow"
-        class="arrow"
-      />
-      <img v-else src="../../assets/arrow-white.svg" alt="arrow" class="arrow" />
-      <p>شروع</p>
-    </CustomButton>
+    <!-- <CustomButton :disable="customButtonDisabled()" @click.native="goRoute"> -->
+    <!-- <router-link
+      :to="{
+        name: 'Question',
+        params: { id: this.$store.state.questionnaires.questionnaire_id },
+      }"
+    > -->
+
+    <router-link :to="`/questions/35`">
+      <CustomButton :disable="customButtonDisabled()" @click.native="goRoute">
+        <img
+          v-if="customButtonDisabled()"
+          src="../../assets/arrow-gray.svg"
+          alt="arrow"
+          class="arrow"
+        />
+        <img
+          v-else
+          src="../../assets/arrow-white.svg"
+          alt="arrow"
+          class="arrow"
+        />
+        <p>شروع</p>
+      </CustomButton>
+    </router-link>
 
     <div class="status">
       <QuestionnaireStatus :count="count" :status="status" />
@@ -25,9 +40,16 @@
 import CustomButton from '../global/CustomButton';
 import QuestionnaireTitle from './QuestionnaireTitle';
 import QuestionnaireStatus from './QuestionnaireStatus';
+import EventService from '@/services/EventService.js';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'QuestionnaireItem',
+  data() {
+    return {
+      questionsArray: null,
+    };
+  },
   components: {
     CustomButton,
     QuestionnaireTitle,
@@ -41,6 +63,14 @@ export default {
   methods: {
     customButtonDisabled() {
       return this.status === '2';
+    },
+    async goRoute() {
+      console.log('dsfg');
+      const res = await EventService.getAllQuestions(35);
+      this.questionsArray = res.data.data.question;
+      console.log(this.questionsArray);
+      // const questionaireId = this.$route.params.id;
+      // rouer.push({ path: `/questions/${questionaireId}` });
     },
   },
 };
@@ -58,6 +88,10 @@ export default {
   align-items: center;
   margin-top: 20px;
   padding: 0 10px;
+
+  & a {
+    text-decoration: none;
+  }
 
   & .status {
     width: 350px;

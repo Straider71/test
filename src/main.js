@@ -6,12 +6,11 @@ import axios from 'axios';
 import Toasted from 'vue-toasted';
 import 'nprogress/nprogress.css';
 
-// Vue.use(toastr);
 const options = {
   position: 'bottom-right',
   duration: 2000,
   theme: 'bubble',
-  className: 'width:',
+  className: 'app',
 };
 Vue.use(Toasted, options);
 

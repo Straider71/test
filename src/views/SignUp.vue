@@ -92,9 +92,7 @@ export default {
             this.$toasted.success('اطلاعات شما با موفقیت ثبت گردید');
           })
           .catch(err => {
-            console.log(err.response);
-            this.errors = err.response.data;
-            this.$toasted.error('مشکلی به وجود آمده است');
+            this.$toasted.error('کاربری با این ایمیل وجود دارد');
           });
       }
     },

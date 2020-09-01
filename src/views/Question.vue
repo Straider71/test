@@ -14,7 +14,7 @@
       @get-value="getSelectedValue($event)"
     />
     <Descriptive v-if="type === '2'" :question="questionText" />
-    <!--     <FinishPage /> -->
+    <!-- <FinishPage /> -->
 
     <ProgressBar />
   </div>
@@ -26,6 +26,7 @@ import ProgressBar from '../components/question/ProgressBar';
 import TwoOptionQuestion from '../components/question/TwoOptionQuestion';
 import MultipleChoiceQuestion from '../components/question/MultipleChoiceQuestion';
 import FinishPage from '../components/question-list/FinishPage';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'Question',
@@ -43,7 +44,7 @@ export default {
       questionText:
         'به نظر شما گسترش هنر در جامعه بر کدام‌یک از موارد زیر می‌تواند تاثیر مثبتی داشته باشد؟',
       // questionText: "متن تایپ شده را اینجا تایپ کنید",
-      type: '1',
+      type: '2',
       option_1: 'صحیح',
       option_2: 'غلط',
       // options: ["متن سوال اینجا تایپ شودمتن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال "
@@ -52,10 +53,16 @@ export default {
     };
   },
   methods: {
-    getSelectedValue(event) {
-      this.selectedValue = event;
-      console.log(event);
-    },
+    ...mapActions(['fetchQuestions']),
+    // getSelectedValue(event) {
+    //   this.selectedValue = event;
+    //   console.log(event);
+    // },
+  },
+  computed: { ...mapState(['questionaire']) },
+
+  mounted() {
+    this.fetchQuestions();
   },
 };
 </script>

@@ -12,38 +12,39 @@ import Nprogress from 'nprogress';
 
 axios.defaults.headers['Accept'] = 'application/json';
 axios.defaults.headers['Content-Type'] = 'application/json';
+// axios.defaults.timeout = 1000;
 
 axios.interceptors.request.use(config => {
   Nprogress.start();
-  // const token = localStorage.getItem(user.token.toString());
-  // config.headers.Authorization = token ? `Bearer ${token}` : '';
   return config;
 });
 
 axios.interceptors.response.use(
   response => {
-    console.log(response);
     Nprogress.done();
     return response;
+  },
+  error => {
+    Nprogress.done();
+    // Vue.toasted.error(error);
+
+    this.$store.commit('SET_ERROR', error.message);
+    return Promise.reject(error);
   }
-  // function(error) {
-  //   Nprogress.done();
-  //   return this.$toasted.error(error.response.data.message);
-  // }
 );
 
 export default {
   async getQuestionnaires() {
     return await axios.get('/questionnaire/');
   },
-  async getQuestionnaire(id) {
-    return await axios.get('/questionnaire/' + id);
+  async getAllQuestions(id) {
+    const url = `/questions/?questionnaire_id=${35}`;
+    return await axios.get(url);
   },
   async signIn(credentials) {
-    // console.log('here2', credentials);
     return await axios.post('/users/sign-in/', credentials);
   },
   async signUp(credentials) {
-    return await axios.post('/users/sign-up/', JSON.stringify(credentials));
+    return await axios.post('/users/sign-up/', credentials);
   },
 };

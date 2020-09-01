@@ -8,20 +8,17 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: null,
-    // error: null,
+    error: '',
     questionnaires: [],
     questionCount: 0,
-    question: {},
+    questionaire: [],
     noQuestion: true,
   },
   mutations: {
     SET_USER_DATA(state, userData) {
       state.user = userData;
-
       localStorage.setItem('user', JSON.stringify(userData));
-      // debugger;
       axios.defaults.headers['Authorization'] = `Bearer ${userData.token}`;
-      console.log('axios', axios.defaults);
     },
 
     CLEAR_USER_DATA() {
@@ -40,71 +37,63 @@ export default new Vuex.Store({
     SET_NO_QUESTION(state, noQuestion) {
       state.noQuestion = noQuestion;
     },
+    SET_ERROR(state, error) {
+      state.error = error;
+    },
+    SET_SELECTED_QUESTION(state, questionReq) {
+      this.questionaire = questionReq;
+    },
   },
   actions: {
     async signup({ commit }, credentials) {
-      console.log(credentials);
-      try {
-        const res = await EventService.signUp(credentials);
-        commit('SET_USER_DATA', {
-          token: res.data.token,
-          username: res.data.data.user.name,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-
-      // return axios
-      //   .post('http://127.0.0.1:3001/register', credentials)
-      //   .then(data => {
-      //     console.log('data', data);
-      //     commit('SET_USER_DATA', data);
-      //   })
-      //   .catch(err => console.log(err));
+      // try {
+      const res = await EventService.signUp(credentials);
+      commit('SET_USER_DATA', {
+        token: res.data.token,
+        username: res.data.data.user.name,
+      });
+      // } catch (error) {
+      //   console.log(error);
+      // }
     },
     async signin({ commit }, credentials) {
-      // console.log('1', credentials);
-      try {
-        const res = await EventService.signIn(credentials);
-        commit('SET_USER_DATA', {
-          token: res.data.token,
-          username: res.data.data.name,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-
-      // console.log('hellllllo');
-      // return axios
-      //   .post('http://127.0.0.1:3001/login', credentials)
-      //   .then(({ data }) => {
-      //     console.log(data);
-      //     commit('SET_USER_DATA', data);
-      //   })
-      //   .catch(err => {
-      //     console.log(err);
-      //   });
+      // try {
+      const res = await EventService.signIn(credentials);
+      commit('SET_USER_DATA', {
+        token: res.data.token,
+        username: res.data.data.name,
+      });
+      // } catch (error) {
+      //   this.$toasted.error(error.message);
+      // }
     },
     logout({ commit }) {
       commit('CLEAR_USER_DATA');
     },
     async fetchQuesetionnaires({ commit }) {
       try {
-        // const res = await axios.get('http://127.0.0.1:3000/questionnaire/');
         const res = await EventService.getQuestionnaires();
-        commit('SET_QUESTIONNAIRES', res.data.questionnaire);
         console.log(res.data.questionnaire);
-        // if (res.data.data.length) {
+        commit('SET_QUESTIONNAIRES', res.data.questionnaire);
         commit('SET_QUESTION_COUNT', res.data.result_number);
         commit('SET_NO_QUESTION', true);
-        // }
       } catch (error) {
         console.log(error);
       }
     },
+    async fetchQuestions({ commit }, id) {
+      try {
+        const questionReq = await EventService.getAllQuestions(id);
+        // console.log(questionReq);
+        commit('SET_SELECTED_QUESTION', questionReq.data);
+      } catch (error) {
+        console.log('reqquestionnare');
+      }
+    },
   },
   getters: {
-    // userName: JSON.parse(localStorage.getItem(user)).username,
     userName: state => state.user.username,
+    questionnaire: state => id =>
+      state.questionnaires.find(questionnaire => questionnaire.id === id),
   },
 });

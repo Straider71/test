@@ -62,7 +62,6 @@ export default {
     return {
       email: '',
       password: '',
-      error: null,
     };
   },
   methods: {
@@ -82,8 +81,6 @@ export default {
             this.$toasted.success('شما با موفقیت وارد شدید');
           })
           .catch(err => {
-            console.log(err);
-            this.error = err.response.data;
             this.$toasted.error('ایمیل یا رمز عبور نادرست می باشد');
           });
       }

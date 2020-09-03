@@ -18,7 +18,9 @@
     <div v-if="showDropDown">
       <ul class="menu">
         <li class="list">
-          <a href="#" class="link">پروفایل</a>
+          <router-link to="/profile">
+            <p class="link">پروفایل</p>
+          </router-link>
         </li>
         <li class="list">
           <a href="#" class="link" @click="logout">خروج</a>

@@ -38,7 +38,11 @@ export default {
     return await axios.get('/questionnaire/');
   },
   async getAllQuestions(id) {
-    const url = `/questions/?questionnaire_id=${35}`;
+    const url = `/questions/?questionnaire_id=${id}`;
+    return await axios.get(url);
+  },
+  async getQuestion(id) {
+    const url = `/questions/?question_id=${id}`;
     return await axios.get(url);
   },
   async signIn(credentials) {

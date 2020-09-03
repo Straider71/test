@@ -1,19 +1,19 @@
 <template>
   <div class="question">
     <multiple-choice-question
-      v-if="type === '0'"
+      v-if="question.type === '0'"
       :question="questionText"
       :options="options"
       @get-value="getSelectedValue($event)"
     />
     <two-option-question
-      v-else-if="type === '1'"
+      v-else-if="question.type === '1'"
       :question="questionText"
       :option_1="option_1"
       :option_2="option_2"
       @get-value="getSelectedValue($event)"
     />
-    <Descriptive v-if="type === '2'" :question="questionText" />
+    <Descriptive v-if="question.type === '2'" :question="questionText" />
     <!-- <FinishPage /> -->
 
     <ProgressBar />
@@ -43,26 +43,21 @@ export default {
       options: ['گزینه اول', 'گزینه دوم', 'گزینه سوم', 'گزینه چهارم'],
       questionText:
         'به نظر شما گسترش هنر در جامعه بر کدام‌یک از موارد زیر می‌تواند تاثیر مثبتی داشته باشد؟',
-      // questionText: "متن تایپ شده را اینجا تایپ کنید",
-      type: '2',
+      // type: '2',
       option_1: 'صحیح',
       option_2: 'غلط',
-      // options: ["متن سوال اینجا تایپ شودمتن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال اینجا تایپ شود متن سوال "
-      //   , "سیبسیبسی ی", "سیبسی یب", "سشیلشس یسل"
-      // ]
     };
   },
   methods: {
-    ...mapActions(['fetchQuestions']),
-    // getSelectedValue(event) {
-    //   this.selectedValue = event;
-    //   console.log(event);
-    // },
+    ...mapActions(['fetchQuestion']),
   },
-  computed: { ...mapState(['questionaire']) },
+  computed: { ...mapState(['question', 'questionaire']) },
 
   mounted() {
-    this.fetchQuestions();
+    // this.fetchQuestions(35);
+    // const questionId = this.questionsArray.shift();
+    this.fetchQuestion(this.$route.params.id);
+    // this.fetchQuestion(this.$route.params.id)
   },
 };
 </script>

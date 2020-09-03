@@ -1,13 +1,5 @@
 <template>
   <div class="container">
-    <!-- <CustomButton :disable="customButtonDisabled()" @click.native="goRoute"> -->
-    <!-- <router-link
-      :to="{
-        name: 'Question',
-        params: { id: this.$store.state.questionnaires.questionnaire_id },
-      }"
-    > -->
-
     <router-link :to="`/questions/35`">
       <CustomButton :disable="customButtonDisabled()" @click.native="goRoute">
         <img
@@ -41,7 +33,7 @@ import CustomButton from '../global/CustomButton';
 import QuestionnaireTitle from './QuestionnaireTitle';
 import QuestionnaireStatus from './QuestionnaireStatus';
 import EventService from '@/services/EventService.js';
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 
 export default {
   name: 'QuestionnaireItem',
@@ -60,17 +52,17 @@ export default {
     title: String,
     count: String,
   },
+  computed: { ...mapState(['questionnaires']) },
   methods: {
+    ...mapActions(['fetchQuestions']),
+    ...mapMutations(['SET_QUESTIONNAIRE_TITLE']),
+
     customButtonDisabled() {
       return this.status === '2';
     },
     async goRoute() {
-      console.log('dsfg');
-      const res = await EventService.getAllQuestions(35);
-      this.questionsArray = res.data.data.question;
-      console.log(this.questionsArray);
-      // const questionaireId = this.$route.params.id;
-      // rouer.push({ path: `/questions/${questionaireId}` });
+      this.SET_QUESTIONNAIRE_TITLE(this.title);
+      this.fetchQuestions(35);
     },
   },
 };

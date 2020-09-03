@@ -35,15 +35,6 @@ const routes = [
           requireAuth: true,
         },
         props: true,
-        // beforeEnter(to, from, next) {
-        //   this.$store
-        //     .dispatch('fetchQuestions', to.params.id)
-        //     .then(question => {
-        //       to.params.question = question;
-        //       next();
-        //     })
-        //     .catch(error => {});
-        // },
       },
     ],
   },
@@ -67,11 +58,19 @@ const routes = [
         component: () =>
           import(/* webpackChunkName: "ForgotPass" */ '@/views/ForgotPass.vue'),
       },
-      // {
-      //   path: 'forgot-password/:token',
-      //   component: () => import('@/views/ForgotPassForm.vue'),
-      // },
+      {
+        path: 'forgot-password/:token',
+        component: () =>
+          import(
+            /* webpackChunkName: "ForgotPassForm" */ '@/views/ForgotPassForm.vue'
+          ),
+      },
     ],
+  },
+  {
+    path: '/profile',
+    component: () =>
+      import(/* webpackChunkName: "Profile" */ '@/views/Profile.vue'),
   },
   {
     path: '*',

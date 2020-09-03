@@ -1,14 +1,23 @@
 <template>
   <div class="navbar-title">
-    <p>‌{{ title }}</p>
+    <p>‌{{ questionnaireTitle }}</p>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+
 export default {
   name: 'PageTitle',
-  props: {
-    title: String,
+  computed: { ...mapState(['questionnaireTitle']) },
+  methods: { ...mapMutations(['SET_QUESTIONNAIRE_TITLE']) },
+  watch: {
+    $route(to) {
+      if (to.fullPath == '/') {
+        this.SET_QUESTIONNAIRE_TITLE('لیست پرسشنامه‌ها');
+        // this.$forceUpdate();
+      }
+    },
   },
 };
 </script>

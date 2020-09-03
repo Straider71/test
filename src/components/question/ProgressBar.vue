@@ -8,7 +8,13 @@
     </div>
 
     <div class="gray">
-      <div class="blue-circle" data-text="progress"></div>
+      <div class="blue-circle" data-text="progress">
+        <div class="before"></div>
+        <div class="after">
+          <div class="number">{{ number }}</div>
+          <div class="percent">{{ progress + '%' }} {{ percent }}</div>
+        </div>
+      </div>
       <div class="blue" :style="{ width: progress + '%' }"></div>
     </div>
 
@@ -30,6 +36,8 @@ export default {
   data() {
     return {
       progress: 0,
+      percent: 'تکمیل شده',
+      number: 'سوال 8/10',
     };
   },
   methods: {
@@ -109,12 +117,14 @@ export default {
       top: -3px;
       position: relative;
 
-      &:hover {
-        &::after {
+      & {
+        & .after {
           bottom: 1.35em;
           color: #fff;
-          content: attr(data-text);
-          display: block;
+          display: flex;
+          direction: rtl;
+          justify-content: space-between;
+          align-items: center;
           position: absolute;
           white-space: nowrap;
           z-index: 98;
@@ -127,9 +137,14 @@ export default {
           line-height: 2;
           letter-spacing: -0.14px;
           padding-top: 2px;
+          padding: 0 25px;
+
+          & .number {
+            color: #fcb833;
+          }
         }
 
-        &::before {
+        & .before {
           border: solid;
           border-color: #111 transparent;
           border-color: rgba(0, 0, 0, 0.8) transparent;

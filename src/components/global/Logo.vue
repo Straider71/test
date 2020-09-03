@@ -1,6 +1,8 @@
 <template>
   <figure class="navbar-logo">
-    <img src="../../assets/logo.png" alt="logo" />
+    <router-link to="/">
+      <img src="../../assets/logo.png" alt="logo" />
+    </router-link>
   </figure>
 </template>
 

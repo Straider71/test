@@ -7,12 +7,13 @@
 </template>
 
 <script>
-import Navbar from "../components/global/Navbar";
+import Navbar from '../components/global/Navbar';
+
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
-    Navbar
-  }
+    Navbar,
+  },
 };
 </script>
 
@@ -25,15 +26,6 @@ export default {
   z-index: -2;
   overflow: hidden;
 
-  /*.list {*/
-  /*  display: flex;*/
-  /*  justify-content: center;*/
-  /*  align-items: center;*/
-  /*  position: relative;*/
-  /*  top: 150px;*/
-  /*  z-index: 100;*/
-  /*}*/
-
   .circle {
     z-index: -1;
     width: 1209px;
@@ -44,8 +36,6 @@ export default {
     border: 0px solid transparent;
     border-top: none;
     position: absolute;
-    // top: -400px;
-    // left: 400px;
     top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);

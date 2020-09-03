@@ -1,9 +1,11 @@
 <template>
   <nav class="navbar">
     <UserInfo />
-    <PageTitle title="لیست پرسشنامه‌ها" />
+    <PageTitle />
 
+    <!-- <router-link to="/"> -->
     <Logo />
+    <!-- </router-link> -->
   </nav>
 </template>
 

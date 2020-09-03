@@ -1,18 +1,24 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import createPersistedState from 'vuex-persistedstate';
+// import vm from '@/main';
+
 import EventService from '@/services/EventService.js';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  plugins: [createPersistedState()],
   state: {
     user: null,
     error: '',
     questionnaires: [],
+    question: [],
     questionCount: 0,
     questionaire: [],
     noQuestion: true,
+    questionnaireTitle: 'لیست پرسشنامه‌ها‌',
   },
   mutations: {
     SET_USER_DATA(state, userData) {
@@ -40,8 +46,14 @@ export default new Vuex.Store({
     SET_ERROR(state, error) {
       state.error = error;
     },
-    SET_SELECTED_QUESTION(state, questionReq) {
-      this.questionaire = questionReq;
+    SET_SELECTED_QUESTIONNARE(state, questionReq) {
+      state.questionaire = questionReq;
+    },
+    SET_QUESTION(state, question) {
+      state.question = question;
+    },
+    SET_QUESTIONNAIRE_TITLE(state, title) {
+      state.questionnaireTitle = title;
     },
   },
   actions: {
@@ -83,11 +95,20 @@ export default new Vuex.Store({
     },
     async fetchQuestions({ commit }, id) {
       try {
-        const questionReq = await EventService.getAllQuestions(id);
-        // console.log(questionReq);
-        commit('SET_SELECTED_QUESTION', questionReq.data);
+        const res = await EventService.getAllQuestions(id);
+        console.log(res.data.data.question);
+        commit('SET_SELECTED_QUESTIONNARE', res.data.data.question);
       } catch (error) {
         console.log('reqquestionnare');
+      }
+    },
+    async fetchQuestion({ commit }, id) {
+      try {
+        const res = await EventService.getQuestion(id);
+        console.log(res.data.data.question);
+        commit('SET_QUESTION', res.data.data.question);
+      } catch (error) {
+        console.log('reqquestion');
       }
     },
   },

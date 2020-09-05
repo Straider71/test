@@ -136,7 +136,7 @@ $color-wood-2: #410a09;
 
     p {
       padding-left: 5px;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
   }
   a {

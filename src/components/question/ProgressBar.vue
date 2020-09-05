@@ -11,8 +11,10 @@
       <div class="blue-circle" data-text="progress">
         <div class="before"></div>
         <div class="after">
-          <div class="number">{{ number }}</div>
-          <div class="percent">{{ progress + '%' }} {{ percent }}</div>
+          <div class="number">
+            سوال {{ questionaire.length }} / {{ number }}
+          </div>
+          <div class="percent">{{ progress + '%' }} تکمیل شده</div>
         </div>
       </div>
       <div class="blue" :style="{ width: progress + '%' }"></div>
@@ -28,6 +30,8 @@
 
 <script>
 import CustomButton from '../global/CustomButton';
+import { mapState } from 'vuex';
+
 export default {
   name: 'ProgressBar',
   components: {
@@ -36,19 +40,27 @@ export default {
   data() {
     return {
       progress: 0,
-      percent: 'تکمیل شده',
-      number: 'سوال 8/10',
+      number: 0,
     };
   },
+  computed: { ...mapState(['questionaire']) },
+
   methods: {
     makeProgress() {
-      if (this.progress < 100) {
-        this.progress += 10;
+      if (this.progress < 100 && this.number < this.questionaire.length) {
+        // this.progress += 10;
+        this.progress += Math.floor(
+          (this.number / this.questionaire.length) * 100
+        );
+        this.number += 1;
+        // this.$emit('clicked', event.target.value);
+        // console.log(event.target.value);
       }
     },
     minusProgress() {
-      if (this.progress > 0) {
-        this.progress -= 10;
+      if (this.progress > 0 && this.number > 0) {
+        this.progress -= this.questionaire.length;
+        this.number -= 1;
       }
     },
   },

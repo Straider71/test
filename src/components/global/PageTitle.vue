@@ -15,7 +15,9 @@ export default {
     $route(to) {
       if (to.fullPath == '/') {
         this.SET_QUESTIONNAIRE_TITLE('لیست پرسشنامه‌ها');
-        // this.$forceUpdate();
+      }
+      if (to.fullPath == '/profile/:id') {
+        this.SET_QUESTIONNAIRE_TITLE('پروفایل');
       }
     },
   },

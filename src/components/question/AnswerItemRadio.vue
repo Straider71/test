@@ -7,15 +7,15 @@
 
 <script>
 export default {
-  name: "CustomRadio",
+  name: 'CustomRadio',
   props: {
-    text: String
+    text: String,
   },
   methods: {
     onChanged(event) {
-      this.$emit("change-option", event.target.value);
-    }
-  }
+      this.$emit('change-option', event.target.value);
+    },
+  },
 };
 </script>
 
@@ -65,7 +65,7 @@ $radioActive: #5d9bfb;
       }
       &:before,
       &:after {
-        content: "";
+        content: '';
         width: $radioSize;
         height: $radioSize;
         display: block;
@@ -105,7 +105,7 @@ $radioActive: #5d9bfb;
   }
   &:hover {
     & span:hover {
-      background-color: rgba(235, 235, 205, 0.69);
+      background-color: rgba(202, 198, 198, 0.69);
     }
   }
 }

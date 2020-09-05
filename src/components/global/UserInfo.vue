@@ -1,6 +1,6 @@
 <template>
   <div class="navbar-username">
-    <a href="#" @click.prevent="showDropDown = !showDropDown">
+    <a href="#" @click.prevent="showDropDown = !showDropDown" ref="a">
       <img
         src="../../assets/arrow.svg"
         alt="arrow"
@@ -15,10 +15,17 @@
       class="navbar-username-avatar"
     />
 
-    <div v-if="showDropDown">
+    <!-- <div
+      v-show="showDropDown"
+      v-closable="{
+        exclude: ['a'],
+        handler: 'onClose',
+      }"
+    > -->
+    <div v-show="showDropDown">
       <ul class="menu">
         <li class="list">
-          <router-link to="/profile">
+          <router-link to="/profile/5">
             <p class="link">پروفایل</p>
           </router-link>
         </li>
@@ -32,6 +39,31 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+// import Vue from 'vue';
+// let handleOutsideClick;
+// Vue.directive('closable', {
+//   bind(el, binding, vnode) {
+//     handleOutsideClick = e => {
+//       e.stopPropagation();
+//       const { handler, exclude } = binding.value;
+//       let clickedOnExcludedEl = false;
+//       exclude.forEach(refName => {
+//         if (!clickedOnExcludedEl) {
+//           const excludedEl = vnode.context.$refs[refName];
+//           clickedOnExcludedEl = excludedEl.contains(e.target);
+//         }
+//       });
+//       if (!el.contains(e.target) && !clickedOnExcludedEl) {
+//         vnode.context[handler]();
+//       }
+//     };
+//     document.addEventListener('click', handleOutsideClick);
+//   },
+//   unbind() {
+//     document.removeEventListener('click', handleOutsideClick);
+
+//   },
+// });
 export default {
   name: 'UserInfo',
 
@@ -42,6 +74,9 @@ export default {
   },
   methods: {
     ...mapActions({ logout: 'logout' }),
+    // showDropDown() {
+    //   this.showDropDown = false;
+    // },
   },
   computed: {
     ...mapGetters({ userName: 'userName' }),

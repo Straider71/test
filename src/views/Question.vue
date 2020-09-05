@@ -2,20 +2,26 @@
   <div class="question">
     <multiple-choice-question
       v-if="question.type === '0'"
-      :question="questionText"
-      :options="options"
+      :question="question.title"
+      :options="[
+        question.correct_option,
+        question.incorrect_options[0],
+        question.incorrect_options[1],
+        question.incorrect_options[2],
+      ]"
       @get-value="getSelectedValue($event)"
     />
     <two-option-question
       v-else-if="question.type === '1'"
-      :question="questionText"
-      :option_1="option_1"
-      :option_2="option_2"
+      :question="question.title"
+      :option_1="question.correct_option"
+      :option_2="question.incorrect_options[0]"
       @get-value="getSelectedValue($event)"
     />
-    <Descriptive v-if="question.type === '2'" :question="questionText" />
+    <Descriptive v-if="question.type === '2'" :question="question.title" />
     <!-- <FinishPage /> -->
 
+    <!-- <ProgressBar @click="clicked($event)" /> -->
     <ProgressBar />
   </div>
 </template>
@@ -40,23 +46,33 @@ export default {
   data() {
     return {
       selectedValue: '',
-      options: ['گزینه اول', 'گزینه دوم', 'گزینه سوم', 'گزینه چهارم'],
-      questionText:
-        'به نظر شما گسترش هنر در جامعه بر کدام‌یک از موارد زیر می‌تواند تاثیر مثبتی داشته باشد؟',
+      // options: ['گزینه اول', 'گزینه دوم', 'گزینه سوم', 'گزینه چهارم'],
+      // options: [this.question.correct_option],
+      // questionText:
+      //   'به نظر شما گسترش هنر در جامعه بر کدام‌یک از موارد زیر می‌تواند تاثیر مثبتی داشته باشد؟',
       // type: '2',
-      option_1: 'صحیح',
-      option_2: 'غلط',
+      // option_1: 'صحیح',
+      // option_2: 'غلط'
     };
   },
   methods: {
     ...mapActions(['fetchQuestion']),
+    // clicked($event) {
+    //   console.log(event.target.value);
+    // },
+    getSelectedValue($event) {
+      console.log(event.target.value);
+    },
   },
   computed: { ...mapState(['question', 'questionaire']) },
 
   mounted() {
     // this.fetchQuestions(35);
     // const questionId = this.questionsArray.shift();
-    this.fetchQuestion(this.$route.params.id);
+    this.fetchQuestion(this.questionaire[1]);
+    console.log(this.questionaire);
+    console.log(this.question);
+
     // this.fetchQuestion(this.$route.params.id)
   },
 };

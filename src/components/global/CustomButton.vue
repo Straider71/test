@@ -45,7 +45,7 @@ export default {
   color: #fff;
   display: flex;
   justify-content: center;
-
+  font-family: shabnam;
   align-items: center;
 }
 

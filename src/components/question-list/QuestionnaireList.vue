@@ -4,14 +4,12 @@
       <ListTitle :questionCount="this.$store.state.questionCount" />
     </div>
     <div class="question-list" v-if="this.$store.state.noQuestion">
-      <div
-        v-for="questionnaire in questionnaires"
-        :key="questionnaire.questionnaire_id"
-      >
+      <div v-for="(questionnaire, idx) in questionnaires" :key="idx">
         <QuestionnaireItem
           :count="questionnaire.question_num.toString()"
           :title="questionnaire.title"
           :status="questionnaire.state"
+          :id="questionnaires[idx].questionnaire_id"
         />
       </div>
     </div>

@@ -36,6 +36,11 @@ const routes = [
         },
         props: true,
       },
+      {
+        path: 'profile/:id',
+        component: () =>
+          import(/* webpackChunkName: "Profile" */ '@/views/Profile.vue'),
+      },
     ],
   },
   {
@@ -67,11 +72,11 @@ const routes = [
       },
     ],
   },
-  {
-    path: '/profile',
-    component: () =>
-      import(/* webpackChunkName: "Profile" */ '@/views/Profile.vue'),
-  },
+  // {
+  //   path: '/profile',
+  //   component: () =>
+  //     import(/* webpackChunkName: "Profile" */ '@/views/Profile.vue'),
+  // },
   {
     path: '*',
     component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),

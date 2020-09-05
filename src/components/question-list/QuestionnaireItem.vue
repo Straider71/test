@@ -1,7 +1,11 @@
 <template>
   <div class="container">
-    <router-link :to="`/questions/35`">
-      <CustomButton :disable="customButtonDisabled()" @click.native="goRoute">
+    <router-link :to="`/questions/${this.id}`">
+      <CustomButton
+        :disable="customButtonDisabled()"
+        @click.native="goRoute($event)"
+        :id="id"
+      >
         <img
           v-if="customButtonDisabled()"
           src="../../assets/arrow-gray.svg"
@@ -33,7 +37,7 @@ import CustomButton from '../global/CustomButton';
 import QuestionnaireTitle from './QuestionnaireTitle';
 import QuestionnaireStatus from './QuestionnaireStatus';
 import EventService from '@/services/EventService.js';
-import { mapState, mapActions, mapMutations } from 'vuex';
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex';
 
 export default {
   name: 'QuestionnaireItem',
@@ -51,8 +55,12 @@ export default {
     status: String,
     title: String,
     count: String,
+    id: Number,
   },
-  computed: { ...mapState(['questionnaires']) },
+  computed: {
+    ...mapState(['questionnaires', 'questionaire']),
+    // ...mapGetters(['questionnaire']),
+  },
   methods: {
     ...mapActions(['fetchQuestions']),
     ...mapMutations(['SET_QUESTIONNAIRE_TITLE']),
@@ -60,9 +68,18 @@ export default {
     customButtonDisabled() {
       return this.status === '2';
     },
-    async goRoute() {
+    async goRoute(event) {
       this.SET_QUESTIONNAIRE_TITLE(this.title);
-      this.fetchQuestions(35);
+      // console.log(this.questionnaires[2].questionnaire_id);
+      console.log(this.id);
+
+      this.fetchQuestions(this.id);
+      // this.fetchQuestions(35);
+
+      // router.push({
+      //   name: 'questions',
+      //   params: { id },
+      // });
     },
   },
 };
@@ -100,7 +117,7 @@ export default {
   }
 
   & p {
-    padding-bottom: 6px;
+    padding-bottom: 5px;
   }
 }
 @media (max-width: 640px) {

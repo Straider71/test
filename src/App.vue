@@ -5,6 +5,8 @@
 </template>
 
 <style lang="scss">
+$base-color: #4570f5;
+
 @font-face {
   font-family: shabnam;
   src: url('./assets/fonts/Shabnam-FD.woff');

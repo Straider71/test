@@ -1,9 +1,9 @@
 <template>
   <div class="progress-bar">
-    <div @click="makeProgress">
+    <div @click="makeProgress($event)">
       <CustomButton class="deep-left">
         <img src="../../assets/arrow-white.svg" alt="arrow" />
-        <p>سوال بعدی</p>
+        <p v-text="textChange"></p>
       </CustomButton>
     </div>
 
@@ -20,7 +20,7 @@
       <div class="blue" :style="{ width: progress + '%' }"></div>
     </div>
 
-    <div @click="minusProgress">
+    <div @click="minusProgress($event)">
       <CustomButton class="deep-right">
         <img src="../../assets/arrow-back.svg" alt="arrow" />
       </CustomButton>
@@ -40,27 +40,45 @@ export default {
   data() {
     return {
       progress: 0,
-      number: 0,
+      number: 1,
     };
   },
-  computed: { ...mapState(['questionaire']) },
+  computed: {
+    ...mapState(['questionaire']),
+    textChange() {
+      if (this.number === this.questionaire.length) {
+        return 'پایان';
+      } else return 'سوال بعدی';
+    },
+  },
 
   methods: {
-    makeProgress() {
-      if (this.progress < 100 && this.number < this.questionaire.length) {
+    makeProgress(event) {
+      // if (this.progress < 100 && this.number < this.questionaire.length) {
+      if (this.number < this.questionaire.length + 1) {
         // this.progress += 10;
-        this.progress += Math.floor(
+        this.number += 1;
+        this.progress = Math.floor(
           (this.number / this.questionaire.length) * 100
         );
-        this.number += 1;
-        // this.$emit('clicked', event.target.value);
+        console.log(this.questionaire.length);
+        console.log(this.number);
+        // console.log(this.question);
+        // this.number += 1;
+        this.$emit('clicked', event);
         // console.log(event.target.value);
       }
     },
     minusProgress() {
-      if (this.progress > 0 && this.number > 0) {
-        this.progress -= this.questionaire.length;
+      if (this.progress > 0 && this.number > 1) {
         this.number -= 1;
+
+        this.progress = Math.floor(
+          (this.number / this.questionaire.length) * 100
+        );
+        if (this.number === 1) this.progress = 0;
+
+        this.$emit('backclicked', event);
       }
     },
   },
@@ -95,6 +113,7 @@ export default {
       letter-spacing: -0.16px;
       color: #ffffff;
       padding: 0 0 6px 10px;
+      margin-bottom: -3px;
     }
   }
 

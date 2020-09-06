@@ -1,15 +1,6 @@
 import axios from 'axios';
 import Nprogress from 'nprogress';
 
-// const apiClient = axios.create({
-//   // baseURL: 'http://127.0.0.1:3000',
-//   withCredentials: false,
-//   headers: {
-//     Accept: 'application/json',
-//     'Content-Type': 'application/json',
-//   },
-// });
-
 axios.defaults.headers['Accept'] = 'application/json';
 axios.defaults.headers['Content-Type'] = 'application/json';
 // axios.defaults.timeout = 1000;
@@ -28,7 +19,6 @@ axios.interceptors.response.use(
     Nprogress.done();
     // Vue.toasted.error(error);
 
-    this.$store.commit('SET_ERROR', error.message);
     return Promise.reject(error);
   }
 );
@@ -45,10 +35,20 @@ export default {
     const url = `/questions/?question_id=${id}`;
     return await axios.get(url);
   },
+  async answer(body) {
+    const url = `/answers/`;
+    return await axios.post(url, body);
+  },
   async signIn(credentials) {
     return await axios.post('/users/sign-in/', credentials);
   },
   async signUp(credentials) {
     return await axios.post('/users/sign-up/', credentials);
+  },
+  async signOut() {
+    return await axios.get('/users/sign-out/');
+  },
+  async sendEmail(email) {
+    return await axios.post('', email);
   },
 };

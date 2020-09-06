@@ -92,7 +92,7 @@ router.beforeEach((to, from, next) => {
 
   if (to.matched.some(record => record.meta.requireAuth) && !loggedIn) {
     next('/account/sign-in');
-    Vue.toasted.error('ابتدا وارد شوید');
+    // Vue.toasted.error('ابتدا وارد شوید');
   } else if (
     (to.fullPath === '/account/sign-in' ||
       to.fullPath === '/account/sign-up') &&

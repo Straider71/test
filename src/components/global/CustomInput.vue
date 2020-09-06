@@ -63,10 +63,4 @@ export default {
     outline: none;
   }
 }
-
-/*@media (max-width: 576px) {*/
-/*  .container {*/
-/*    width: ;*/
-/*  }*/
-/*}*/
 </style>

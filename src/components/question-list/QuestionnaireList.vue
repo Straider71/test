@@ -59,7 +59,21 @@ export default {
   max-height: 535px;
   overflow-y: auto;
   overflow-x: hidden;
+  scrollbar-color: #4570f5 rgba(0, 0, 0, 0.1);
   scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #4570f5;
+    // outline: 1px solid rgb(72, 117, 161);
+  }
 }
 @media (max-width: 890px) {
   .container {

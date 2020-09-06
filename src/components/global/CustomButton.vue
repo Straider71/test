@@ -3,7 +3,8 @@
     <a v-if="href" :href="href" :class="classFunc()">
       <slot />
     </a>
-    <button v-else :class="classFunc()">
+
+    <button v-else :class="classFunc()" :disabled="disable">
       <slot />
     </button>
   </div>
@@ -47,6 +48,10 @@ export default {
   justify-content: center;
   font-family: shabnam;
   align-items: center;
+
+  &:focus {
+    outline: 0;
+  }
 }
 
 .disable {

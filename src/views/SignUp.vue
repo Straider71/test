@@ -89,11 +89,11 @@ export default {
           //   .dispatch('signup', userData)
           .then(() => {
             this.$router.push({ name: 'QuestionnaireListPage' });
-            this.$toasted.success('اطلاعات شما با موفقیت ثبت گردید');
-          })
-          .catch(err => {
-            this.$toasted.error('کاربری با این ایمیل وجود دارد');
+            // this.$toasted.success('اطلاعات شما با موفقیت ثبت گردید');
           });
+        // .catch(err => {
+        //   this.$toasted.error('کاربری با این ایمیل وجود دارد');
+        // });
       }
     },
 

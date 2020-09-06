@@ -1,26 +1,26 @@
 <template>
   <div class="container">
-    <router-link :to="`/questions/${this.id}`">
-      <CustomButton
-        :disable="customButtonDisabled()"
-        @click.native="goRoute($event)"
-        :id="id"
-      >
-        <img
-          v-if="customButtonDisabled()"
-          src="../../assets/arrow-gray.svg"
-          alt="arrow"
-          class="arrow"
-        />
-        <img
-          v-else
-          src="../../assets/arrow-white.svg"
-          alt="arrow"
-          class="arrow"
-        />
-        <p>شروع</p>
-      </CustomButton>
-    </router-link>
+    <!-- <router-link :to="`/questions/${this.id}`"> -->
+    <CustomButton
+      :disable="customButtonDisabled()"
+      @click.native="goRoute($event)"
+      :id="id"
+    >
+      <img
+        v-if="customButtonDisabled()"
+        src="../../assets/arrow-gray.svg"
+        alt="arrow"
+        class="arrow"
+      />
+      <img
+        v-else
+        src="../../assets/arrow-white.svg"
+        alt="arrow"
+        class="arrow"
+      />
+      <p>شروع</p>
+    </CustomButton>
+    <!-- </router-link> -->
 
     <div class="status">
       <QuestionnaireStatus :count="count" :status="status" />
@@ -69,17 +69,18 @@ export default {
       return this.status === '2';
     },
     async goRoute(event) {
-      this.SET_QUESTIONNAIRE_TITLE(this.title);
-      // console.log(this.questionnaires[2].questionnaire_id);
-      console.log(this.id);
+      if (this.status != 2) {
+        this.SET_QUESTIONNAIRE_TITLE(this.title);
+        this.fetchQuestions(this.id);
+        this.$store.state.questionIndex = 0;
+        this.$store.state.question = [];
 
-      this.fetchQuestions(this.id);
-      // this.fetchQuestions(35);
-
-      // router.push({
-      //   name: 'questions',
-      //   params: { id },
-      // });
+        console.log(this.status);
+        this.$router.push({
+          name: 'Question',
+          params: { id: this.id },
+        });
+      }
     },
   },
 };
@@ -97,6 +98,7 @@ export default {
   align-items: center;
   margin-top: 20px;
   padding: 0 10px;
+  margin-right: 5px;
 
   & a {
     text-decoration: none;

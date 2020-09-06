@@ -74,15 +74,14 @@ export default {
           email: this.email,
           password: this.password,
         };
-        this.signin(userData)
+        this.signin(userData).then(() => {
+          this.$router.push({ name: 'QuestionnaireListPage' });
+          // this.$toasted.success('شما با موفقیت وارد شدید');
+        });
 
-          .then(() => {
-            this.$router.push({ name: 'QuestionnaireListPage' });
-            this.$toasted.success('شما با موفقیت وارد شدید');
-          })
-          .catch(err => {
-            this.$toasted.error('ایمیل یا رمز عبور نادرست می باشد');
-          });
+        // .catch(err => {
+        //   this.$toasted.error('ایمیل یا رمز عبور نادرست می باشد');
+        // });
       }
     },
   },

@@ -72,21 +72,13 @@ export default {
     ...mapActions(['signup']),
 
     onSubmit() {
-      // if (!this.name || !this.email || !this.password || !this.checkPassword) {
-      //   this.$toasted.error('وارد کردن تمام فیلدها اجباری است');
-      // } else if (!this.validEmail(this.email)) {
-      //   this.$toasted.error('ایمیل معتبر وارد کنید');
-      // } else if (this.password !== this.checkPassword) {
-      //   this.$toasted.error('رمز عبور خود را دوباره وارد فرمایید');
-      // } else {
       const userData = {
         name: this.name,
         email: this.email,
         password: this.password,
       };
       this.signup(userData)
-        // this.$store
-        //   .dispatch('signup', userData)
+
         .then(() => {
           this.$router.push({ name: 'QuestionnaireListPage' });
           this.$toasted.success('اطلاعات شما با موفقیت ثبت گردید');

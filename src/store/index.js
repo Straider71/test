@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 import createPersistedState from 'vuex-persistedstate';
+
 // import vm from '@/main';
 
 import EventService from '@/services/EventService.js';
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     questionaire: [],
     noQuestion: true,
     questionnaireTitle: 'لیست پرسشنامه‌ها‌',
+    questionIndex: 0,
   },
   mutations: {
     SET_USER_DATA(state, userData) {
@@ -58,28 +60,33 @@ export default new Vuex.Store({
   },
   actions: {
     async signup({ commit }, credentials) {
-      // try {
-      const res = await EventService.signUp(credentials);
-      commit('SET_USER_DATA', {
-        token: res.data.token,
-        username: res.data.data.user.name,
-      });
-      // } catch (error) {
-      //   console.log(error);
-      // }
+      try {
+        const res = await EventService.signUp(credentials);
+        commit('SET_USER_DATA', {
+          token: res.data.token,
+          username: res.data.data.user.name,
+        });
+        Vue.$toasted.success('اطلاعات شما با موفقیت ثبت گردید');
+      } catch (error) {
+        console.log(error.response.data.message);
+        Vue.toasted.error(error.response.data.message);
+      }
     },
     async signin({ commit }, credentials) {
-      // try {
-      const res = await EventService.signIn(credentials);
-      commit('SET_USER_DATA', {
-        token: res.data.token,
-        username: res.data.data.name,
-      });
-      // } catch (error) {
-      //   this.$toasted.error(error.message);
-      // }
+      try {
+        const res = await EventService.signIn(credentials);
+        commit('SET_USER_DATA', {
+          token: res.data.token,
+          username: res.data.data.name,
+        });
+        Vue.$toasted.success('شما با موفقیت وارد شدید');
+      } catch (error) {
+        console.log(error.response.data.message);
+        Vue.toasted.error(error.response.data.message);
+      }
     },
-    logout({ commit }) {
+    async logout({ commit }) {
+      await EventService.signOut();
       commit('CLEAR_USER_DATA');
     },
     async fetchQuesetionnaires({ commit }) {
@@ -90,7 +97,7 @@ export default new Vuex.Store({
         commit('SET_QUESTION_COUNT', res.data.result_number);
         commit('SET_NO_QUESTION', true);
       } catch (error) {
-        console.log(error);
+        Vue.toasted.error(error.response.data.message);
       }
     },
     async fetchQuestions({ commit }, id) {
@@ -99,7 +106,7 @@ export default new Vuex.Store({
         console.log(res.data.data.question);
         commit('SET_SELECTED_QUESTIONNARE', res.data.data.question);
       } catch (error) {
-        console.log('reqquestionnare');
+        Vue.toasted.error(error.response.data.message);
       }
     },
     async fetchQuestion({ commit }, id) {
@@ -108,7 +115,18 @@ export default new Vuex.Store({
         console.log(res.data.data.question);
         commit('SET_QUESTION', res.data.data.question);
       } catch (error) {
-        console.log('reqquestion');
+        Vue.toasted.error(error.response.data.message);
+      }
+    },
+    async sendAnswer({ commit }, body) {
+      await EventService.answer(body);
+    },
+    async sendEmail({ commit }, email) {
+      try {
+        EventService.sendEmail(email);
+        Vue.$toasted.success('ایمیل با موفقیت ارسال شد');
+      } catch (error) {
+        Vue.toasted.error(error.response.data.message);
       }
     },
   },

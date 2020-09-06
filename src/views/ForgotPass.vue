@@ -41,6 +41,7 @@
 import CustomInput from '../components/global/CustomInput';
 import CustomCheckBox from '../components/global/CustomCheckBox';
 import CustomButton from '../components/global/CustomButton';
+import { mapActions } from 'vuex';
 export default {
   name: 'SignIn',
   components: { CustomInput, CustomCheckBox, CustomButton },
@@ -50,12 +51,13 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['sendEmail']),
     onSubmit() {
       const userData = {
         email: this.email,
       };
       console.log(userData);
-      this.$store.dispatch('forgotPass', userData).then(() => {
+      this.sendEmail(userData).then(() => {
         this.$router.push({ name: 'sign-in' });
       });
     },

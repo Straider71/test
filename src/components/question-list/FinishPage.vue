@@ -8,8 +8,8 @@
       <CustomButton class="deep">
         <img src="../../assets/arrow-white.svg" alt="arrow" />
         <a href="#">مشاهده پرسشنامه‌ها</a>
-      </CustomButton> </router-link
-    >>
+      </CustomButton>
+    </router-link>
   </div>
 </template>
 
@@ -30,6 +30,10 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  & a {
+    text-decoration: none;
+  }
 
   & figure {
     margin: 100px 0 60px 0;

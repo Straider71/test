@@ -3,7 +3,7 @@
     <p class="title">
       <QuestionTitle :text="question" />
     </p>
-    <AnswerItemArea />
+    <AnswerItemArea @change-option="onChange($event)" />
   </div>
 </template>
 
@@ -19,6 +19,12 @@ export default {
   },
   props: {
     question: String,
+  },
+  methods: {
+    onChange(event) {
+      console.log(event);
+      this.$emit('get-value', event);
+    },
   },
 };
 </script>

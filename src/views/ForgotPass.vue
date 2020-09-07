@@ -43,7 +43,7 @@ import CustomCheckBox from '../components/global/CustomCheckBox';
 import CustomButton from '../components/global/CustomButton';
 import { mapActions } from 'vuex';
 export default {
-  name: 'SignIn',
+  name: 'ForgotPass',
   components: { CustomInput, CustomCheckBox, CustomButton },
   data() {
     return {
@@ -57,9 +57,13 @@ export default {
         email: this.email,
       };
       console.log(userData);
-      this.sendEmail(userData).then(() => {
-        this.$router.push({ name: 'sign-in' });
-      });
+      this.sendEmail(userData).then(
+        () => {
+          this.$toasted.success('ایمیل با موفقیت ارسال شد');
+          this.$router.push({ name: 'sign-in' });
+        },
+        error => console.log(error)
+      );
     },
   },
 };

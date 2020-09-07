@@ -9,7 +9,6 @@
       :type="type"
       :value="value"
       v-on:input="$emit('input', $event.target.value)"
-      id="username"
       :placeholder="placeholder"
     />
   </div>

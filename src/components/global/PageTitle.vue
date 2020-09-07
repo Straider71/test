@@ -16,7 +16,7 @@ export default {
       if (to.fullPath == '/') {
         this.SET_QUESTIONNAIRE_TITLE('لیست پرسشنامه‌ها');
       }
-      if (to.fullPath == '/profile/:id') {
+      if (to.fullPath == '/profile/5') {
         this.SET_QUESTIONNAIRE_TITLE('پروفایل');
       }
     },

@@ -1,7 +1,12 @@
 <template>
   <div class="area-container">
     <p class="title">پاسخ تشریحی کامل بدهید</p>
-    <textarea name="cutom-area" id="area" v-model="text"></textarea>
+    <textarea
+      name="cutom-area"
+      id="area"
+      v-model="text"
+      @change="onChanged($event)"
+    ></textarea>
   </div>
 </template>
 
@@ -10,6 +15,11 @@ export default {
   name: 'AnswerItemArea',
   props: {
     text: String,
+  },
+  methods: {
+    onChanged(event) {
+      this.$emit('change-option', event.target.value);
+    },
   },
 };
 </script>

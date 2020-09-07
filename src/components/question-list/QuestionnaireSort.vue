@@ -7,20 +7,58 @@
             class="select-box__input"
             type="radio"
             id="0"
-            value="1"
+            value="not_answered"
             name="Ben"
             checked="checked"
+            @click="getOrder"
           />
-          <p class="select-box__input-text">مجبوب ترین</p>
+          <p class="select-box__input-text">پاسخ داده نشده</p>
         </div>
         <div class="select-box__value">
           <input
             class="select-box__input"
             type="radio"
             id="1"
-            value="2"
+            value="answered"
             name="Ben"
             checked="checked"
+            @click="getOrder"
+          />
+          <p class="select-box__input-text">پاسخ داده شده</p>
+        </div>
+        <div class="select-box__value">
+          <input
+            class="select-box__input"
+            type="radio"
+            id="2"
+            value="min_question"
+            name="Ben"
+            checked="checked"
+            @click="getOrder"
+          />
+          <p class="select-box__input-text">کمترین تعداد سوال</p>
+        </div>
+        <div class="select-box__value">
+          <input
+            class="select-box__input"
+            type="radio"
+            id="3"
+            value="max_question"
+            name="Ben"
+            checked="checked"
+            @click="getOrder"
+          />
+          <p class="select-box__input-text">بیشترین تعداد سوال</p>
+        </div>
+        <div class="select-box__value">
+          <input
+            class="select-box__input"
+            type="radio"
+            id="4"
+            value="old_created"
+            name="Ben"
+            checked="checked"
+            @click="getOrder"
           />
           <p class="select-box__input-text">قدیمی ترین</p>
         </div>
@@ -28,13 +66,15 @@
           <input
             class="select-box__input"
             type="radio"
-            id="2"
-            value="3"
+            id="5"
+            value="new_created"
             name="Ben"
             checked="checked"
+            @click="getOrder"
           />
           <p class="select-box__input-text">جدید ترین</p>
         </div>
+
         <img
           class="select-box__icon"
           src="../../assets/arrow.svg"
@@ -46,16 +86,31 @@
       <ul class="select-box__list">
         <li>
           <label class="select-box__option" for="0" aria-hidden="aria-hidden"
-            >محبوب ترین</label
+            >پاسخ داده نشده</label
           >
         </li>
         <li>
           <label class="select-box__option" for="1" aria-hidden="aria-hidden"
-            >قدیمی ترین</label
+            >پاسخ داده شده</label
           >
         </li>
         <li>
           <label class="select-box__option" for="2" aria-hidden="aria-hidden"
+            >کمترین تعداد سوال</label
+          >
+        </li>
+        <li>
+          <label class="select-box__option" for="3" aria-hidden="aria-hidden"
+            >بیشترین تعداد سوال</label
+          >
+        </li>
+        <li>
+          <label class="select-box__option" for="4" aria-hidden="aria-hidden"
+            >قدیمی ترین</label
+          >
+        </li>
+        <li>
+          <label class="select-box__option" for="5" aria-hidden="aria-hidden"
             >جدید ترین</label
           >
         </li>
@@ -67,8 +122,28 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'QuestionnaireSort',
+
+  data() {
+    return {
+      orderSelected: null,
+    };
+  },
+
+  methods: {
+    ...mapActions(['fetchQuesetionnaires']),
+
+    getOrder(event) {
+      console.log(event.target.value);
+      this.orderSelected = event.target.value;
+      this.fetchQuesetionnaires(this.orderSelected);
+    },
+  },
+
+  computed: { ...mapState(['questionnaires']) },
 };
 </script>
 
@@ -82,7 +157,6 @@ export default {
     margin-left: 5px;
     font-size: 14px;
     line-height: 1.36;
-    /*letter-spacing: 1.36;*/
     letter-spacing: -0.14px;
     color: #7f86aa;
   }
@@ -90,32 +164,11 @@ export default {
   & .select-box {
     position: relative;
     display: block;
-    /*width: 100%;*/
-    /*min-width: 100px;*/
-    /*width: 130px;*/
-
     width: 130px;
-    /*width: 70%;*/
-    /*max-height: 36px;*/
     margin: 0 auto;
-    /*font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;*/
     font-size: 14px;
     color: #aeaeae;
-    /*border: 1px solid transparent;*/
     border-radius: 10px;
-    /*direction: rtl;*/
-
-    /*@media (min-width: 768px) {*/
-    /*  width: 70%;*/
-    /*}*/
-
-    /*@media (min-width: 992px) {*/
-    /*  width: 50%;*/
-    /*}*/
-
-    /*@media (min-width: 1200px) {*/
-    /*  width: 30%;*/
-    /*}*/
 
     &__current {
       position: relative;
@@ -126,10 +179,9 @@ export default {
       &:focus {
         & + .select-box__list {
           opacity: 1;
-
-          // We have to set "animation-name: none;" to make the list visible (read below how it works)
-
+          background-color: white;
           animation-name: none;
+          z-index: 5;
 
           .select-box__option {
             cursor: pointer;
@@ -171,10 +223,8 @@ export default {
 
     &__input-text {
       display: none;
-      /*width: 100%;*/
       width: 130px;
       margin: 0;
-      /*height: 36px;*/
       padding: 10px 8px;
       background-color: #fff;
     }
@@ -185,11 +235,6 @@ export default {
       padding: 0;
       list-style: none;
       opacity: 0;
-
-      // We need to use animation with delay.
-      // Otherwise the click event will not have time to run on label, because this element disapears immediately when .select-box__current element loses the focus.
-      // This delay will not be noticed because we set "opacity" to "0".
-      // We also use "animation-fill-mode: forwards" to make the list stay hidden.
 
       animation-name: HideList;
       animation-duration: 0.5s;
@@ -222,50 +267,3 @@ export default {
   }
 }
 </style>
-
-<!--/*.dropbtn {*/-->
-<!--/*  width: 104px;*/-->
-<!--/*  height: 36px;*/-->
-<!--/*  border-radius: 10px;*/-->
-<!--/*  background-color: #ffffff;*/-->
-<!--/*  color: #aeaeae;*/-->
-<!--/*  border: none;*/-->
-<!--/*}*/-->
-
-<!--/*.dropdown {*/-->
-<!--/*  position: relative;*/-->
-<!--/*  display: inline-block;*/-->
-<!--/*}*/-->
-
-<!--/*!* Dropdown Content (Hidden by Default) *!*/-->
-<!--/*.dropdown-content {*/-->
-<!--/*  display: none;*/-->
-<!--/*  position: absolute;*/-->
-<!--/*  background-color: #f1f1f1;*/-->
-<!--/*  min-width: 160px;*/-->
-<!--/*  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);*/-->
-<!--/*  z-index: 1;*/-->
-<!--/*}*/-->
-
-<!--/*!* Links inside the dropdown *!*/-->
-<!--/*.dropdown-content a {*/-->
-<!--/*  color: black;*/-->
-<!--/*  padding: 12px 16px;*/-->
-<!--/*  text-decoration: none;*/-->
-<!--/*  display: block;*/-->
-<!--/*}*/-->
-
-<!--/*!* Change color of dropdown links on hover *!*/-->
-<!--/*.dropdown-content a:hover {*/-->
-<!--/*  background-color: #ddd;*/-->
-<!--/*}*/-->
-
-<!--/*!* Show the dropdown menu on hover *!*/-->
-<!--/*.dropdown:hover .dropdown-content {*/-->
-<!--/*  display: block;*/-->
-<!--/*}*/-->
-
-<!--/*!* Change the background color of the dropdown button when the dropdown content is shown *!*/-->
-<!--/*.dropdown:hover .dropbtn {*/-->
-<!--/*  background-color: #3e8e41;*/-->
-<!--/*}*/-->

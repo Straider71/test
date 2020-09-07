@@ -1,9 +1,10 @@
 <template>
   <div class="sign-up-container">
-    <p class="sub-header">
+    <!-- <p class="sub-header">
       تغییر اطلاعات کاربری
-    </p>
-    <form class="input-list" @submit.prevent="onSubmit">
+    </p> -->
+    <Avatar />
+    <form class="input-list-top" @submit.prevent="onSubmitName">
       <custom-input
         class="round-top-border"
         placeholder="نام و نام خانوادگی خود را وارد کنید"
@@ -20,6 +21,14 @@
       >
         <img src="../assets/input-img/mail.svg" />
       </custom-input>
+      <div class="buttons">
+        <CustomButton class="custom-button">
+          <p>بروزرسانی اطلاعات کاربری</p>
+        </CustomButton>
+      </div>
+    </form>
+
+    <form class="input-list" @submit.prevent="onSubmitPass">
       <custom-input
         placeholder="رمز عبور خود را وارد کنید"
         label="رمز عبور"
@@ -44,7 +53,7 @@
           </CustomButton>
         </router-link>
         <CustomButton class="custom-button">
-          <p>ثبت</p>
+          <p>بروزرسانی رمز عبور</p>
         </CustomButton>
       </div>
     </form>
@@ -54,11 +63,12 @@
 <script>
 import CustomInput from '../components/global/CustomInput';
 import CustomButton from '../components/global/CustomButton';
+import Avatar from '../components/global/Avatar';
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'SingUp',
-  components: { CustomInput, CustomButton },
+  name: 'Profile',
+  components: { CustomInput, CustomButton, Avatar },
   data() {
     return {
       name: '',
@@ -69,12 +79,25 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['signup']),
+    ...mapActions(['updateMe']),
 
-    onSubmit() {
+    onSubmitName() {
       const userData = {
         name: this.name,
         email: this.email,
+      };
+      this.updateMe(userData)
+
+        .then(() => {
+          this.$router.push({ name: 'QuestionnaireListPage' });
+          this.$toasted.success('اطلاعات شما با موفقیت ثبت گردید');
+        })
+        .catch(err => {
+          this.$toasted.error('کاربری با این ایمیل وجود دارد');
+        });
+    },
+    onSubmitPass() {
+      const userData = {
         password: this.password,
       };
       this.signup(userData)
@@ -106,7 +129,7 @@ export default {
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 70px;
 
   & .sub-header {
     text-align: center;
@@ -122,7 +145,7 @@ export default {
     box-shadow: 10px 8px 6px 0 #edeef5;
     width: 375px;
     height: 136px;
-    margin-top: 40px;
+    margin-top: 20px;
 
     & > * {
       margin-top: 10px;
@@ -143,7 +166,7 @@ export default {
       display: flex;
       justify-content: space-between;
       padding: 0;
-      margin-top: 40px;
+      margin-top: 20px;
 
       & .link {
         text-decoration: none;
@@ -173,6 +196,42 @@ export default {
 
       & .custom-button::v-deep .button:focus {
         outline: none;
+      }
+    }
+  }
+
+  .input-list-top {
+    // box-shadow: 10px 8px 6px 0 #edeef5;
+    // width: 375px;
+    // height: 136px;
+    margin-top: 20px;
+
+    & > * {
+      margin-top: 10px;
+    }
+
+    & .round-top-border {
+      border-top-right-radius: 10px;
+      border-top-left-radius: 10px;
+    }
+
+    & .round-bottom-border {
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    & .buttons {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0;
+      margin-top: 20px;
+
+      & .custom-button::v-deep .button {
+        height: 45px;
+        width: 375px;
+        font-size: 16px;
+        border-radius: 5px;
       }
     }
   }

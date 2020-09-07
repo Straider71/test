@@ -52,7 +52,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['fetchQuestion', 'sendAnswer']),
+    ...mapActions(['fetchQuestion', 'sendAnswer', 'getAnswer']),
     nexyQuestion() {
       if (this.$store.state.questionIndex === this.questionaire.length - 1) {
         this.sendAnswer({
@@ -81,8 +81,11 @@ export default {
   },
   computed: { ...mapState(['question', 'questionaire', 'questionIndex']) },
 
-  created() {
+  async created() {
+    console.log(this.questionaire);
     this.fetchQuestion(this.questionaire[this.questionIndex]);
+    const res = await this.getAnswer(this.questionaire[this.questionIndex]);
+    console.log(res.data.data.answer.text);
   },
 };
 </script>

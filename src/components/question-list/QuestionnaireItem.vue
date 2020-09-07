@@ -71,11 +71,10 @@ export default {
     async goRoute(event) {
       if (this.status != 2) {
         this.SET_QUESTIONNAIRE_TITLE(this.title);
-        this.fetchQuestions(this.id);
+        await this.fetchQuestions(this.id);
         this.$store.state.questionIndex = 0;
         this.$store.state.question = [];
 
-        console.log(this.status);
         this.$router.push({
           name: 'Question',
           params: { id: this.id },

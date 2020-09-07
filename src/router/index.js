@@ -50,21 +50,28 @@ const routes = [
     children: [
       {
         path: 'sign-in',
+        name: 'sign-in',
         component: () =>
           import(/* webpackChunkName: "SignIn" */ '@/views/SignIn.vue'),
       },
       {
         path: 'sign-up',
+        name: 'sign-up',
+
         component: () =>
           import(/* webpackChunkName: "SignUp" */ '@/views/SignUp.vue'),
       },
       {
         path: 'forgot-password',
+        name: 'forgot-password',
+
         component: () =>
           import(/* webpackChunkName: "ForgotPass" */ '@/views/ForgotPass.vue'),
       },
       {
-        path: 'forgot-password/:token',
+        path: 'reset-password/:token',
+        name: 'reset-password',
+
         component: () =>
           import(
             /* webpackChunkName: "ForgotPassForm" */ '@/views/ForgotPassForm.vue'
@@ -72,11 +79,29 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: '/profile',
-  //   component: () =>
-  //     import(/* webpackChunkName: "Profile" */ '@/views/Profile.vue'),
-  // },
+
+  {
+    path: '/admin/',
+    name: 'admin',
+
+    component: () =>
+      import(/* webpackChunkName: "AdminPage" */ '@/views/AdminPage.vue'),
+    children: [
+      {
+        path: 'questionnaire',
+        name: 'createQuestionnare',
+
+        component: () => import('@/views/createQuestionnare.vue'),
+      },
+      {
+        path: 'question',
+        name: 'createQuestion',
+
+        component: () => import('@/views/createQuestion.vue'),
+      },
+    ],
+  },
+
   {
     path: '*',
     component: () => import(/* webpackChunkName: "404" */ '@/views/404.vue'),

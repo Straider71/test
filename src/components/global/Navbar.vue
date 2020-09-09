@@ -15,7 +15,7 @@ import PageTitle from './PageTitle';
 import UserInfo from './UserInfo';
 
 export default {
-  name: 'QuestionnaireItem',
+  name: 'Navbar',
   components: {
     Logo,
     PageTitle,

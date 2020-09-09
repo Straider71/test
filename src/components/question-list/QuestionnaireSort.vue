@@ -122,7 +122,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 
 export default {
   name: 'QuestionnaireSort',
@@ -135,15 +135,19 @@ export default {
 
   methods: {
     ...mapActions(['fetchQuesetionnaires']),
+    ...mapMutations(['SET_ORDER']),
 
     getOrder(event) {
-      console.log(event.target.value);
       this.orderSelected = event.target.value;
-      this.fetchQuesetionnaires(this.orderSelected);
+      this.SET_ORDER(this.orderSelected);
+      this.fetchQuesetionnaires({
+        order: this.orderType,
+        page: this.pageNumber,
+      });
     },
   },
 
-  computed: { ...mapState(['questionnaires']) },
+  computed: { ...mapState(['questionnaires', 'orderType', 'pageNumber']) },
 };
 </script>
 
@@ -164,7 +168,7 @@ export default {
   & .select-box {
     position: relative;
     display: block;
-    width: 130px;
+    width: auto;
     margin: 0 auto;
     font-size: 14px;
     color: #aeaeae;
@@ -175,6 +179,7 @@ export default {
       box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
       cursor: pointer;
       outline: none;
+      width: auto;
 
       &:focus {
         & + .select-box__list {
@@ -223,7 +228,7 @@ export default {
 
     &__input-text {
       display: none;
-      width: 130px;
+      width: auto;
       margin: 0;
       padding: 10px 8px;
       background-color: #fff;

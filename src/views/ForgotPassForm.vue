@@ -55,13 +55,12 @@ export default {
       } else if (this.password !== this.checkPassword) {
         this.$toasted.error('رمز عبور خود را دوباره وارد فرمایید');
       } else {
-        console.log(this.$route.params.token);
         const userData = {
           password: this.password,
           token: this.$route.params.token,
         };
         this.updatePassword(userData).then(() => {
-          this.$toasted.success('رمز عبور با موفقیت تغییر کرد');
+          // this.$toasted.success('رمز عبور با موفقیت تغییر کرد');
           this.$router.push({ name: 'sign-in' });
         });
       }

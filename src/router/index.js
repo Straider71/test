@@ -88,6 +88,12 @@ const routes = [
       import(/* webpackChunkName: "AdminPage" */ '@/views/AdminPage.vue'),
     children: [
       {
+        path: '',
+        name: 'overview',
+
+        component: () => import('@/views/Overview.vue'),
+      },
+      {
         path: 'questionnaire',
         name: 'createQuestionnare',
 

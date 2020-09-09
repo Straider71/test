@@ -54,30 +54,21 @@ export default {
 
   methods: {
     makeProgress(event) {
-      // if (this.progress < 100 && this.number < this.questionaire.length) {
       if (this.number < this.questionaire.length + 1) {
-        // this.progress += 10;
         this.number += 1;
         this.progress = Math.floor(
           (this.number / this.questionaire.length) * 100
         );
-        console.log(this.questionaire.length);
-        console.log(this.number);
-        // console.log(this.question);
-        // this.number += 1;
         this.$emit('clicked', event);
-        // console.log(event.target.value);
       }
     },
     minusProgress() {
       if (this.progress > 0 && this.number > 1) {
         this.number -= 1;
-
         this.progress = Math.floor(
           (this.number / this.questionaire.length) * 100
         );
         if (this.number === 1) this.progress = 0;
-
         this.$emit('backclicked', event);
       }
     },

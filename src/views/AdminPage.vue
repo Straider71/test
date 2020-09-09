@@ -1,24 +1,39 @@
 <template>
   <div class="home">
-    <!-- <div class="circle"></div> -->
-    <div class="sidebar">
-      <img src="@/assets/logo.svg" alt="logo" />
-      <div class="list">
-        <div class="tabs">ایجاد پرسشنامه</div>
-        <div class="tabs">ایجاد سوال</div>
-        <div class="tabs">تنظیمات</div>
-        <div class="tabs">خروج</div>
-      </div>
-    </div>
+    <div class="circle"></div>
+    <Navbar />
+
     <div class="main">
+      <div class="topbar">
+        <div class="tabs">
+          <router-link to="/admin"> <p>صفحه نخست</p></router-link>
+        </div>
+        <div class="tabs">
+          <router-link to="/admin/questionnaire">
+            <p>ایجاد پرسشنامه</p></router-link
+          >
+        </div>
+        <div class="tabs">
+          <router-link to="/admin/question"> <p>ایجاد سوال</p></router-link>
+        </div>
+        <div class="tabs">
+          <router-link to="/admin/setting"> <p>تنظیمات</p></router-link>
+        </div>
+      </div>
+
       <router-view />
     </div>
   </div>
 </template>
 
 <script>
+import Navbar from '@/components/global/Navbar';
+
 export default {
   name: 'AdminPage',
+  components: {
+    Navbar,
+  },
 };
 </script>
 
@@ -31,7 +46,7 @@ export default {
   z-index: -2;
   overflow: hidden;
 
-  .circle {
+  & .circle {
     z-index: -1;
     width: 1209px;
     height: 1209px;
@@ -46,36 +61,35 @@ export default {
     transform: translate(-50%, -50%);
   }
 
-  .sidebar {
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: -7px 0px 17px -9px rgba(130, 123, 130, 1);
+  & .main {
+    & .topbar {
+      width: 80%;
+      height: 60px;
+      background-color: #fff;
+      border-radius: 25px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 10px;
+      // padding: 10px;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: center;
 
-    width: 15%;
-    height: 100vh;
-    position: absolute;
-    right: 0;
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
+      & a {
+        text-decoration: none;
 
-    img {
-      width: 150px;
-      margin-top: 20px;
-    }
+        &:visited {
+          color: #4570f5;
+        }
+      }
 
-    .list {
-      margin-top: 150px;
-
-      .tabs {
-        width: 100%;
-        height: auto;
-        margin-bottom: 15px;
-        font-size: 26px;
-        line-height: 1.38;
-        letter-spacing: -0.16px;
-        text-align: center;
-        color: #7f86aa;
+      & .tabs {
         display: flex;
         align-items: center;
         justify-content: center;
+        color: #4570f5;
+        margin: 0 50px;
       }
     }
   }

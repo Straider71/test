@@ -59,7 +59,7 @@ export default {
       console.log(userData);
       this.sendEmail(userData).then(
         () => {
-          this.$toasted.success('ایمیل با موفقیت ارسال شد');
+          // this.$toasted.success('ایمیل با موفقیت ارسال شد');
           this.$router.push({ name: 'sign-in' });
         },
         error => console.log(error)

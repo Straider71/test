@@ -75,17 +75,22 @@ export default {
       this.fetchQuestion(this.questionaire[this.questionIndex]);
     },
     getSelectedValue($event) {
-      console.log(event.target.value);
       this.selectedValue = event.target.value;
     },
   },
   computed: { ...mapState(['question', 'questionaire', 'questionIndex']) },
 
   async created() {
-    console.log(this.questionaire);
     this.fetchQuestion(this.questionaire[this.questionIndex]);
+
+    // if (!questres) {
+    //   // Vue.toasted.error(error.response.data.message);
+    //   this.$router.push({
+    //     name: 'QuestionnaireListPage',
+    //   });
+    // }
+
     const res = await this.getAnswer(this.questionaire[this.questionIndex]);
-    console.log(res.data.data.answer.text);
   },
 };
 </script>

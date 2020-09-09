@@ -24,15 +24,16 @@ axios.interceptors.response.use(
 );
 
 export default {
-  async getQuestionnaires(order) {
-    return await axios.get(`/questionnaire/?order_by=${order}`);
+  async getQuestionnaires(order, page) {
+    return await axios.get(
+      `/questionnaire/?order_by=${order}&page=${page}&limit=4`
+    );
   },
   async getAllQuestions(id) {
     const url = `/questions/?questionnaire_id=${id}`;
     return await axios.get(url);
   },
   async getQuestion(id) {
-    console.log(id);
     const url = `/questions/?question_id=${id}`;
     return await axios.get(url);
   },
@@ -53,8 +54,6 @@ export default {
     return await axios.post('/users/forget-password/', email);
   },
   async updatePass(password, token) {
-    console.log(token, password);
-    console.log(typeof token, typeof password);
     const url = `/users/reset-password/?token=${token}`;
     return await axios.post(url, { password });
   },
@@ -64,7 +63,6 @@ export default {
     return await axios.put(url);
   },
   async getAnswer(id) {
-    console.log(id);
     const url = `/answers/?question_id=${id}`;
     // return await axios.get(url);
     return await axios.get(url);

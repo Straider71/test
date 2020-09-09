@@ -15,7 +15,7 @@
 
 <script>
 import Logo from '../components/global/Logo';
-import HandImage from '../components/authentication/HandImage';
+import HandImage from '@/components/global/HandImage.vue';
 
 export default {
   name: 'Authenticate',

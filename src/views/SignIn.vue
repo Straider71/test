@@ -76,7 +76,7 @@ export default {
         };
         this.signin(userData).then(() => {
           this.$router.push({ name: 'QuestionnaireListPage' });
-          this.$toasted.success('شما با موفقیت وارد شدید');
+          // this.$toasted.success('شما با موفقیت وارد شدید');
         });
 
         // .catch(err => {

@@ -86,7 +86,7 @@ export default {
         };
         this.signup(userData).then(() => {
           this.$router.push({ name: 'QuestionnaireListPage' });
-          this.$toasted.success('اطلاعات شما با موفقیت ثبت گردید');
+          // this.$toasted.success('اطلاعات شما با موفقیت ثبت گردید');
         });
         // .catch(err => {
         //   this.$toasted.error('کاربری با این ایمیل وجود دارد');
@@ -111,13 +111,11 @@ export default {
   flex-direction: column;
 
   & .sub-header {
-    /*display: flex;*/
     text-align: right;
     color: #7f86aa;
     font-size: 14px;
     line-height: 1.36;
     letter-spacing: -0.14px;
-    // margin-bottom: 35px;
     margin-top: 10px;
   }
 
@@ -151,8 +149,7 @@ export default {
       & .link {
         text-decoration: none;
       }
-      /*& .custom-button .button{*/
-      /*& .custom-button >>> button {*/
+
       & .custom-button::v-deep .button {
         height: 45px;
         width: 183px;
@@ -169,7 +166,6 @@ export default {
 
       & .custom-button::v-deep .button:hover {
         background-color: #4570f5;
-        /* opacity is my opinion*/
         opacity: 0.9;
         color: white;
       }

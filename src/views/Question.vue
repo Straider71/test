@@ -23,6 +23,9 @@
 
       <ProgressBar @clicked="nexyQuestion()" @backclicked="backQuestion()" />
     </template>
+    <template v-else-if="questionaire.length == 0">
+      <NoQuestionnaire></NoQuestionnaire>
+    </template>
     <template v-else>
       <FinishPage />
     </template>
@@ -35,6 +38,7 @@ import ProgressBar from '../components/question/ProgressBar';
 import TwoOptionQuestion from '../components/question/TwoOptionQuestion';
 import MultipleChoiceQuestion from '../components/question/MultipleChoiceQuestion';
 import FinishPage from '../components/question-list/FinishPage';
+import NoQuestionnaire from '@/components/question-list/NoQuestionnaire.vue';
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -45,6 +49,7 @@ export default {
     MultipleChoiceQuestion,
     TwoOptionQuestion,
     FinishPage,
+    NoQuestionnaire,
   },
   data() {
     return {

@@ -105,6 +105,9 @@ export default new Vuex.Store({
         commit('SET_QUESTION_COUNT', res.data.result_number);
         commit('SET_TOTAL_PAGE', res.data.total_page_number);
         commit('SET_NO_QUESTION', true);
+
+        if (res.data.questionnaire.length == 0)
+          commit('SET_NO_QUESTION', false);
       } catch (error) {
         Vue.toasted.error(error.response.data.message);
       }
@@ -112,7 +115,7 @@ export default new Vuex.Store({
     async fetchQuestions({ commit }, id) {
       try {
         const res = await EventService.getAllQuestions(id);
-
+        console.log('res');
         commit('SET_SELECTED_QUESTIONNARE', res.data.data.question);
       } catch (error) {
         Vue.toasted.error(error.response.data.message);

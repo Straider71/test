@@ -66,7 +66,7 @@ export default {
       line-height: 1.38;
       letter-spacing: -0.16px;
       color: #ffffff;
-      padding: 0 0 5px 10px;
+      padding: 0 0 1px 10px;
     }
   }
 }

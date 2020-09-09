@@ -86,6 +86,8 @@ export default {
   computed: { ...mapState(['question', 'questionaire', 'questionIndex']) },
 
   async created() {
+    console.log(this.questionaire);
+    // this.$store.state.questionaire = [];
     this.fetchQuestion(this.questionaire[this.questionIndex]);
 
     // if (!questres) {

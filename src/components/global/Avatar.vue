@@ -1,6 +1,6 @@
 <template>
   <div class="avatar">
-    <img src="@/assets/avatar.svg" alt="avatar" />
+    <img src="@/assets/index.jpg" alt="avatar" />
     <input
       type="file"
       @change="onFileSelected"
@@ -61,6 +61,7 @@ export default {
   & img {
     width: 150px;
     height: 150px;
+    border-radius: 50%;
   }
 
   & .two {

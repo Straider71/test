@@ -74,9 +74,10 @@ export default {
         await this.fetchQuestions(this.id);
         this.$store.state.questionIndex = 0;
         this.$store.state.question = [];
-        this.SET_NO_QUESTION(true);
 
-        if (this.questionaire.length == 0) this.SET_NO_QUESTION(false);
+        // this.SET_NO_QUESTION(true);
+
+        // if (this.questionaire.length == 0) this.SET_NO_QUESTION(false);
 
         this.$router.push({
           name: 'Question',

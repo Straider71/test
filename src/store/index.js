@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+// import router from '@/router';
 import createPersistedState from 'vuex-persistedstate';
 import EventService from '@/services/EventService.js';
 
@@ -105,6 +106,7 @@ export default new Vuex.Store({
         commit('SET_QUESTION_COUNT', res.data.result_number);
         commit('SET_TOTAL_PAGE', res.data.total_page_number);
         commit('SET_NO_QUESTION', true);
+        console.log(res);
 
         if (res.data.questionnaire.length == 0)
           commit('SET_NO_QUESTION', false);
@@ -119,6 +121,8 @@ export default new Vuex.Store({
         commit('SET_SELECTED_QUESTIONNARE', res.data.data.question);
       } catch (error) {
         Vue.toasted.error(error.response.data.message);
+        this.state.questionaire = [];
+        localStorage.removeItem('vuex');
       }
     },
     async fetchQuestion({ commit }, id) {
@@ -127,6 +131,8 @@ export default new Vuex.Store({
 
         commit('SET_QUESTION', res.data.data.question);
       } catch (error) {
+        this.state.question = null;
+
         // Vue.toasted.error(error.response.data.message);
       }
     },

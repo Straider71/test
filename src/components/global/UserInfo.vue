@@ -27,7 +27,7 @@
     <p class="navbar-username-text">{{ userName }}, خوش آمدید</p>
 
     <img
-      src="../../assets/avatar.svg"
+      src="../../assets/index.jpg"
       alt="avatar"
       class="navbar-username-avatar"
     />
@@ -77,6 +77,7 @@ export default {
   &-avatar {
     width: 26px;
     height: 26px;
+    border-radius: 50%;
   }
 
   &-text {

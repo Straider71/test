@@ -4,13 +4,15 @@
     <textarea
       name="cutom-area"
       id="area"
-      v-model="text"
+      :value="answer"
       @change="onChanged($event)"
     ></textarea>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'AnswerItemArea',
   props: {
@@ -21,6 +23,7 @@ export default {
       this.$emit('change-option', event.target.value);
     },
   },
+  computed: { ...mapState(['answer']) },
 };
 </script>
 

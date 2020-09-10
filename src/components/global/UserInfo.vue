@@ -1,10 +1,5 @@
 <template>
   <div class="navbar-username">
-    <!-- <a
-      href="#"
-      @focus.prevent="showDropDown = !showDropDown"
-      @blur.stop="showDropDown = !showDropDown"
-    > -->
     <div class="arrow">
       <a href="#">
         <img
@@ -27,24 +22,11 @@
     <p class="navbar-username-text">{{ userName }}, خوش آمدید</p>
 
     <img
-      src="../../assets/index.jpg"
+      src="../../assets/avatar.svg"
       alt="avatar"
       class="navbar-username-avatar"
     />
-
-    <!-- <div v-show="showDropDown"> -->
-    <!-- <ul class="menu">
-      <li class="list">
-        <router-link to="/profile/5">
-          <p class="link">پروفایل</p>
-        </router-link>
-      </li>
-      <li class="list">
-        <a href="#" class="link" @click="logout">خروج</a>
-      </li>
-    </ul> -->
   </div>
-  <!-- </div> -->
 </template>
 
 <script>
@@ -106,7 +88,6 @@ export default {
     position: absolute;
     top: 30px;
     display: none;
-    // right: 180px;
 
     & .list {
       margin-top: 3px;
@@ -127,9 +108,6 @@ export default {
       display: none;
       flex-basis: 30%;
     }
-    // .menu {
-    //   right: 50px;
-    // }
   }
 }
 </style>

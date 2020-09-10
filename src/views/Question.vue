@@ -1,4 +1,5 @@
 <template>
+  <!-- <transition name="fade"> -->
   <div class="question">
     <template v-if="this.$store.state.questionIndex < this.questionaire.length">
       <multiple-choice-question
@@ -19,7 +20,11 @@
         :option_2="question.incorrect_options[0]"
         @get-value="getSelectedValue($event)"
       />
-      <Descriptive v-if="question.type === '2'" :question="question.title" />
+      <Descriptive
+        v-if="question.type === '2'"
+        :question="question.title"
+        @get-value="getSelectedValue($event)"
+      />
 
       <ProgressBar @clicked="nexyQuestion()" @backclicked="backQuestion()" />
     </template>
@@ -30,6 +35,7 @@
       <FinishPage />
     </template>
   </div>
+  <!-- </transition> -->
 </template>
 
 <script>
@@ -39,7 +45,7 @@ import TwoOptionQuestion from '../components/question/TwoOptionQuestion';
 import MultipleChoiceQuestion from '../components/question/MultipleChoiceQuestion';
 import FinishPage from '../components/question-list/FinishPage';
 import NoQuestionnaire from '@/components/question-list/NoQuestionnaire.vue';
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapMutations } from 'vuex';
 
 export default {
   name: 'Question',
@@ -58,6 +64,7 @@ export default {
   },
   methods: {
     ...mapActions(['fetchQuestion', 'sendAnswer', 'getAnswer']),
+    ...mapMutations(['GET_ANSWER']),
     nexyQuestion() {
       if (this.$store.state.questionIndex === this.questionaire.length - 1) {
         this.sendAnswer({
@@ -85,20 +92,14 @@ export default {
   },
   computed: { ...mapState(['question', 'questionaire', 'questionIndex']) },
 
-  async created() {
-    console.log(this.questionaire);
-    // this.$store.state.questionaire = [];
+  created() {
     this.fetchQuestion(this.questionaire[this.questionIndex]);
-
-    // if (!questres) {
-    //   // Vue.toasted.error(error.response.data.message);
-    //   this.$router.push({
-    //     name: 'QuestionnaireListPage',
-    //   });
-    // }
-
-    const res = await this.getAnswer(this.questionaire[this.questionIndex]);
   },
+
+  // async mounted() {
+  //   const res = await this.getAnswer(this.questionaire[this.questionIndex]);
+  //   this.GET_ANSWER(res.data.data.answer.text);
+  // },
 };
 </script>
 
@@ -109,4 +110,14 @@ export default {
   justify-content: space-between;
   height: 80vh;
 }
+
+/* .fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+} */
 </style>

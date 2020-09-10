@@ -10,22 +10,33 @@
 </template>
 
 <script>
-import AnswerItemRadio from "./AnswerItemRadio";
-import QuestionTitle from "./QuestionTitle";
-import QuestionSubHeader from "./QuestionSubHeader";
+import AnswerItemRadio from './AnswerItemRadio';
+import QuestionTitle from './QuestionTitle';
+import QuestionSubHeader from './QuestionSubHeader';
+import { mapActions, mapMutations, mapState } from 'vuex';
+
 export default {
-  name: "TwoOptionQuestion",
+  name: 'TwoOptionQuestion',
   components: { QuestionTitle, AnswerItemRadio, QuestionSubHeader },
   props: {
     question: String,
     option_1: String,
-    option_2: String
+    option_2: String,
   },
   methods: {
+    ...mapActions(['fetchQuestion', 'sendAnswer', 'getAnswer']),
+    ...mapMutations(['GET_ANSWER']),
     onChange(event) {
-      this.$emit("get-value", event);
-    }
-  }
+      this.$emit('get-value', event);
+    },
+  },
+  computed: { ...mapState(['questionaire', 'questionIndex']) },
+
+  async created() {
+    this.GET_ANSWER(null);
+    const res = await this.getAnswer(this.questionaire[this.questionIndex]);
+    this.GET_ANSWER(res.data.data.answer.text);
+  },
 };
 </script>
 

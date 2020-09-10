@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import QuestionnaireList from "../components/question-list/QuestionnaireList.vue";
+import QuestionnaireList from '../components/question-list/QuestionnaireList.vue';
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
-    QuestionnaireList
-  }
+    QuestionnaireList,
+  },
 };
 </script>
 
@@ -22,5 +22,11 @@ export default {
   position: relative;
   top: 150px;
   z-index: 100;
+}
+
+@media (max-width: 640px) {
+  .list {
+    top: 100px;
+  }
 }
 </style>

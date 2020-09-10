@@ -21,6 +21,7 @@ export default new Vuex.Store({
     pageNumber: 1,
     orderType: 'new_created',
     totalPageNumber: null,
+    answer: null,
   },
   mutations: {
     SET_USER_DATA(state, userData) {
@@ -64,6 +65,9 @@ export default new Vuex.Store({
     SET_TOTAL_PAGE(state, totoalpage) {
       state.totalPageNumber = totoalpage;
     },
+    GET_ANSWER(state, answer) {
+      state.answer = answer;
+    },
   },
   actions: {
     async signup({ commit }, credentials) {
@@ -106,7 +110,6 @@ export default new Vuex.Store({
         commit('SET_QUESTION_COUNT', res.data.result_number);
         commit('SET_TOTAL_PAGE', res.data.total_page_number);
         commit('SET_NO_QUESTION', true);
-        console.log(res);
 
         if (res.data.questionnaire.length == 0)
           commit('SET_NO_QUESTION', false);
@@ -117,7 +120,7 @@ export default new Vuex.Store({
     async fetchQuestions({ commit }, id) {
       try {
         const res = await EventService.getAllQuestions(id);
-        console.log('res');
+
         commit('SET_SELECTED_QUESTIONNARE', res.data.data.question);
       } catch (error) {
         Vue.toasted.error(error.response.data.message);

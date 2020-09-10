@@ -4,7 +4,7 @@
     <QuestionSubHeader text="لطفا یک گزینه را انتخاب کنید" />
     <form class="options" action="#">
       <AnswerItemRadio
-              class="hi"
+        class="hi"
         v-for="option in options"
         :key="option"
         :text="option"
@@ -15,21 +15,38 @@
 </template>
 
 <script>
-import QuestionTitle from "../question/QuestionTitle";
-import QuestionSubHeader from "./QuestionSubHeader";
-import AnswerItemRadio from "./AnswerItemRadio";
+import QuestionTitle from '../question/QuestionTitle';
+import QuestionSubHeader from './QuestionSubHeader';
+import AnswerItemRadio from './AnswerItemRadio';
+import { mapState, mapActions, mapMutations } from 'vuex';
+
 export default {
-  name: "MultipleChoiceQuestion",
+  name: 'MultipleChoiceQuestion',
   components: { QuestionTitle, QuestionSubHeader, AnswerItemRadio },
   props: {
     options: Array,
-    question: String
+    question: String,
   },
+  // data() {
+  //   return {
+  //     choice: this.answer,
+  //   };
+  // },
+  // computed: { ...mapState(['answer']) },
   methods: {
+    ...mapActions(['fetchQuestion', 'sendAnswer', 'getAnswer']),
+    ...mapMutations(['GET_ANSWER']),
     onChange(event) {
-      this.$emit("get-value", event);
-    }
-  }
+      this.$emit('get-value', event);
+    },
+  },
+  computed: { ...mapState(['questionaire', 'questionIndex']) },
+
+  async created() {
+    this.GET_ANSWER(null);
+    const res = await this.getAnswer(this.questionaire[this.questionIndex]);
+    this.GET_ANSWER(res.data.data.answer.text);
+  },
 };
 </script>
 

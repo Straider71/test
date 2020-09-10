@@ -10,6 +10,7 @@
 <script>
 import AnswerItemArea from './AnswerItemArea';
 import QuestionTitle from './QuestionTitle';
+import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
   name: 'Descriptive',
@@ -21,10 +22,19 @@ export default {
     question: String,
   },
   methods: {
+    ...mapActions(['fetchQuestion', 'sendAnswer', 'getAnswer']),
+    ...mapMutations(['GET_ANSWER']),
     onChange(event) {
       console.log(event);
       this.$emit('get-value', event);
     },
+  },
+  computed: { ...mapState(['questionaire', 'questionIndex']) },
+
+  async created() {
+    this.GET_ANSWER(null);
+    const res = await this.getAnswer(this.questionaire[this.questionIndex]);
+    this.GET_ANSWER(res.data.data.answer.text);
   },
 };
 </script>

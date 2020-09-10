@@ -12,29 +12,28 @@
           :id="questionnaires[idx].questionnaire_id"
         />
       </div>
-
-      <div class="paginate">
-        <span class="next">
-          <img src="@/assets/nextarrow.svg" alt="arrow" @click="nextPage" />
-        </span>
-        <ul class="pages">
-          <li
-            v-for="(page, idx) in totalPageNumber"
-            :key="idx"
-            class="page"
-            :class="{ active: page === pageNumber }"
-            @click="loadPage(page)"
-          >
-            {{ page }}
-          </li>
-        </ul>
-        <span class="back">
-          <img src="@/assets/backarrow.svg" alt="arrow" @click="prevPage" />
-        </span>
-      </div>
     </div>
     <div v-else>
       <NoQuestionnaire />
+    </div>
+    <div class="paginate" v-if="totalPageNumber !== 1">
+      <span class="next">
+        <img src="@/assets/nextarrow.svg" alt="arrow" @click="nextPage" />
+      </span>
+      <ul class="pages">
+        <li
+          v-for="(page, idx) in totalPageNumber"
+          :key="idx"
+          class="page"
+          :class="{ active: page === pageNumber }"
+          @click="loadPage(page)"
+        >
+          {{ page }}
+        </li>
+      </ul>
+      <span class="back">
+        <img src="@/assets/backarrow.svg" alt="arrow" @click="prevPage" />
+      </span>
     </div>
   </div>
 </template>
@@ -57,6 +56,7 @@ export default {
 
   created() {
     this.fetchQuesetionnaires({ order: this.orderType, page: this.pageNumber });
+    console.log(this.questionnaires);
   },
 
   computed: {
@@ -105,71 +105,70 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.paginate {
+  max-width: 380px;
+  min-width: 120px;
+  width: auto;
+  height: 49px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 0 #f1f1f2;
+  background-color: #fff;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & .next {
+    margin-left: 10px;
+    margin-top: 6px;
+    cursor: pointer;
+  }
+
+  & .back {
+    margin-right: 10px;
+    margin-top: 6px;
+    cursor: pointer;
+  }
+
+  & .pages {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+    width: auto;
+
+    & .page {
+      // width: auto;
+      height: 30px;
+      width: 30px;
+      font-size: 16px;
+      line-height: 1.38;
+      color: #aeaeae;
+      cursor: pointer;
+      margin-right: 5px;
+      border-radius: 50%;
+      list-style: none;
+      padding: 5px;
+
+      &:focus,
+      &:hover,
+      &:active,
+      &.active {
+        // border-radius: 50%;
+        background-color: #4570f5;
+        color: #fff;
+      }
+    }
+  }
+}
 .question-list {
   max-height: 535px;
   // overflow-y: hidden;
   // overflow-x: hidden;
   // scrollbar-color: #4570f5 rgba(0, 0, 0, 0.1);
   // scrollbar-width: thin;
-
-  & .paginate {
-    max-width: 380px;
-    min-width: 120px;
-    width: auto;
-    height: 49px;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px 0 #f1f1f2;
-    background-color: #fff;
-    margin-top: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    & .next {
-      margin-left: 10px;
-      margin-top: 6px;
-      cursor: pointer;
-    }
-
-    & .back {
-      margin-right: 10px;
-      margin-top: 6px;
-      cursor: pointer;
-    }
-
-    & .pages {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-direction: row-reverse;
-      width: auto;
-
-      & .page {
-        // width: auto;
-        height: 30px;
-        width: 30px;
-        font-size: 16px;
-        line-height: 1.38;
-        color: #aeaeae;
-        cursor: pointer;
-        margin-right: 5px;
-        border-radius: 50%;
-        list-style: none;
-        padding: 5px;
-
-        &:focus,
-        &:hover,
-        &:active,
-        &.active {
-          // border-radius: 50%;
-          background-color: #4570f5;
-          color: #fff;
-        }
-      }
-    }
-  }
 
   // &::-webkit-scrollbar {
   //   width: 4px;

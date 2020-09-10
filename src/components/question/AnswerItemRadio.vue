@@ -1,11 +1,19 @@
 <template>
   <label class="radio">
-    <input type="radio" name="r" :value="text" @change="onChanged($event)" />
+    <input
+      type="radio"
+      name="r"
+      :value="text"
+      @change="onChanged($event)"
+      :checked="text == answer"
+    />
     <span>{{ text }}</span>
   </label>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'CustomRadio',
   props: {
@@ -16,6 +24,7 @@ export default {
       this.$emit('change-option', event.target.value);
     },
   },
+  computed: { ...mapState(['answer']) },
 };
 </script>
 

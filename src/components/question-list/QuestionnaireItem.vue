@@ -63,7 +63,11 @@ export default {
   },
   methods: {
     ...mapActions(['fetchQuestions']),
-    ...mapMutations(['SET_QUESTIONNAIRE_TITLE', 'SET_NO_QUESTION']),
+    ...mapMutations([
+      'SET_QUESTIONNAIRE_TITLE',
+      'SET_NO_QUESTION',
+      'GET_ANSWER',
+    ]),
 
     customButtonDisabled() {
       return this.status === '2';
@@ -74,6 +78,7 @@ export default {
         await this.fetchQuestions(this.id);
         this.$store.state.questionIndex = 0;
         this.$store.state.question = [];
+        this.GET_ANSWER(null);
 
         // this.SET_NO_QUESTION(true);
 

@@ -8,7 +8,7 @@ import 'nprogress/nprogress.css';
 
 const options = {
   position: 'bottom-right',
-  duration: 2000,
+  duration: 5000,
   theme: 'bubble',
   className: 'app',
 };
@@ -30,6 +30,8 @@ new Vue({
       error => {
         if (error.response.status === 401) {
           this.$store.dispatch('logout');
+          localStorage.removeItem('user');
+          location.reload();
         }
         return Promise.reject(error);
       }

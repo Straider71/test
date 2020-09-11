@@ -1,16 +1,17 @@
 <template>
   <div class="avatar">
-    <img src="@/assets/index.jpg" alt="avatar" />
+    <img :src="user.photo ? photo : defaultPhoto" alt="avatar" />
     <input
       type="file"
+      accept="image/*"
       @change="onFileSelected"
       style="display: none"
       ref="fileInput"
     />
     <div class="two">
-      <!-- <CustomButton class="custom-button" @click.native="onUpload">
-        <p>آپلود عکس</p>
-      </CustomButton> -->
+      <CustomButton class="custom-button" @click.native="removePic">
+        <p>پاک کردن عکس</p>
+      </CustomButton>
       <CustomButton
         class="custom-button"
         @click.native="$refs.fileInput.click()"
@@ -23,6 +24,7 @@
 
 <script>
 import CustomButton from '@/components/global/CustomButton';
+import { mapActions, mapState, mapMutations } from 'vuex';
 export default {
   name: 'Avatar',
   components: {
@@ -31,21 +33,31 @@ export default {
   data() {
     return {
       selectedFile: null,
+      defaultPhoto: `http://127.0.0.1:3000/server/image/users/avatar@3x.png`,
+      photo: `http://127.0.0.1:3000/${this.$store.state.user.photo}`,
     };
   },
+  computed: { ...mapState(['user']), ...mapMutations(['SET_USER_PHOTO']) },
   methods: {
+    ...mapActions(['profilePic']),
+
     onFileSelected(event) {
       this.selectedFile = event.target.files[0];
+      console.log(event.target.files[0]);
+      if (event.target.files[0].size >= 1000000) {
+        return this.$toasted.error('حجم عکس از 1 مگابایت نباید بیشتر باشد');
+      }
 
       const fd = new FormData();
-      fd.append('image', this.selectedFile, this.selectedFile.name);
-      console.log(fd);
+      fd.append('image', this.selectedFile);
+      this.profilePic(fd);
     },
-    // onUpload() {
-    //   const fd = new FormData();
-    //   fd.append('image', this.selectedFile, this.selectedFile.name);
-    //   console.log(fd);
-    // },
+    removePic() {
+      // const fd = new FormData();
+      // fd.append('image', this.selectedFile);
+      // this.profilePic(fd);
+      this.SET_USER_PHOTO;
+    },
   },
 };
 </script>
@@ -71,10 +83,10 @@ export default {
 
     & .custom-button::v-deep .button {
       height: 45px;
-      width: 375px;
+      width: 185px;
       font-size: 16px;
       border-radius: 5px;
-      margin-top: 10px;
+      margin-top: 38px;
     }
   }
 }

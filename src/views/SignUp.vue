@@ -85,8 +85,8 @@ export default {
           password: this.password,
         };
         this.signup(userData).then(() => {
-          this.$router.push({ name: 'QuestionnaireListPage' });
-          // this.$toasted.success('اطلاعات شما با موفقیت ثبت گردید');
+          this.$router.push({ name: 'sign-in' });
+          this.$toasted.success('لطفا ابتدا ایمیل خود را تایید فرمایید');
         });
         // .catch(err => {
         //   this.$toasted.error('کاربری با این ایمیل وجود دارد');

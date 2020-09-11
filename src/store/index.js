@@ -11,6 +11,7 @@ export default new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
     user: null,
+
     questionnaires: [],
     question: [],
     questionCount: 0,
@@ -68,6 +69,9 @@ export default new Vuex.Store({
     GET_ANSWER(state, answer) {
       state.answer = answer;
     },
+    SET_USER_PHOTO(state) {
+      state.user.photo = null;
+    },
   },
   actions: {
     async signup({ commit }, credentials) {
@@ -77,6 +81,7 @@ export default new Vuex.Store({
           token: res.data.token,
           username: res.data.data.user.name,
         });
+
         Vue.toasted.success('اطلاعات شما با موفقیت ثبت گردید');
       } catch (error) {
         Vue.toasted.error(error.response.data.message);
@@ -85,10 +90,12 @@ export default new Vuex.Store({
     async signin({ commit }, credentials) {
       try {
         const res = await EventService.signIn(credentials);
-
+        console.log(res);
         commit('SET_USER_DATA', {
           token: res.data.token,
           username: res.data.data.name,
+          email: credentials.email,
+          photo: res.data.data.photo,
         });
         Vue.toasted.success('شما با موفقیت وارد شدید');
       } catch (error) {
@@ -161,7 +168,24 @@ export default new Vuex.Store({
     },
     async updateMe({ commit }, payload) {
       try {
-        await EventService.updateMe();
+        await EventService.updateMe(payload);
+        Vue.toasted.success('اطلاعات شما با موفقیت ثبت گردید');
+      } catch (error) {
+        Vue.toasted.error(error.response.data.message);
+      }
+    },
+    async newPassword({ commit }, payload) {
+      try {
+        await EventService.newPassword(payload);
+        Vue.toasted.success('اطلاعات شما با موفقیت ثبت گردید');
+      } catch (error) {
+        Vue.toasted.error(error.response.data.message);
+      }
+    },
+    async profilePic({ commit }, payload) {
+      try {
+        await EventService.profilePic(payload);
+        Vue.toasted.success('اطلاعات شما با موفقیت ثبت گردید');
       } catch (error) {
         Vue.toasted.error(error.response.data.message);
       }

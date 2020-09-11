@@ -11,6 +11,7 @@ $base-color: #4570f5;
   font-family: shabnam;
   src: url('./assets/fonts/Shabnam-FD.woff');
 }
+
 * {
   margin: 0;
   padding: 0;

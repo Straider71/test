@@ -22,7 +22,7 @@
     <p class="navbar-username-text">{{ userName }}, خوش آمدید</p>
 
     <img
-      src="../../assets/avatar.svg"
+      :src="user.photo ? photo : defaultPhoto"
       alt="avatar"
       class="navbar-username-avatar"
     />
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapState } from 'vuex';
 
 export default {
   name: 'UserInfo',
@@ -38,6 +38,8 @@ export default {
   data() {
     return {
       showDropDown: false,
+      defaultPhoto: `http://127.0.0.1:3000/server/image/users/avatar.png`,
+      photo: `http://127.0.0.1:3000/${this.$store.state.user.photo}`,
     };
   },
   methods: {
@@ -45,6 +47,7 @@ export default {
   },
   computed: {
     ...mapGetters({ userName: 'userName' }),
+    ...mapState(['user']),
   },
 };
 </script>

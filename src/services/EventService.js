@@ -58,9 +58,18 @@ export default {
     return await axios.post(url, { password });
   },
 
-  async updateMe() {
+  async updateMe(body) {
     const url = `/users/me/`;
-    return await axios.put(url);
+    return await axios.put(url, body);
+  },
+
+  async newPassword(body) {
+    const url = `/users/update-password/`;
+    return await axios.post(url, body);
+  },
+  async profilePic(body) {
+    const url = `/users/change-profile-photo/`;
+    return await axios.post(url, body);
   },
   async getAnswer(id) {
     const url = `/answers/?question_id=${id}`;

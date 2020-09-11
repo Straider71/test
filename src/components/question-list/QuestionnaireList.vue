@@ -73,13 +73,15 @@ export default {
     ...mapMutations(['SET_PAGE_NUMBER']),
 
     nextPage() {
-      let page = this.$store.state.pageNumber + 1;
-      this.SET_PAGE_NUMBER(page);
-      // this.goNext;
-      this.fetchQuesetionnaires({
-        order: this.orderType,
-        page,
-      });
+      if (this.$store.state.pageNumber <= this.totalPageNumber - 1) {
+        let page = this.$store.state.pageNumber + 1;
+        this.SET_PAGE_NUMBER(page);
+        // this.goNext;
+        this.fetchQuesetionnaires({
+          order: this.orderType,
+          page,
+        });
+      }
     },
 
     loadPage(page) {
@@ -92,13 +94,15 @@ export default {
     },
 
     prevPage() {
-      let page = this.$store.state.pageNumber - 1;
-      this.SET_PAGE_NUMBER(page);
-      // this.goPrev;
-      this.fetchQuesetionnaires({
-        order: this.orderType,
-        page,
-      });
+      if (this.$store.state.pageNumber > 1) {
+        let page = this.$store.state.pageNumber - 1;
+        this.SET_PAGE_NUMBER(page);
+        // this.goPrev;
+        this.fetchQuesetionnaires({
+          order: this.orderType,
+          page,
+        });
+      }
     },
   },
 };

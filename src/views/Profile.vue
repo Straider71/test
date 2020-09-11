@@ -144,8 +144,8 @@ export default {
   // grid-template-columns: 1fr 1fr;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   grid-auto-flow: column;
-  grid-template-rows: minmax(260px, 1fr);
-  // grid-template-rows: 1fr 1fr;
+  // grid-template-rows: minmax(260px, 1fr);
+  grid-template-rows: 1fr 1fr;
   // grid-template-rows: auto;
   grid-gap: 3rem;
   grid-template-areas:
@@ -248,6 +248,8 @@ export default {
 
 .info {
   grid-area: info;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .avatar {
@@ -256,6 +258,8 @@ export default {
 
 .password {
   grid-area: password;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .summery {
@@ -290,6 +294,35 @@ export default {
 
       font-size: 50px;
     }
+  }
+}
+
+@media (max-width: 1046px) {
+  .sign-up-container {
+    width: 80%;
+    margin-right: 190px;
+  }
+}
+
+@media (max-width: 950px) {
+  .summery {
+    display: none;
+  }
+  .sign-up-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    // margin-right: 190px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    overflow-y: scroll;
+    height: 100vh;
+
+    &::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+    scrollbar-width: none;
   }
 }
 </style>

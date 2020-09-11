@@ -10,7 +10,7 @@
       </a>
       <ul class="menu">
         <li class="list">
-          <router-link to="/profile/5">
+          <router-link to="/profile">
             <p class="link">پروفایل</p>
           </router-link>
         </li>

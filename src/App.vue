@@ -5,7 +5,9 @@
 </template>
 
 <style lang="scss">
-$base-color: #4570f5;
+:root {
+  --base-color: #4570f5;
+}
 
 @font-face {
   font-family: shabnam;

@@ -17,8 +17,6 @@ axios.interceptors.response.use(
   },
   error => {
     Nprogress.done();
-    // Vue.toasted.error(error);
-
     return Promise.reject(error);
   }
 );
@@ -35,7 +33,11 @@ export default {
   },
   async getQuestion(id) {
     const url = `/questions/?question_id=${id}`;
-    return await axios.get(url);
+    // return await axios.get(url);
+    const res = await axios.get(url);
+    console.log(res);
+
+    return res;
   },
   async answer(body) {
     const url = `/answers/`;
@@ -57,12 +59,10 @@ export default {
     const url = `/users/reset-password/?token=${token}`;
     return await axios.post(url, { password });
   },
-
   async updateMe(body) {
     const url = `/users/me/`;
     return await axios.put(url, body);
   },
-
   async newPassword(body) {
     const url = `/users/update-password/`;
     return await axios.post(url, body);
@@ -73,9 +73,14 @@ export default {
   },
   async getAnswer(id) {
     const url = `/answers/?question_id=${id}`;
-    // return await axios.get(url);
     return await axios.get(url);
-    // console.log('res', res);
-    // return res;
+  },
+  async validateEmail(token) {
+    const url = `/users/validate-email/?token=${token}`;
+    return await axios.get(url);
+  },
+  async completeQuestionnaire() {
+    const url = `/questionnaire/get-answered-number/`;
+    return await axios.get(url);
   },
 };

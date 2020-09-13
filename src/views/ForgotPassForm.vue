@@ -37,7 +37,8 @@
 import CustomInput from '../components/global/CustomInput';
 import CustomCheckBox from '../components/global/CustomCheckBox';
 import CustomButton from '../components/global/CustomButton';
-import { mapActions } from 'vuex';
+
+import { UPDATE_PASSWORD } from '@/store/actions.type.js';
 export default {
   name: 'ForgotPassForm',
   components: { CustomInput, CustomCheckBox, CustomButton },
@@ -48,7 +49,6 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['updatePassword']),
     onSubmit() {
       if (!this.password) {
         this.$toasted.error('رمز عبور خود را وارد فرمایید');
@@ -59,8 +59,7 @@ export default {
           password: this.password,
           token: this.$route.params.token,
         };
-        this.updatePassword(userData).then(() => {
-          // this.$toasted.success('رمز عبور با موفقیت تغییر کرد');
+        this.$store.dispatch(UPDATE_PASSWORD, userData).then(() => {
           this.$router.push({ name: 'sign-in' });
         });
       }

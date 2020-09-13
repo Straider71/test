@@ -54,7 +54,7 @@
 <script>
 import CustomInput from '../components/global/CustomInput';
 import CustomButton from '../components/global/CustomButton';
-import { mapActions } from 'vuex';
+import { SIGNUP } from '@/store/actions.type.js';
 
 export default {
   name: 'SingUp',
@@ -69,8 +69,6 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['signup']),
-
     onSubmit() {
       if (!this.name || !this.email || !this.password || !this.checkPassword) {
         this.$toasted.error('وارد کردن تمام فیلدها اجباری است');
@@ -84,13 +82,10 @@ export default {
           email: this.email,
           password: this.password,
         };
-        this.signup(userData).then(() => {
+        this.$store.dispatch(SIGNUP, userData).then(() => {
           this.$router.push({ name: 'sign-in' });
           this.$toasted.success('لطفا ابتدا ایمیل خود را تایید فرمایید');
         });
-        // .catch(err => {
-        //   this.$toasted.error('کاربری با این ایمیل وجود دارد');
-        // });
       }
     },
 

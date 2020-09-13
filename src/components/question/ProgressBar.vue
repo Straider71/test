@@ -12,7 +12,7 @@
         <div class="before"></div>
         <div class="after">
           <div class="number">
-            سوال {{ questionaire.length }} / {{ number }}
+            سوال {{ questionnaire.length }} / {{ number }}
           </div>
           <div class="percent">{{ progress + '%' }} تکمیل شده</div>
         </div>
@@ -30,7 +30,7 @@
 
 <script>
 import CustomButton from '../global/CustomButton';
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: 'ProgressBar',
@@ -44,9 +44,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(['questionaire']),
+    ...mapGetters(['questionnaire']),
+    // ...mapState({ questionnaire: state => state.question.questionnaire }),
     textChange() {
-      if (this.number === this.questionaire.length) {
+      if (this.number === this.questionnaire.length) {
         return 'پایان';
       } else return 'سوال بعدی';
     },
@@ -54,10 +55,10 @@ export default {
 
   methods: {
     makeProgress(event) {
-      if (this.number < this.questionaire.length + 1) {
+      if (this.number < this.questionnaire.length + 1) {
         this.number += 1;
         this.progress = Math.floor(
-          (this.number / this.questionaire.length) * 100
+          (this.number / this.questionnaire.length) * 100
         );
         this.$emit('clicked', event);
       }
@@ -66,7 +67,7 @@ export default {
       if (this.progress > 0 && this.number > 1) {
         this.number -= 1;
         this.progress = Math.floor(
-          (this.number / this.questionaire.length) * 100
+          (this.number / this.questionnaire.length) * 100
         );
         if (this.number === 1) this.progress = 0;
         this.$emit('backclicked', event);

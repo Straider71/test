@@ -2,10 +2,7 @@
   <nav class="navbar">
     <UserInfo />
     <PageTitle />
-
-    <!-- <router-link to="/"> -->
     <Logo />
-    <!-- </router-link> -->
   </nav>
 </template>
 

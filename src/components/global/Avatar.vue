@@ -1,6 +1,9 @@
 <template>
   <div class="avatar">
-    <img :src="user.photo ? photo : defaultPhoto" alt="avatar" />
+    <img
+      :src="userPhoto ? `http://127.0.0.1:3000/${userPhoto}` : defaultPhoto"
+      alt="avatar"
+    />
     <input
       type="file"
       accept="image/*"
@@ -24,7 +27,9 @@
 
 <script>
 import CustomButton from '@/components/global/CustomButton';
-import { mapActions, mapState, mapMutations } from 'vuex';
+import { SET_USER_PHOTO } from '@/store/mutations.type.js';
+import { PROFILE_PIC } from '@/store/actions.type.js';
+import { mapState, mapGetters } from 'vuex';
 export default {
   name: 'Avatar',
   components: {
@@ -34,29 +39,32 @@ export default {
     return {
       selectedFile: null,
       defaultPhoto: `http://127.0.0.1:3000/server/image/users/avatar@3x.png`,
-      photo: `http://127.0.0.1:3000/${this.$store.state.user.photo}`,
     };
   },
-  computed: { ...mapState(['user']), ...mapMutations(['SET_USER_PHOTO']) },
-  methods: {
-    ...mapActions(['profilePic']),
+  computed: {
+    ...mapState({
+      user: state => state.user.user,
+      // avatar: state => state.user.user.photo,
+    }),
+    ...mapGetters(['userPhoto']),
+  },
 
+  methods: {
     onFileSelected(event) {
       this.selectedFile = event.target.files[0];
-      console.log(event.target.files[0]);
       if (event.target.files[0].size >= 1000000) {
         return this.$toasted.error('حجم عکس از 1 مگابایت نباید بیشتر باشد');
       }
 
       const fd = new FormData();
       fd.append('image', this.selectedFile);
-      this.profilePic(fd);
+      this.$store.dispatch(PROFILE_PIC, fd);
     },
     removePic() {
       // const fd = new FormData();
       // fd.append('image', this.selectedFile);
       // this.profilePic(fd);
-      this.SET_USER_PHOTO;
+      this.$store.commit(SET_USER_PHOTO, null);
     },
   },
 };

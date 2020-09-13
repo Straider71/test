@@ -5,25 +5,27 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { SET_QUESTIONNAIRE_TITLE } from '@/store/mutations.type.js';
+import { mapState } from 'vuex';
 
 export default {
   name: 'PageTitle',
-  computed: { ...mapState(['questionnaireTitle']) },
-  methods: { ...mapMutations(['SET_QUESTIONNAIRE_TITLE']) },
+  computed: {
+    ...mapState({
+      questionnaireTitle: state => state.questionnaire.questionnaireTitle,
+    }),
+  },
+
   watch: {
     $route(to) {
       if (to.fullPath == '/') {
-        this.SET_QUESTIONNAIRE_TITLE('لیست پرسشنامه‌ها');
+        this.$store.commit(SET_QUESTIONNAIRE_TITLE, 'لیست پرسشنامه‌ها');
       }
-      if (to.fullPath == '/profile/5') {
-        this.SET_QUESTIONNAIRE_TITLE('پروفایل');
+      if (to.fullPath == '/profile') {
+        this.$store.commit(SET_QUESTIONNAIRE_TITLE, 'پروفایل');
       }
     },
   },
-  // created: {
-
-  // }
 };
 </script>
 

@@ -18,7 +18,14 @@
 import QuestionTitle from '../question/QuestionTitle';
 import QuestionSubHeader from './QuestionSubHeader';
 import AnswerItemRadio from './AnswerItemRadio';
-import { mapState, mapActions, mapMutations } from 'vuex';
+import {
+  FETCH_QUESTION,
+  GET_ANSWER,
+  SEND_ANSWER,
+} from '@/store/actions.type.js';
+import { GET_ANSWERs } from '@/store/mutations.type.js';
+
+import { mapState } from 'vuex';
 
 export default {
   name: 'MultipleChoiceQuestion',
@@ -27,25 +34,27 @@ export default {
     options: Array,
     question: String,
   },
-  // data() {
-  //   return {
-  //     choice: this.answer,
-  //   };
-  // },
-  // computed: { ...mapState(['answer']) },
+
   methods: {
-    ...mapActions(['fetchQuestion', 'sendAnswer', 'getAnswer']),
-    ...mapMutations(['GET_ANSWER']),
     onChange(event) {
       this.$emit('get-value', event);
     },
   },
-  computed: { ...mapState(['questionaire', 'questionIndex']) },
+  computed: {
+    ...mapState({
+      questionnaire: state => state.question.questionnaire,
+      questionIndex: state => state.question.questionIndex,
+    }),
+  },
 
   async created() {
-    this.GET_ANSWER(null);
-    const res = await this.getAnswer(this.questionaire[this.questionIndex]);
-    this.GET_ANSWER(res.data.data.answer.text);
+    this.$store.commit(GET_ANSWERs, null);
+    const res = await this.$store.dispatch(
+      GET_ANSWER,
+      this.questionnaire[this.questionIndex]
+    );
+    console.log(res);
+    this.$store.commit(GET_ANSWERs, res.data.data.answer.text);
   },
 };
 </script>

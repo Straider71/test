@@ -1,7 +1,7 @@
 <template>
   <!-- <transition name="fade"> -->
   <div class="question">
-    <template v-if="this.$store.state.questionIndex < this.questionaire.length">
+    <template v-if="questionIndex < questionnaire.length">
       <multiple-choice-question
         v-if="question.type === '0'"
         :question="question.title"
@@ -28,9 +28,9 @@
 
       <ProgressBar @clicked="nexyQuestion()" @backclicked="backQuestion()" />
     </template>
-    <template v-else-if="questionaire.length == 0">
-      <NoQuestionnaire></NoQuestionnaire>
-    </template>
+    <!-- <template v-else-if="questionnaire.length == 0">
+      <NoQuestionnaire />
+    </template> -->
     <template v-else>
       <FinishPage />
     </template>
@@ -44,8 +44,18 @@ import ProgressBar from '../components/question/ProgressBar';
 import TwoOptionQuestion from '../components/question/TwoOptionQuestion';
 import MultipleChoiceQuestion from '../components/question/MultipleChoiceQuestion';
 import FinishPage from '../components/question-list/FinishPage';
-import NoQuestionnaire from '@/components/question-list/NoQuestionnaire.vue';
-import { mapState, mapActions, mapMutations } from 'vuex';
+// import NoQuestionnaire from '@/components/question-list/NoQuestionnaire.vue';
+import {
+  FETCH_QUESTION,
+  SEND_ANSWER,
+  GET_ANSWER,
+} from '@/store/actions.type.js';
+import {
+  GET_ANSWERs,
+  SET_QUESTION_INDEX,
+  // SET_COMPLETE_QUESTIONNARES,
+} from '@/store/mutations.type.js';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'Question',
@@ -55,7 +65,7 @@ export default {
     MultipleChoiceQuestion,
     TwoOptionQuestion,
     FinishPage,
-    NoQuestionnaire,
+    // NoQuestionnaire,
   },
   data() {
     return {
@@ -63,43 +73,71 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['fetchQuestion', 'sendAnswer', 'getAnswer']),
-    ...mapMutations(['GET_ANSWER']),
     nexyQuestion() {
-      if (this.$store.state.questionIndex === this.questionaire.length - 1) {
-        this.sendAnswer({
-          text: this.selectedValue,
-          questionId: this.questionaire[this.questionIndex],
-          status: '2',
-        });
-      } else {
-        this.sendAnswer({
-          text: this.selectedValue,
-          questionId: this.questionaire[this.questionIndex],
-          status: '1',
-        });
+      if (this.questionStatus == 2 && this.selectedValue) {
+        this.$toasted.error('جواب را نمیتوانید تغییر بدهید');
       }
-      this.$store.state.questionIndex += 1;
-      this.fetchQuestion(this.questionaire[this.questionIndex]);
+      if (this.selectedValue) {
+        if (this.questionIndex === this.questionnaire.length - 1) {
+          this.$store.dispatch(SEND_ANSWER, {
+            text: this.selectedValue,
+            questionId: this.questionnaire[this.questionIndex],
+            status: '2',
+          });
+          // this.$store.commit(SET_COMPLETE_QUESTIONNARES);
+          // this.$store.commit(GET_ANSWERs, null);
+        } else {
+          this.$store.dispatch(SEND_ANSWER, {
+            text: this.selectedValue,
+            questionId: this.questionnaire[this.questionIndex],
+            status: '1',
+          });
+        }
+      }
+
+      // this.questionIndex += 1;
+
+      let index = this.plusIndex;
+      this.$store.commit(SET_QUESTION_INDEX, index);
+      this.$store.dispatch(
+        FETCH_QUESTION,
+        this.questionnaire[this.questionIndex]
+      );
     },
     backQuestion() {
-      this.$store.state.questionIndex -= 1;
-      this.fetchQuestion(this.questionaire[this.questionIndex]);
+      // this.questionIndex -= 1;
+      let index = this.minusIndex;
+      this.$store.commit(SET_QUESTION_INDEX, index);
+      this.$store.dispatch(
+        FETCH_QUESTION,
+        this.questionnaire[this.questionIndex]
+      );
     },
     getSelectedValue($event) {
       this.selectedValue = event.target.value;
     },
   },
-  computed: { ...mapState(['question', 'questionaire', 'questionIndex']) },
-
-  created() {
-    this.fetchQuestion(this.questionaire[this.questionIndex]);
+  computed: {
+    ...mapState({
+      question: state => state.question.question,
+      Questionnaire: state => state.question.questionnaire,
+      questionStatus: state => state.question.questionStatus,
+      // QuestionIndex: state => state.question.questionIndex,
+    }),
+    ...mapGetters([
+      'plusIndex',
+      'minusIndex',
+      'questionIndex',
+      'questionnaire',
+    ]),
   },
 
-  // async mounted() {
-  //   const res = await this.getAnswer(this.questionaire[this.questionIndex]);
-  //   this.GET_ANSWER(res.data.data.answer.text);
-  // },
+  created() {
+    this.$store.dispatch(
+      FETCH_QUESTION,
+      this.questionnaire[this.questionIndex]
+    );
+  },
 };
 </script>
 

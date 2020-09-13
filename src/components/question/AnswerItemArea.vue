@@ -23,7 +23,7 @@ export default {
       this.$emit('change-option', event.target.value);
     },
   },
-  computed: { ...mapState(['answer']) },
+  computed: { ...mapState({ answer: state => state.answer.answer }) },
 };
 </script>
 

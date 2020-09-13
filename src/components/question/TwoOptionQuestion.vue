@@ -13,6 +13,12 @@
 import AnswerItemRadio from './AnswerItemRadio';
 import QuestionTitle from './QuestionTitle';
 import QuestionSubHeader from './QuestionSubHeader';
+import {
+  FETCH_QUESTION,
+  GET_ANSWER,
+  SEND_ANSWER,
+} from '@/store/actions.type.js';
+import { GET_ANSWERs } from '@/store/mutations.type.js';
 import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default {
@@ -24,18 +30,25 @@ export default {
     option_2: String,
   },
   methods: {
-    ...mapActions(['fetchQuestion', 'sendAnswer', 'getAnswer']),
-    ...mapMutations(['GET_ANSWER']),
     onChange(event) {
       this.$emit('get-value', event);
     },
   },
-  computed: { ...mapState(['questionaire', 'questionIndex']) },
+  computed: {
+    ...mapState({
+      questionnaire: state => state.question.questionnaire,
+      questionIndex: state => state.question.questionIndex,
+    }),
+  },
 
   async created() {
-    this.GET_ANSWER(null);
-    const res = await this.getAnswer(this.questionaire[this.questionIndex]);
-    this.GET_ANSWER(res.data.data.answer.text);
+    this.$store.commit(GET_ANSWERs, null);
+    const res = await this.$store.dispatch(
+      GET_ANSWER,
+      this.questionnaire[this.questionIndex]
+    );
+    console.log(res);
+    this.$store.commit(GET_ANSWERs, res.data.data.answer.text);
   },
 };
 </script>

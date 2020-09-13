@@ -8,7 +8,7 @@ import 'nprogress/nprogress.css';
 
 const options = {
   position: 'bottom-right',
-  duration: 5000,
+  duration: 3000,
   theme: 'bubble',
   className: 'app',
 };

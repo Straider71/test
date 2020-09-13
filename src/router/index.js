@@ -38,8 +38,12 @@ const routes = [
       },
       {
         path: 'profile',
+        name: 'Profile',
         component: () =>
           import(/* webpackChunkName: "Profile" */ '@/views/Profile.vue'),
+        meta: {
+          requireAuth: true,
+        },
       },
     ],
   },
@@ -106,6 +110,14 @@ const routes = [
         component: () => import('@/views/createQuestion.vue'),
       },
     ],
+  },
+  {
+    path: '/validate-email/:token/',
+    name: 'validate-email',
+    component: () =>
+      import(
+        /* webpackChunkName: "ForgotPassForm" */ '@/views/EmailValidation.vue'
+      ),
   },
 
   {

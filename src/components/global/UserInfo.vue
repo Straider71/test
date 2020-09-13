@@ -19,10 +19,10 @@
         </li>
       </ul>
     </div>
-    <p class="navbar-username-text">{{ userName }}, خوش آمدید</p>
+    <p class="navbar-username-text">{{ user.username }}, خوش آمدید</p>
 
     <img
-      :src="user.photo ? photo : defaultPhoto"
+      :src="userPhoto ? `http://127.0.0.1:3000/${userPhoto}` : defaultPhoto"
       alt="avatar"
       class="navbar-username-avatar"
     />
@@ -30,7 +30,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapState } from 'vuex';
+import { LOGOUT } from '@/store/actions.type.js';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'UserInfo',
@@ -39,15 +40,18 @@ export default {
     return {
       showDropDown: false,
       defaultPhoto: `http://127.0.0.1:3000/server/image/users/avatar.png`,
-      photo: `http://127.0.0.1:3000/${this.$store.state.user.photo}`,
     };
   },
   methods: {
-    ...mapActions({ logout: 'logout' }),
+    logout() {
+      this.$store.dispatch(LOGOUT);
+    },
   },
   computed: {
-    ...mapGetters({ userName: 'userName' }),
-    ...mapState(['user']),
+    ...mapState({
+      user: state => state.user.user,
+    }),
+    ...mapGetters(['userPhoto']),
   },
 };
 </script>

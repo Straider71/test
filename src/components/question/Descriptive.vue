@@ -10,7 +10,15 @@
 <script>
 import AnswerItemArea from './AnswerItemArea';
 import QuestionTitle from './QuestionTitle';
-import { mapActions, mapMutations, mapState } from 'vuex';
+
+import {
+  FETCH_QUESTION,
+  GET_ANSWER,
+  SEND_ANSWER,
+} from '@/store/actions.type.js';
+import { GET_ANSWERs } from '@/store/mutations.type.js';
+
+import { mapState } from 'vuex';
 
 export default {
   name: 'Descriptive',
@@ -22,19 +30,25 @@ export default {
     question: String,
   },
   methods: {
-    ...mapActions(['fetchQuestion', 'sendAnswer', 'getAnswer']),
-    ...mapMutations(['GET_ANSWER']),
     onChange(event) {
-      console.log(event);
       this.$emit('get-value', event);
     },
   },
-  computed: { ...mapState(['questionaire', 'questionIndex']) },
+  computed: {
+    ...mapState({
+      questionnaire: state => state.question.questionnaire,
+      questionIndex: state => state.question.questionIndex,
+    }),
+  },
 
   async created() {
-    this.GET_ANSWER(null);
-    const res = await this.getAnswer(this.questionaire[this.questionIndex]);
-    this.GET_ANSWER(res.data.data.answer.text);
+    this.$store.commit(GET_ANSWERs, null);
+    const res = await this.$store.dispatch(
+      GET_ANSWER,
+      this.questionnaire[this.questionIndex]
+    );
+
+    this.$store.commit(GET_ANSWERs, res.data.data.answer.text);
   },
 };
 </script>

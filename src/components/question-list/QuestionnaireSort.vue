@@ -122,7 +122,10 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex';
+import { FETCH_QUESTIONNAIRES } from '@/store/actions.type.js';
+import { SET_ORDER } from '@/store/mutations.type.js';
+
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   name: 'QuestionnaireSort',
@@ -134,20 +137,32 @@ export default {
   },
 
   methods: {
-    ...mapActions(['fetchQuesetionnaires']),
-    ...mapMutations(['SET_ORDER']),
-
     getOrder(event) {
       this.orderSelected = event.target.value;
-      this.SET_ORDER(this.orderSelected);
-      this.fetchQuesetionnaires({
-        order: this.orderType,
+      console.log(this.$store.state.questionnaire.pageNumber);
+      console.log(this.page);
+      console.log('page');
+      this.$store.commit(SET_ORDER, this.orderSelected);
+      this.$store.dispatch(FETCH_QUESTIONNAIRES, {
+        order: this.orderSelected,
         page: this.pageNumber,
       });
     },
   },
 
-  computed: { ...mapState(['questionnaires', 'orderType', 'pageNumber']) },
+  computed: {
+    ...mapState({
+      questionnaires: state => state.questionnaire.questionnaires,
+      orderType: state => state.questionnaire.orderType,
+      pageNumber: state => state.questionnaire.pageNumber,
+    }),
+    // page: {
+    //   get() {
+    //     return this.$store.state.questionnaires.pageNumber;
+    //   },
+    // },
+    // ...mapGetters(['selectedSort'])
+  },
 };
 </script>
 

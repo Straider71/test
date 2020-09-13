@@ -1,0 +1,15 @@
+export const SIGNUP = 'signup';
+export const SIGNIN = 'signin';
+export const LOGOUT = 'logout';
+export const UPDATE_ME = 'updateMe';
+export const PROFILE_PIC = 'profilePic';
+export const NEW_PASSWORD = 'newPassword';
+export const UPDATE_PASSWORD = 'updatePassword';
+export const SEND_EMAIL = 'sendEmail';
+export const FETCH_QUESTIONNAIRES = 'fetchQuesetionnaires';
+export const FETCH_QUESTIONS = 'fetchQuestions';
+export const FETCH_QUESTION = 'fetchQuestion';
+export const SEND_ANSWER = 'sendAnswer';
+export const GET_ANSWER = 'getAnswer';
+export const VALIDATE_EMAIL = 'VALIDATE_EMAIL';
+export const COMPLETE_QUESTIONNAIRE = 'COMPLETE_QUESTIONNAIRE';

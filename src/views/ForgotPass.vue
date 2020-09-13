@@ -41,7 +41,8 @@
 import CustomInput from '../components/global/CustomInput';
 import CustomCheckBox from '../components/global/CustomCheckBox';
 import CustomButton from '../components/global/CustomButton';
-import { mapActions } from 'vuex';
+
+import { SEND_EMAIL } from '@/store/actions.type.js';
 export default {
   name: 'ForgotPass',
   components: { CustomInput, CustomCheckBox, CustomButton },
@@ -51,15 +52,12 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['sendEmail']),
     onSubmit() {
       const userData = {
         email: this.email,
       };
-      console.log(userData);
-      this.sendEmail(userData).then(
+      this.$store.dispatch(SEND_EMAIL, userData).then(
         () => {
-          // this.$toasted.success('ایمیل با موفقیت ارسال شد');
           this.$router.push({ name: 'sign-in' });
         },
         error => console.log(error)

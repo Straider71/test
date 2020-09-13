@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   props: {
     href: {
@@ -21,12 +22,22 @@ export default {
       type: Boolean,
       default: false,
     },
+    // count: {
+    //   type: String,
+    // },
   },
   methods: {
     classFunc() {
+      // if (this.disable || this.count == 0) return 'disable';
       if (this.disable) return 'disable';
+      // if (this.count == 0) return 'disable';
       else return 'button';
     },
+  },
+  computed: {
+    ...mapState({
+      questionnaires: state => state.questionnaire.questionnaires,
+    }),
   },
 };
 </script>

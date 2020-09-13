@@ -54,6 +54,7 @@ import CustomInput from '../components/global/CustomInput';
 import CustomCheckBox from '../components/global/CustomCheckBox';
 import CustomButton from '../components/global/CustomButton';
 import { mapActions } from 'vuex';
+import { SIGNIN } from '@/store/actions.type.js';
 
 export default {
   name: 'SignIn',
@@ -65,7 +66,6 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['signin']),
     onSubmit() {
       if (!this.email || !this.password) {
         this.$toasted.error('ایمیل و رمز عبور خود را وارد فرمایید');
@@ -74,14 +74,9 @@ export default {
           email: this.email,
           password: this.password,
         };
-        this.signin(userData).then(() => {
+        this.$store.dispatch(SIGNIN, userData).then(() => {
           this.$router.push({ name: 'QuestionnaireListPage' });
-          // this.$toasted.success('شما با موفقیت وارد شدید');
         });
-
-        // .catch(err => {
-        //   this.$toasted.error('ایمیل یا رمز عبور نادرست می باشد');
-        // });
       }
     },
   },
@@ -97,7 +92,6 @@ export default {
   flex-direction: column;
 
   & .sub-header {
-    /*display: flex;*/
     text-align: right;
     color: #7f86aa;
     font-size: 14px;
@@ -108,9 +102,6 @@ export default {
   }
 
   .input-list {
-    // box-shadow: 10px 8px 6px 0 #edeef5;
-    /*margin-bottom: 33px;*/
-
     & .inputs {
       box-shadow: 10px 8px 6px 0 #edeef5;
     }
@@ -159,8 +150,6 @@ export default {
       text-decoration: none;
     }
 
-    /*& .custom-button .button{*/
-    /*& .custom-button >>> button {*/
     & .custom-button::v-deep .button {
       height: 45px;
       width: 183px;
@@ -177,7 +166,6 @@ export default {
 
     & .custom-button::v-deep .button:hover {
       background-color: #4570f5;
-      /* opacity is my opinion*/
       opacity: 0.9;
       color: white;
     }

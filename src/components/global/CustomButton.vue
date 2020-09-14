@@ -47,7 +47,7 @@ export default {
   height: 50px;
   border-radius: 10px;
   box-shadow: 0 2px 5px 0 rgba(69, 112, 245, 0.6);
-  background-color: #4570f5;
+  background-color: var(--primary-color);
   border: none;
   font-size: 16px;
   letter-spacing: -0.16px;

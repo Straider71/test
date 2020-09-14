@@ -27,9 +27,9 @@
 
 <script>
 import CustomButton from '@/components/global/CustomButton';
-import { SET_USER_PHOTO } from '@/store/mutations.type.js';
+import { REMOVE_USER_PHOTO } from '@/store/mutations.type.js';
 import { PROFILE_PIC } from '@/store/actions.type.js';
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapMutations } from 'vuex';
 export default {
   name: 'Avatar',
   components: {
@@ -50,6 +50,7 @@ export default {
   },
 
   methods: {
+    ...mapMutations(['REMOVE_USER_PHOTO']),
     onFileSelected(event) {
       this.selectedFile = event.target.files[0];
       if (event.target.files[0].size >= 1000000) {
@@ -61,10 +62,9 @@ export default {
       this.$store.dispatch(PROFILE_PIC, fd);
     },
     removePic() {
-      // const fd = new FormData();
-      // fd.append('image', this.selectedFile);
-      // this.profilePic(fd);
-      this.$store.commit(SET_USER_PHOTO, null);
+      // this.$store.commit(REMOVE_USER_PHOTO);
+      console.log('object');
+      this.REMOVE_USER_PHOTO();
     },
   },
 };

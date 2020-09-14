@@ -62,13 +62,28 @@
         </div>
       </form>
     </div>
-    <div class="summery">
+    <div class="chart">
+      <Chart
+        width="1000"
+        height="700"
+        id="chart1"
+        title="# of Votes"
+        type="doughnut"
+        :labels="['پرسشنامه‌های پاسخ داده شده', 'پرسشنامه‌های پاسخ داده نشده']"
+        :data="[completeQuestionnaires, questionCount - completeQuestionnaires]"
+        :background-color="[
+          'rgba(92, 187, 255, 0.78)',
+          'rgba(0, 119, 204, 0.78)',
+        ]"
+      ></Chart>
+    </div>
+    <!-- <div class="summery">
       <div class="number">
         <p>پرسشنامه‌های پاسخ داده شده</p>
 
         <div>{{ completeQuestionnaires }} / {{ questionCount }}</div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -76,6 +91,7 @@
 import CustomInput from '../components/global/CustomInput';
 import CustomButton from '../components/global/CustomButton';
 import Avatar from '../components/global/Avatar';
+import Chart from '../components/Chart';
 import {
   UPDATE_ME,
   NEW_PASSWORD,
@@ -86,7 +102,7 @@ import { mapActions, mapState, mapMutations, mapGetters } from 'vuex';
 
 export default {
   name: 'Profile',
-  components: { CustomInput, CustomButton, Avatar },
+  components: { CustomInput, CustomButton, Avatar, Chart },
   data() {
     return {
       name: `${this.$store.state.user.user.username}`,
@@ -320,7 +336,7 @@ export default {
 }
 
 @media (max-width: 950px) {
-  .summery {
+  .chart {
     display: none;
   }
   .sign-up-container {

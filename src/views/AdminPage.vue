@@ -70,7 +70,7 @@ export default {
       margin-left: auto;
       margin-right: auto;
       margin-top: 10px;
-      // padding: 10px;
+      box-shadow: 0 0 6px #eeebeb;
       display: flex;
       flex-direction: row-reverse;
       justify-content: center;
@@ -90,8 +90,22 @@ export default {
         justify-content: center;
         color: #4570f5;
         margin: 0 50px;
+        width: auto;
+
+        p:active,
+        p:focus,
+        p:hover {
+          color: rgb(169, 205, 240);
+        }
       }
     }
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    flex-wrap: wrap;
+    height: 100px !important;
   }
 }
 </style>

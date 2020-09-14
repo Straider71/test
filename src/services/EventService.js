@@ -83,4 +83,16 @@ export default {
     const url = `/questionnaire/get-answered-number/`;
     return await axios.get(url);
   },
+  async getAllAdminQuestionnaire() {
+    const url = `/questionnaire/get-all-questionnaire/`;
+    return await axios.get(url);
+  },
+  async createQuestionnare(body) {
+    const url = `/questionnaire/`;
+    return await axios.post(url, body);
+  },
+  async createQuestion(body) {
+    const url = `/questions/`;
+    return await axios.post(url, body);
+  },
 };

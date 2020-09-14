@@ -1,14 +1,61 @@
 <template>
   <div class="overview">
-    <div class="right"></div>
-    <div class="left"></div>
-    <div class="bottom"></div>
+    <div class="right">
+      <Chart
+        width="1000"
+        height="300"
+        id="chart2"
+        title="# of Votes"
+        type="bar"
+        :labels="['پرسشنامه‌های پاسخ داده شده', 'پرسشنامه‌های پاسخ داده نشده']"
+        :data="[5, 5]"
+        :background-color="[
+          'rgba(92, 187, 255, 0.78)',
+          'rgba(0, 119, 204, 0.78)',
+        ]"
+      ></Chart>
+    </div>
+    <div class="left">
+      <Chart
+        width="1000"
+        height="300"
+        id="chart1"
+        title="# of Votes"
+        type="doughnut"
+        :labels="['پرسشنامه‌های پاسخ داده شده', 'پرسشنامه‌های پاسخ داده نشده']"
+        :data="[5, 5]"
+        :background-color="[
+          'rgba(92, 187, 255, 0.78)',
+          'rgba(0, 119, 204, 0.78)',
+        ]"
+      ></Chart>
+    </div>
+    <div class="bottom">
+      <Chart
+        width="1000"
+        height="300"
+        id="chart3"
+        title="# of Votes"
+        type="polarArea"
+        :labels="['پرسشنامه‌های پاسخ داده شده', 'پرسشنامه‌های پاسخ داده نشده']"
+        :data="[5, 5]"
+        :background-color="[
+          'rgba(92, 187, 255, 0.78)',
+          'rgba(0, 119, 204, 0.78)',
+        ]"
+      ></Chart>
+    </div>
   </div>
 </template>
 
 <script>
+import Chart from '@/components/Chart';
+
 export default {
   name: 'Overview',
+  components: {
+    Chart,
+  },
 };
 </script>
 

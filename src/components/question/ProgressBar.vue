@@ -45,7 +45,6 @@ export default {
   },
   computed: {
     ...mapGetters(['questionnaire']),
-    // ...mapState({ questionnaire: state => state.question.questionnaire }),
     textChange() {
       if (this.number === this.questionnaire.length) {
         return 'پایان';
@@ -87,7 +86,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-top: auto;
-  // margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -97,6 +95,7 @@ export default {
     width: 151px;
     height: 50px;
     border-radius: 10px;
+    background-color: var(--primary-color);
     box-shadow: 0 2px 5px 0 rgba(69, 112, 245, 0.6);
 
     & p {
@@ -113,7 +112,7 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 10px;
-    background-color: #e6e9ef;
+    background-color: var(--second-color);
     box-shadow: none;
   }
 
@@ -129,13 +128,13 @@ export default {
       // width: 290px;
       height: 5px;
       border-radius: 10px;
-      background-color: #4570f5;
+      background-color: var(--primary-color);
     }
 
     & .blue-circle {
       width: 12px;
       height: 12px;
-      background-color: #4570f5;
+      background-color: var(--primary-color);
       border-radius: 50%;
       top: -3px;
       position: relative;

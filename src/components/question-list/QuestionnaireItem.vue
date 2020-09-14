@@ -1,28 +1,5 @@
 <template>
   <div class="container">
-    <!-- <router-link :to="`/questions/${this.id}`"> -->
-    <!-- <CustomButton
-      v-if="this.status != 2"
-      :disable="customButtonDisabled()"
-      @click.native="goRoute($event)"
-      :id="id"
-      :count="count"
-    >
-      <img
-        v-if="customButtonDisabled()"
-        src="../../assets/arrow-gray.svg"
-        alt="arrow"
-        class="arrow"
-      />
-      <img
-        v-else
-        src="../../assets/arrow-white.svg"
-        alt="arrow"
-        class="arrow"
-      />
-      <p>شروع</p>
-    </CustomButton> -->
-    <!-- </router-link> -->
     <CustomButton
       v-if="this.status != 2"
       @click.native="goRoute($event)"
@@ -89,7 +66,6 @@ export default {
     },
 
     async goRoute(event) {
-      // if (this.status != 2) {
       if (this.count == 0) this.$toasted.error('پرسشنامه خالی است');
       else if (this.count != 0) {
         this.$store.commit(SET_QUESTIONNAIRE_TITLE, this.title);
@@ -109,7 +85,6 @@ export default {
       }
     },
   },
-  // },
 };
 </script>
 

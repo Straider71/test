@@ -3,6 +3,11 @@ import EventService from '@/services/EventService.js';
 import {
   FETCH_QUESTIONNAIRES,
   COMPLETE_QUESTIONNAIRE,
+  GET_ALL_ADMIN_QUESTIONNAIRE,
+  CREATE_QUESTIONNARE,
+  CREATE_QUESTION_0,
+  CREATE_QUESTION_1,
+  CREATE_QUESTION_2,
 } from '../actions.type.js';
 import {
   SET_QUESTIONNAIRES,
@@ -13,6 +18,8 @@ import {
   SET_ORDER,
   SET_PAGE_NUMBER,
   SET_COMPLETE,
+  SET_ALL_ADMIN_QUESTIONNAIRE,
+  SET_CREATE_ID,
 } from '../mutations.type.js';
 
 const state = {
@@ -24,6 +31,8 @@ const state = {
   questionnaireTitle: 'لیست پرسشنامه‌ها',
   pageNumber: 1,
   completeQuestionnaires: [],
+  adminQuestionnaires: [],
+  adminQuestionnaireId: null,
 };
 
 const mutations = {
@@ -50,6 +59,12 @@ const mutations = {
   },
   [SET_COMPLETE](state, body) {
     state.completeQuestionnaires = body;
+  },
+  [SET_ALL_ADMIN_QUESTIONNAIRE](state, body) {
+    state.adminQuestionnaires = body;
+  },
+  [SET_CREATE_ID](state, id) {
+    state.adminQuestionnaireId = id;
   },
 };
 
@@ -79,15 +94,83 @@ const actions = {
       Vue.toasted.error(error.response.data.message);
     }
   },
+  async [GET_ALL_ADMIN_QUESTIONNAIRE]({ commit }) {
+    try {
+      const res = await EventService.getAllAdminQuestionnaire();
+      console.log(res);
+      commit(SET_ALL_ADMIN_QUESTIONNAIRE, res.data.data.questionnaires);
+    } catch (error) {
+      Vue.toasted.error(error.response.data.message);
+    }
+  },
+  async [CREATE_QUESTIONNARE]({ commit }, title) {
+    try {
+      const data = {
+        title,
+        allow_all_users: true,
+      };
+      await EventService.createQuestionnare(data);
+
+      Vue.toasted.success('پرسشنامه شما با موفقیت ایجاد گردید');
+    } catch (error) {
+      Vue.toasted.error(error.response.data.message);
+    }
+  },
+  async [CREATE_QUESTION_0]({ commit }, payload) {
+    try {
+      const questionData = {
+        title: payload.title,
+        type: '2',
+        questionnaireId: payload.id,
+      };
+
+      await EventService.createQuestion(questionData);
+
+      Vue.toasted.success('سوال شما با موفقیت ایجاد گردید');
+    } catch (error) {
+      Vue.toasted.error(error.message);
+    }
+  },
+  async [CREATE_QUESTION_1]({ commit }, payload) {
+    try {
+      const questionData = {
+        title: payload.title,
+        correctOption: payload.correctOption,
+        incorrectOptions: [payload.incorrectOptions],
+        type: '1',
+        questionnaireId: payload.id,
+      };
+
+      await EventService.createQuestion(questionData);
+
+      Vue.toasted.success('سوال شما با موفقیت ایجاد گردید');
+    } catch (error) {
+      console.log(error);
+      // Vue.toasted.error(error.response.data.message);
+    }
+  },
+  async [CREATE_QUESTION_2]({ commit }, payload) {
+    try {
+      const questionData = {
+        title: payload.title,
+        type: '0',
+        correctOption: payload.correctOption,
+        incorrectOptions: payload.incorrectOptions,
+        questionnaireId: payload.id,
+      };
+
+      await EventService.createQuestion(questionData);
+
+      Vue.toasted.success('سوال شما با موفقیت ایجاد گردید');
+    } catch (error) {
+      console.log(error);
+      // Vue.toasted.error(error.response.data.message);
+    }
+  },
 };
 
 const getters = {
-  // questionnaires: [],
-  // questionCount: 0,
-  // noQuestion: true,
-  // totalPageNumber: null,
   orderTypeState: state => state.orderType,
-  // questionnaireTitle: 'لیست پرسشنامه‌ها',
   pageNumberState: state => state.pageNumber,
 };
 

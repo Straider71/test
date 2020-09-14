@@ -17,6 +17,7 @@ import {
   SET_USER_DATA,
   CLEAR_USER_DATA,
   SET_USER_PHOTO,
+  REMOVE_USER_PHOTO,
 } from '../mutations.type.js';
 
 const state = {
@@ -38,6 +39,14 @@ const mutations = {
   },
   [SET_USER_PHOTO](state, url) {
     state.user.photo = url;
+  },
+  [REMOVE_USER_PHOTO](state) {
+    const res = 'server/image/users/avatar@3x.png';
+    state.user.photo = res;
+    let user = JSON.parse(localStorage.getItem('user'));
+    user.photo = res;
+    localStorage.setItem('user', JSON.stringify(user));
+    Vue.toasted.success('عکس شما پاک شد');
   },
 };
 

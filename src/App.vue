@@ -6,7 +6,10 @@
 
 <style lang="scss">
 :root {
-  --base-color: #4570f5;
+  --primary-color: #4570f5;
+  --second-color: #e6e9ef;
+  // --primary-text:
+  // --second-text:
 }
 
 @font-face {

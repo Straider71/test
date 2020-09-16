@@ -210,22 +210,16 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  // max-width: 620px;
-  // min-width: 420px;
   width: 80%;
   height: 75vh;
   margin: 40px auto;
   color: #888;
 }
 
-/* Style the tabs */
 .tabs {
   overflow: hidden;
-  // margin-right: 20px;
   margin-bottom: -2px;
-
   padding: 30px;
-  // width: 50px;
   height: 30px;
 }
 

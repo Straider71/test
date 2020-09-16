@@ -19,7 +19,7 @@ export default {
 
 <style scoped lang="scss">
 .home {
-  background-color: #f3f4f8;
+  background-color: var(--bg-second);
   height: 100vh;
   width: 100vw;
   position: absolute;
@@ -31,7 +31,7 @@ export default {
     width: 1209px;
     height: 1209px;
     opacity: 0.3;
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     border-radius: 50%;
     border: 0px solid transparent;
     border-top: none;

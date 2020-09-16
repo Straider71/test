@@ -95,4 +95,13 @@ export default {
     const url = `/questions/`;
     return await axios.post(url, body);
   },
+  async deleteQuestionnaire(id) {
+    const url = `/questionnaire/?questionnaireId=${id}`;
+    return await axios.delete(url);
+  },
+
+  async getStats() {
+    const url = `/questionnaire/stats/`;
+    return await axios.get(url);
+  },
 };

@@ -81,7 +81,7 @@ export default {
   width: 80%;
   height: 70px;
   box-shadow: 0 5px 10px 0 #f1f1f2;
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
   border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
@@ -102,7 +102,7 @@ export default {
       font-size: 16px;
       line-height: 1.38;
       letter-spacing: -0.16px;
-      color: #ffffff;
+      color: var(--bg-primary);
       padding: 0 0 6px 10px;
       margin-bottom: -3px;
     }
@@ -142,7 +142,7 @@ export default {
       & {
         & .after {
           bottom: 1.35em;
-          color: #fff;
+          color: var(--bg-primary);
           display: flex;
           direction: rtl;
           justify-content: space-between;

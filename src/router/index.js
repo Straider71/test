@@ -90,23 +90,40 @@ const routes = [
 
     component: () =>
       import(/* webpackChunkName: "AdminPage" */ '@/views/AdminPage.vue'),
+    meta: {
+      admin: true,
+    },
     children: [
       {
         path: '',
         name: 'overview',
-
+        meta: {
+          admin: true,
+        },
         component: () => import('@/views/Overview.vue'),
       },
       {
         path: 'questionnaire',
         name: 'createQuestionnare',
-
+        meta: {
+          admin: true,
+        },
         component: () => import('@/views/createQuestionnare.vue'),
       },
       {
         path: 'question',
         name: 'createQuestion',
-
+        meta: {
+          admin: true,
+        },
+        component: () => import('@/views/createQuestion.vue'),
+      },
+      {
+        path: 'setting',
+        name: 'setting',
+        meta: {
+          admin: true,
+        },
         component: () => import('@/views/createQuestion.vue'),
       },
     ],
@@ -132,9 +149,14 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const loggedIn = localStorage.getItem('user');
+  const loggedIn = JSON.parse(localStorage.getItem('user'));
 
-  if (to.matched.some(record => record.meta.requireAuth) && !loggedIn) {
+  if (
+    to.matched.some(record => record.meta.admin) &&
+    loggedIn.role !== 'admin'
+  ) {
+    Vue.toasted.error('شما دسترسی لازم را ندارید');
+  } else if (to.matched.some(record => record.meta.requireAuth) && !loggedIn) {
     next('/account/sign-in');
     // Vue.toasted.error('ابتدا وارد شوید');
   } else if (

@@ -47,7 +47,6 @@ export default {
 .status {
   display: flex;
   justify-content: space-between;
-
   margin-right: 40px;
 
   .answerDiv {
@@ -58,11 +57,11 @@ export default {
     width: 40%;
   }
   .answer {
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.36;
     letter-spacing: -0.14px;
     margin-right: 50px;
-    color: #7f86aa;
+    color: var(--second-text);
     text-align: right;
 
     .answer-status-one {
@@ -70,15 +69,15 @@ export default {
     }
 
     .answer-status-two {
-      color: #05d667;
+      color: var(--green-text);
     }
   }
 
   .count {
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.36;
     letter-spacing: -0.14px;
-    color: #7f86aa;
+    color: var(--second-text);
   }
 }
 

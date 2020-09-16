@@ -15,13 +15,12 @@ export default {
 
 <style lang="scss" scoped>
 .title {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1.38;
   letter-spacing: -0.16px;
-  color: #2a3774;
+  color: var(--primary-text);
   max-width: 150px;
-  // width: 150px;
   text-align: right;
 
   p {
@@ -30,7 +29,5 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
-  // overflow: hidden;
 }
 </style>

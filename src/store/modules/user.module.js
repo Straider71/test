@@ -73,6 +73,7 @@ const actions = {
         username: res.data.data.name,
         email: credentials.email,
         photo: res.data.data.photo,
+        role: res.data.data.role,
       });
       Vue.toasted.success('شما با موفقیت وارد شدید');
     } catch (error) {
@@ -144,6 +145,7 @@ const actions = {
 
 const getters = {
   userPhoto: state => state.user.photo,
+  userRole: state => state.user.role,
 };
 
 export default {

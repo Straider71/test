@@ -37,20 +37,15 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  // padding-right: 160px;
-
   width: 100vw;
   height: 100vh;
-  background: #f3f4f8;
+  background: var(--bg-second);
   overflow: hidden;
 
   & .hand-image {
     width: 50٪;
     height: 500px;
-    // margin-right: 190px;
     margin-top: 230px;
-    // padding-right: 190px;
-    // padding-top: 50px;
   }
 
   & .right-div {
@@ -68,14 +63,14 @@ export default {
 
       & .head {
         font-weight: bold;
-        color: #2a3774;
-        font-size: 26px;
+        color: var(--primary-text);
+        font-size: 1.625rem;
         line-height: 1.35;
       }
 
       & .subhead {
-        color: #7f86aa;
-        font-size: 14px;
+        color: var(--second-text);
+        font-size: 0.875rem;
         line-height: 1.36;
         letter-spacing: -0.14px;
         margin-top: 15px;
@@ -90,7 +85,7 @@ export default {
       padding-right: 130px;
       & .title {
         & .head {
-          font-size: 22px;
+          font-size: 1.375rem;
         }
       }
     }
@@ -105,7 +100,7 @@ export default {
     & .right-div {
       & .title {
         & .head {
-          font-size: 20px;
+          font-size: 1.25rem;
         }
       }
     }

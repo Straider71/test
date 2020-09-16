@@ -94,7 +94,7 @@ export default {
   height: 85px;
   border-radius: 10px;
   box-shadow: 0 5px 10px 0 #f1f1f2;
-  background-color: #ffffff;
+  background-color: var(--bg-primary);
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -76,6 +76,7 @@ export default {
     nexyQuestion() {
       if (this.questionStatus == 2 && this.selectedValue) {
         this.$toasted.error('جواب را نمیتوانید تغییر بدهید');
+        this.selectedValue = '';
       }
       if (this.selectedValue) {
         if (this.questionIndex === this.questionnaire.length - 1) {

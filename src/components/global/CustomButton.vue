@@ -49,12 +49,12 @@ export default {
   box-shadow: 0 2px 5px 0 rgba(69, 112, 245, 0.6);
   background-color: var(--primary-color);
   border: none;
-  font-size: 16px;
+  font-size: 1rem;
   letter-spacing: -0.16px;
   line-height: 1.38;
   text-decoration: none;
   cursor: pointer;
-  color: #fff;
+  color: var(--bg-primary);
   display: flex;
   justify-content: center;
   font-family: shabnam;

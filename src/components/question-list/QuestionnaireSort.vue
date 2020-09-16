@@ -125,7 +125,7 @@
 import { FETCH_QUESTIONNAIRES } from '@/store/actions.type.js';
 import { SET_ORDER } from '@/store/mutations.type.js';
 
-import { mapState, mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   name: 'QuestionnaireSort',
@@ -139,9 +139,6 @@ export default {
   methods: {
     getOrder(event) {
       this.orderSelected = event.target.value;
-      console.log(this.$store.state.questionnaire.pageNumber);
-      console.log(this.page);
-      console.log('page');
       this.$store.commit(SET_ORDER, this.orderSelected);
       this.$store.dispatch(FETCH_QUESTIONNAIRES, {
         order: this.orderSelected,
@@ -156,12 +153,6 @@ export default {
       orderType: state => state.questionnaire.orderType,
       pageNumber: state => state.questionnaire.pageNumber,
     }),
-    // page: {
-    //   get() {
-    //     return this.$store.state.questionnaires.pageNumber;
-    //   },
-    // },
-    // ...mapGetters(['selectedSort'])
   },
 };
 </script>
@@ -199,7 +190,7 @@ export default {
       &:focus {
         & + .select-box__list {
           opacity: 1;
-          background-color: white;
+          background-color: var(--bg-primary);
           animation-name: none;
           z-index: 5;
 
@@ -246,7 +237,7 @@ export default {
       width: auto;
       margin: 0;
       padding: 10px 8px;
-      background-color: #fff;
+      background-color: var(--bg-primary);
     }
 
     &__list {
@@ -267,7 +258,7 @@ export default {
     &__option {
       display: block;
       padding: 15px;
-      background-color: #fff;
+      background-color: var(--bg-primary);
 
       &:hover,
       &:focus {

@@ -8,6 +8,8 @@ import {
   CREATE_QUESTION_0,
   CREATE_QUESTION_1,
   CREATE_QUESTION_2,
+  DELETE_QUESTIONNAIRE,
+  GET_STATS,
 } from '../actions.type.js';
 import {
   SET_QUESTIONNAIRES,
@@ -165,6 +167,23 @@ const actions = {
     } catch (error) {
       console.log(error);
       // Vue.toasted.error(error.response.data.message);
+    }
+  },
+  async [DELETE_QUESTIONNAIRE]({ commit }, id) {
+    console.log(id);
+    try {
+      await EventService.deleteQuestionnaire(id);
+      Vue.toasted.success('پرسشنامه شما با موفقیت حذف گردید');
+    } catch (error) {
+      Vue.toasted.error(error.response.data.message);
+    }
+  },
+  async [GET_STATS]({ commit }) {
+    try {
+      const res = await EventService.getStats();
+      console.log(res);
+    } catch (error) {
+      Vue.toasted.error(error.response.data.message);
     }
   },
 };

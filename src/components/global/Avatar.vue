@@ -30,6 +30,7 @@ import CustomButton from '@/components/global/CustomButton';
 import { REMOVE_USER_PHOTO } from '@/store/mutations.type.js';
 import { PROFILE_PIC } from '@/store/actions.type.js';
 import { mapState, mapGetters, mapMutations } from 'vuex';
+
 export default {
   name: 'Avatar',
   components: {
@@ -44,7 +45,6 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user.user,
-      // avatar: state => state.user.user.photo,
     }),
     ...mapGetters(['userPhoto']),
   },
@@ -62,8 +62,6 @@ export default {
       this.$store.dispatch(PROFILE_PIC, fd);
     },
     removePic() {
-      // this.$store.commit(REMOVE_USER_PHOTO);
-      console.log('object');
       this.REMOVE_USER_PHOTO();
     },
   },
@@ -92,7 +90,7 @@ export default {
     & .custom-button::v-deep .button {
       height: 45px;
       width: 185px;
-      font-size: 16px;
+      font-size: 1rem;
       border-radius: 5px;
       margin-top: 38px;
     }

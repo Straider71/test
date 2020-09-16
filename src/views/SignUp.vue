@@ -107,8 +107,8 @@ export default {
 
   & .sub-header {
     text-align: right;
-    color: #7f86aa;
-    font-size: 14px;
+    color: var(--second-text);
+    font-size: 0.875rem;
     line-height: 1.36;
     letter-spacing: -0.14px;
     margin-top: 10px;

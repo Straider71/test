@@ -1,5 +1,5 @@
 <template>
-<!--  <div class="container" :text="text">-->
+  <!--  <div class="container" :text="text">-->
   <div class="custom-check-box-container" :text="text">
     <input class="inp-cbx" id="morning" type="checkbox" />
     <label class="cbx" for="morning">
@@ -11,7 +11,7 @@
       <span>{{ text }}</span>
     </label>
     <svg class="inline-svg">
-      <symbol id="check" >
+      <symbol id="check">
         <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
       </symbol>
     </svg>
@@ -20,10 +20,10 @@
 
 <script>
 export default {
-  name: "CustomCheckBox",
+  name: 'CustomCheckBox',
   props: {
-    text: String
-  }
+    text: String,
+  },
 };
 </script>
 
@@ -45,10 +45,9 @@ export default {
     overflow: hidden;
     transition: all 0.2s ease;
     &:hover {
-      /*background: rgba(0, 119, 255, 0.06);*/
       span {
         &:last-child {
-          border-color: #07f;
+          border-color: var(--primary-color);
         }
       }
     }
@@ -94,8 +93,8 @@ export default {
         .cbx {
           span {
             &:first-child {
-              background: #07f;
-              border-color: #07f;
+              background: var(--primary-color);
+              border-color: var(--primary-color);
               animation: wave 0.4s ease;
               svg {
                 stroke-dashoffset: 0;

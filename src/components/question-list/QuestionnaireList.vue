@@ -42,13 +42,10 @@ export default {
   },
 
   created() {
-    console.log(this.orderType, this.pageNumber);
-
     this.$store.dispatch(FETCH_QUESTIONNAIRES, {
       order: this.orderTypeState,
       page: this.pageNumberState,
     });
-    console.log(this.questionnaires);
   },
 
   computed: {

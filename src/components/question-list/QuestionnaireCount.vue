@@ -18,7 +18,7 @@ export default {
   font-size: 14px;
   line-height: 1.36;
   letter-spacing: -0.14px;
-  color: #7f86aa;
+  color: var(--second-text);
   text-align: right;
   direction: rtl;
 }

@@ -1,6 +1,11 @@
 <template>
   <div class="sign-up-container">
     <div class="info">
+      <div class="theme">
+        <button @click="darkThemeSwitch">تغییر تم</button>
+        <p>انتخاب تم</p>
+      </div>
+
       <p class="sub-header">اطلاعات کاربری</p>
       <form class="input-list-top" @submit.prevent="onSubmitName">
         <custom-input
@@ -26,6 +31,7 @@
         </div>
       </form>
     </div>
+
     <div class="avatar"><Avatar /></div>
     <div class="password">
       <p class="sub-header">رمز عبور کاربر</p>
@@ -46,6 +52,7 @@
         >
           <img src="../assets/input-img/lock.svg" />
         </custom-input>
+
         <custom-input
           class="round-bottom-border"
           placeholder="رمز عبور جدید خود را مجدد وارد کنید"
@@ -67,9 +74,9 @@
         width="1000"
         height="700"
         id="chart1"
-        title="# of Votes"
+        title="پرسشنامه‌ها"
         type="doughnut"
-        :labels="['پرسشنامه‌های پاسخ داده شده', 'پرسشنامه‌های پاسخ داده نشده']"
+        :labels="[' پاسخ داده شده', ' پاسخ داده نشده']"
         :data="[completeQuestionnaires, questionCount - completeQuestionnaires]"
         :background-color="[
           'rgba(92, 187, 255, 0.78)',
@@ -77,13 +84,6 @@
         ]"
       ></Chart>
     </div>
-    <!-- <div class="summery">
-      <div class="number">
-        <p>پرسشنامه‌های پاسخ داده شده</p>
-
-        <div>{{ completeQuestionnaires }} / {{ questionCount }}</div>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -118,7 +118,6 @@ export default {
       completeQuestionnaires: state =>
         state.questionnaire.completeQuestionnaires,
     }),
-    // ...mapGetters(['completeQuestionnaires']),
   },
   async created() {
     this.$store.dispatch(COMPLETE_QUESTIONNAIRE);
@@ -137,11 +136,6 @@ export default {
           email: this.email,
         };
         const res = await this.$store.dispatch(UPDATE_ME, userData);
-
-        // this.$store.commit(SET_USER_DATA, {
-        //   username: userData.name,
-        //   email: userData.email,
-        // });
       }
     },
     async onSubmitPass() {
@@ -160,6 +154,31 @@ export default {
         await this.$store.dispatch(NEW_PASSWORD, userData);
       }
     },
+
+    _addDarkTheme() {
+      let darkThemeLinkEl = document.createElement('link');
+      darkThemeLinkEl.setAttribute('rel', 'stylesheet');
+      darkThemeLinkEl.setAttribute('href', 'dark.css');
+      darkThemeLinkEl.setAttribute('id', 'dark-theme-style');
+
+      let docHead = document.querySelector('head');
+      docHead.append(darkThemeLinkEl);
+      localStorage.setItem('theme', 'dark');
+    },
+    _removeDarkTheme() {
+      let darkThemeLinkEl = document.querySelector('#dark-theme-style');
+      let parentNode = darkThemeLinkEl.parentNode;
+      parentNode.removeChild(darkThemeLinkEl);
+      localStorage.setItem('theme', 'light');
+    },
+    darkThemeSwitch() {
+      let darkThemeLinkEl = document.querySelector('#dark-theme-style');
+      if (!darkThemeLinkEl) {
+        this._addDarkTheme();
+      } else {
+        this._removeDarkTheme();
+      }
+    },
   },
 
   validEmail: function(email) {
@@ -172,18 +191,14 @@ export default {
 <style scoped lang="scss">
 .sign-up-container {
   display: grid;
-  // grid-template-columns: 1fr 1fr;
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   grid-auto-flow: column;
-  // grid-template-rows: minmax(260px, 1fr);
   grid-template-rows: 1fr 1fr;
-  // grid-template-rows: auto;
   grid-gap: 3rem;
   grid-template-areas:
     'avatar info '
     'summery password ';
 
-  // width: 60%;
   max-width: 1075px;
   height: 267px;
   margin-left: auto;
@@ -281,6 +296,23 @@ export default {
   grid-area: info;
   margin-left: auto;
   margin-right: auto;
+
+  & .theme {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+    p {
+      color: var(--gray-text);
+    }
+
+    button {
+      width: 100px;
+      background-color: #bccdfd;
+      border: none;
+      border-radius: 10px;
+    }
+  }
 }
 
 .avatar {

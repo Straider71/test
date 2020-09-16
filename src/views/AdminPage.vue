@@ -29,6 +29,8 @@
 <script>
 import Navbar from '@/components/global/Navbar';
 
+import { SET_QUESTIONNAIRE_TITLE } from '@/store/mutations.type.js';
+
 export default {
   name: 'AdminPage',
   components: {
@@ -39,7 +41,7 @@ export default {
 
 <style scoped lang="scss">
 .home {
-  background-color: #f3f4f8;
+  background-color: var(--bg-second);
   height: 100vh;
   width: 100vw;
   position: absolute;
@@ -51,7 +53,7 @@ export default {
     width: 1209px;
     height: 1209px;
     opacity: 0.3;
-    background-color: #ffffff;
+    background-color: var(--bg-primary);
     border-radius: 50%;
     border: 0px solid transparent;
     border-top: none;
@@ -65,7 +67,7 @@ export default {
     & .topbar {
       width: 80%;
       height: 60px;
-      background-color: #fff;
+      background-color: var(--bg-primary);
       border-radius: 25px;
       margin-left: auto;
       margin-right: auto;
@@ -80,7 +82,7 @@ export default {
         text-decoration: none;
 
         &:visited {
-          color: #4570f5;
+          color: var(--primary-color);
         }
       }
 
@@ -88,7 +90,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #4570f5;
+        color: var(--primary-color);
         margin: 0 50px;
         width: auto;
 

@@ -34,7 +34,7 @@ export default {
   font-size: 20px;
   font-weight: 700;
   flex-shrink: 0;
-  color: #4570f5;
+  color: var(--primary-color);
 }
 
 @media (max-width: 576px) {

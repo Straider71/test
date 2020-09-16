@@ -17,14 +17,51 @@
     <div class="questionnares">
       <div v-for="(questionnaire, idx) in adminQuestionnaires" :key="idx">
         <div class="item">
-          <CustomButton
-            class="custom-button"
-            @click.native="
-              goQuestion(adminQuestionnaires[idx].questionnaire_id)
-            "
+          <Modal
+            v-if="showModal"
+            @close="showModal = false"
+            v-cloak
+            :index="idx"
           >
-            <p>انتخاب پرسشنامه</p>
-          </CustomButton>
+            <div class="modal">
+              <p>آیا با پاک کردن این پرسشنامه موافقید ؟</p>
+
+              <div class="button">
+                <CustomButton
+                  class="custom-button-yes"
+                  @click.native="
+                    deleteQuestionnaire(
+                      adminQuestionnaires[idx].questionnaire_id
+                    )
+                  "
+                >
+                  <p>بلی</p>
+                </CustomButton>
+                <CustomButton
+                  class="custom-button-no"
+                  @click.native="showModal = false"
+                >
+                  <p>خیر</p>
+                </CustomButton>
+              </div>
+            </div>
+          </Modal>
+          <div class="buttons">
+            <CustomButton
+              class="custom-button-delete"
+              @click.native="showModal = true"
+            >
+              <p>حذف پرسشنامه</p>
+            </CustomButton>
+            <CustomButton
+              class="custom-button"
+              @click.native="
+                goQuestion(adminQuestionnaires[idx].questionnaire_id)
+              "
+            >
+              <p>اضافه کردن سوال</p>
+            </CustomButton>
+          </div>
           <div class="number">
             تعداد سوال : {{ questionnaire.question_num }}
           </div>
@@ -40,9 +77,11 @@
 <script>
 import CustomInput from '@/components/global/CustomInput.vue';
 import CustomButton from '@/components/global/CustomButton.vue';
+import Modal from '@/components/global/Modal.vue';
 import {
   GET_ALL_ADMIN_QUESTIONNAIRE,
   CREATE_QUESTIONNARE,
+  DELETE_QUESTIONNAIRE,
 } from '@/store/actions.type.js';
 import { SET_CREATE_ID } from '@/store/mutations.type.js';
 import { mapState } from 'vuex';
@@ -51,10 +90,12 @@ export default {
   components: {
     CustomInput,
     CustomButton,
+    Modal,
   },
   data() {
     return {
       title: '',
+      showModal: false,
     };
   },
   computed: {
@@ -63,27 +104,69 @@ export default {
     }),
   },
   created() {
+    console.log(this.adminQuestionnaires);
     this.$store.dispatch(GET_ALL_ADMIN_QUESTIONNAIRE);
   },
+  // watch: {
+  //   title: this.$store.dispatch(GET_ALL_ADMIN_QUESTIONNAIRE),
+  // },
   methods: {
     onSubmit() {
       if (!this.title) {
         this.$toasted.error('نام پرسشنامه را وراد فرمایید');
       } else {
         this.$store.dispatch(CREATE_QUESTIONNARE, this.title);
+        this.title = '';
+        location.reload();
       }
     },
     goQuestion(id) {
+      console.log(id);
       this.$store.commit(SET_CREATE_ID, id);
       this.$router.push({
         name: 'createQuestion',
       });
+    },
+    deleteQuestionnaire(id) {
+      console.log(id);
+      this.$store.dispatch(DELETE_QUESTIONNAIRE, id);
+      this.showModal = false;
+      location.reload();
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.modal {
+  width: 350px;
+  height: 150px;
+  padding: 15px;
+  border-radius: 10px;
+
+  p {
+    font-size: 1.25rem;
+    color: var(--primary-text);
+  }
+
+  .button {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+
+    & .custom-button-yes::v-deep .button p {
+      color: #fff;
+    }
+
+    & .custom-button-no::v-deep .button {
+      background-color: #c22f2f;
+
+      p {
+        color: #fff;
+      }
+    }
+  }
+}
 .container {
   width: 80%;
   height: 75vh;
@@ -114,8 +197,24 @@ export default {
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
-    max-height: 450px;
+    max-height: 550px;
     overflow-y: auto;
+
+    scrollbar-color: #4570f5 rgba(0, 0, 0, 0.1);
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #4570f5;
+      // outline: 1px solid rgb(72, 117, 161);
+    }
 
     & .item {
       display: flex;
@@ -145,12 +244,26 @@ export default {
         color: #7f86aa;
       }
 
-      & .custom-button::v-deep .button {
-        height: 45px;
-        width: 123px;
-        font-size: 14px;
-        border-radius: 5px;
-        background-color: #65c1eb;
+      & .buttons {
+        display: flex;
+        flex-direction: row-reverse;
+
+        & .custom-button-delete::v-deep .button {
+          height: 45px;
+          width: 123px;
+          font-size: 14px;
+          border-radius: 5px;
+          background-color: #c22f2f;
+          margin-right: 5px;
+        }
+
+        & .custom-button::v-deep .button {
+          height: 45px;
+          width: 123px;
+          font-size: 14px;
+          border-radius: 5px;
+          background-color: #65c1eb;
+        }
       }
     }
   }

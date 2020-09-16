@@ -1,0 +1,23 @@
+/* :root {
+  --primary-color: #f58645;
+  --second-color: #4167b3;
+  --bg-primary: #aa3c3c;
+  --bg-second: #586ec4;
+
+  --primary-shadow: 0 5px 10px 0 #f1f1f2;
+  --primary-text: #2a3774;
+  --second-text: #7f86aa;
+  --green-text: #05d667;
+  --dark-text: #4b5a94;
+  --gray-text: #747474;
+} */
+
+:root {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+img,
+p:not(.select-box__input-text),
+a {
+  filter: invert(1) hue-rotate(180deg);
+}

@@ -29,10 +29,8 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  background-color: white;
-  /*padding-left: 15px;*/
+  background-color: var(--bg-primary);
   padding: 19px 19px 19px 15px;
-  /*padding-right: 19px;*/
   width: 375px;
   max-width: 375px;
   height: 68px;

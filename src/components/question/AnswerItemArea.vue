@@ -34,11 +34,11 @@ export default {
   justify-content: center;
 
   & .title {
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.38;
     letter-spacing: -0.16px;
     text-align: center;
-    color: #7f86aa;
+    color: var(--second-text);
     margin-bottom: 60px;
   }
 
@@ -47,14 +47,14 @@ export default {
     width: 626px;
     height: 204px;
     border-radius: 10px;
-    background-color: #e6e9ef;
+    background-color: var(--second-color);
     border: none;
     text-align: right;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 2;
     letter-spacing: -0.14px;
     text-align: right;
-    color: #747474;
+    color: var(--gray-text);
     padding: 15px;
     font-family: shabnam;
   }

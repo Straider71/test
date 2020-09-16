@@ -48,8 +48,6 @@ const actions = {
     }
   },
   async [FETCH_QUESTION]({ commit }, id) {
-    console.log('resss', id);
-
     try {
       const res = await EventService.getQuestion(id);
 

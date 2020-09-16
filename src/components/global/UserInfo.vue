@@ -10,7 +10,10 @@
       </a>
       <ul class="menu">
         <li class="list">
-          <router-link to="/profile">
+          <router-link to="/admin" v-if="userRole == 'admin'">
+            <p class="link">پنل</p>
+          </router-link>
+          <router-link to="/profile" v-else>
             <p class="link">پروفایل</p>
           </router-link>
         </li>
@@ -51,7 +54,7 @@ export default {
     ...mapState({
       user: state => state.user.user,
     }),
-    ...mapGetters(['userPhoto']),
+    ...mapGetters(['userPhoto', 'userRole']),
   },
 };
 </script>
@@ -70,10 +73,10 @@ export default {
   }
 
   &-text {
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: -0.14px;
-    color: #4b5a94;
+    color: var(--dark-text);
     padding: 5px;
   }
 
@@ -98,14 +101,14 @@ export default {
 
     & .list {
       margin-top: 3px;
-      background-color: rgb(100, 125, 235);
+      background-color: var(--primary-color);
       padding: 3px 25px;
       border-radius: 5px;
       border: none;
 
       a {
         text-decoration: none;
-        color: #fff;
+        color: var(--bg-primary);
       }
     }
   }

@@ -53,7 +53,6 @@ export default {
       GET_ANSWER,
       this.questionnaire[this.questionIndex]
     );
-    console.log(res);
     this.$store.commit(GET_ANSWERs, res.data.data.answer.text);
   },
 };

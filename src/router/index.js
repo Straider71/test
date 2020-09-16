@@ -118,14 +118,6 @@ const routes = [
         },
         component: () => import('@/views/createQuestion.vue'),
       },
-      {
-        path: 'setting',
-        name: 'setting',
-        meta: {
-          admin: true,
-        },
-        component: () => import('@/views/createQuestion.vue'),
-      },
     ],
   },
   {

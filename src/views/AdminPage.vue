@@ -16,9 +16,6 @@
         <div class="tabs">
           <router-link to="/admin/question"> <p>ایجاد سوال</p></router-link>
         </div>
-        <div class="tabs">
-          <router-link to="/admin/setting"> <p>تنظیمات</p></router-link>
-        </div>
       </div>
 
       <router-view />

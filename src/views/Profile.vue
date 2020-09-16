@@ -79,8 +79,8 @@
         :labels="[' پاسخ داده شده', ' پاسخ داده نشده']"
         :data="[completeQuestionnaires, questionCount - completeQuestionnaires]"
         :background-color="[
-          'rgba(92, 187, 255, 0.78)',
-          'rgba(0, 119, 204, 0.78)',
+          'rgba(40, 223, 153, 0.75)',
+          'rgba(67, 101, 139, 0.75)',
         ]"
       ></Chart>
     </div>

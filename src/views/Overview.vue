@@ -3,55 +3,35 @@
     <div class="top">
       <div class="right">
         <Chart
-          width="1000"
-          height="300"
+          width="500"
+          height="400"
           id="chart1"
           title="# of Votes"
           type="doughnut"
-          :labels="[
-            'پرسشنامه‌های پاسخ داده شده',
-            'پرسشنامه‌های پاسخ داده نشده',
-          ]"
-          :data="[5, 5]"
+          :labels="[' پاسخ داده شده', ' پاسخ داده نشده']"
+          :data="[finishStat, unFinishStat]"
           :background-color="[
-            'rgba(92, 187, 255, 0.78)',
-            'rgba(0, 119, 204, 0.78)',
+            'rgba(214, 224, 240, 0.75)',
+            'rgba(141, 147, 171, 0.75)',
           ]"
         ></Chart>
       </div>
       <div class="left">
         <Chart
-          width="1000"
-          height="300"
+          width="500"
+          height="400"
           id="chart3"
           title="# of Votes"
           type="polarArea"
-          :labels="[
-            'پرسشنامه‌های پاسخ داده شده',
-            'پرسشنامه‌های پاسخ داده نشده',
-          ]"
-          :data="[5, 5]"
+          :labels="['چهار گزینه ای', 'دو گزینه ای', 'تشریحی']"
+          :data="[fourQuestionType, twoQuestionType, desQuestionType]"
           :background-color="[
-            'rgba(92, 187, 255, 0.78)',
-            'rgba(0, 119, 204, 0.78)',
+            'rgba(5, 102, 116, 0.75)',
+            'rgba(102, 191, 191, 0.75)',
+            'rgba(78, 137, 174, 0.75)',
           ]"
         ></Chart>
       </div>
-    </div>
-    <div class="bottom">
-      <Chart
-        width="1000"
-        height="300"
-        id="chart2"
-        title="# of Votes"
-        type="bar"
-        :labels="['پرسشنامه‌های پاسخ داده شده', 'پرسشنامه‌های پاسخ داده نشده']"
-        :data="[5, 5]"
-        :background-color="[
-          'rgba(92, 187, 255, 0.78)',
-          'rgba(0, 119, 204, 0.78)',
-        ]"
-      ></Chart>
     </div>
   </div>
 </template>
@@ -60,14 +40,26 @@
 import Chart from '@/components/Chart';
 import { GET_STATS } from '@/store/actions.type.js';
 import { SET_QUESTIONNAIRE_TITLE } from '@/store/mutations.type.js';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Overview',
   components: {
     Chart,
   },
+  computed: {
+    ...mapGetters([
+      'finishStat',
+      'unFinishStat',
+      'fourQuestionType',
+      'twoQuestionType',
+      'desQuestionType',
+    ]),
+  },
+
   created() {
     this.$store.commit(SET_QUESTIONNAIRE_TITLE, 'پنل ادمین');
+    this.$store.dispatch(GET_STATS);
   },
 };
 </script>
@@ -100,10 +92,11 @@ export default {
 
     border-radius: 5px;
   }
-  & .bottom {
-    // background-color: #fff;
+}
 
-    border-radius: 5px;
+@media (max-width: 900px) {
+  .top {
+    flex-direction: column;
   }
 }
 </style>

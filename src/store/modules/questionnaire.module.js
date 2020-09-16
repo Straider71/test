@@ -22,6 +22,7 @@ import {
   SET_COMPLETE,
   SET_ALL_ADMIN_QUESTIONNAIRE,
   SET_CREATE_ID,
+  SET_STATS,
 } from '../mutations.type.js';
 
 const state = {
@@ -35,6 +36,7 @@ const state = {
   completeQuestionnaires: [],
   adminQuestionnaires: [],
   adminQuestionnaireId: null,
+  stats: {},
 };
 
 const mutations = {
@@ -67,6 +69,9 @@ const mutations = {
   },
   [SET_CREATE_ID](state, id) {
     state.adminQuestionnaireId = id;
+  },
+  [SET_STATS](state, stats) {
+    state.stats = stats;
   },
 };
 
@@ -181,7 +186,8 @@ const actions = {
   async [GET_STATS]({ commit }) {
     try {
       const res = await EventService.getStats();
-      console.log(res);
+      console.log(res.data.data);
+      commit(SET_STATS, res.data.data);
     } catch (error) {
       Vue.toasted.error(error.response.data.message);
     }
@@ -191,6 +197,11 @@ const actions = {
 const getters = {
   orderTypeState: state => state.orderType,
   pageNumberState: state => state.pageNumber,
+  finishStat: state => state.stats.answeredQuestionnaireStat[1].count,
+  unFinishStat: state => state.stats.answeredQuestionnaireStat[0].count,
+  fourQuestionType: state => state.stats.questionTypeStat[0].count,
+  twoQuestionType: state => state.stats.questionTypeStat[1].count,
+  desQuestionType: state => state.stats.questionTypeStat[2].count,
 };
 
 export default {

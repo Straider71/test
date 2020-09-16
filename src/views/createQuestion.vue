@@ -165,6 +165,7 @@ export default {
           id: this.adminQuestionnaireId,
         };
         this.$store.dispatch(CREATE_QUESTION_0, data);
+        this.title = '';
       }
     },
     onSubmit1() {
@@ -178,6 +179,9 @@ export default {
           id: this.adminQuestionnaireId,
         };
         this.$store.dispatch(CREATE_QUESTION_1, data);
+        this.title = '';
+        this.option_1 = '';
+        this.option_2 = '';
       }
     },
     onSubmit2() {
@@ -197,6 +201,11 @@ export default {
           id: this.adminQuestionnaireId,
         };
         this.$store.dispatch(CREATE_QUESTION_2, data);
+        this.title = '';
+        this.option_1 = '';
+        this.option_2 = '';
+        this.option_3 = '';
+        this.option_4 = '';
       }
     },
   },

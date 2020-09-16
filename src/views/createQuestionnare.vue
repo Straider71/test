@@ -107,9 +107,7 @@ export default {
     console.log(this.adminQuestionnaires);
     this.$store.dispatch(GET_ALL_ADMIN_QUESTIONNAIRE);
   },
-  // watch: {
-  //   title: this.$store.dispatch(GET_ALL_ADMIN_QUESTIONNAIRE),
-  // },
+
   methods: {
     onSubmit() {
       if (!this.title) {
@@ -121,14 +119,12 @@ export default {
       }
     },
     goQuestion(id) {
-      console.log(id);
       this.$store.commit(SET_CREATE_ID, id);
       this.$router.push({
         name: 'createQuestion',
       });
     },
     deleteQuestionnaire(id) {
-      console.log(id);
       this.$store.dispatch(DELETE_QUESTIONNAIRE, id);
       this.showModal = false;
       location.reload();
@@ -159,7 +155,7 @@ export default {
     }
 
     & .custom-button-no::v-deep .button {
-      background-color: #c22f2f;
+      background-color: #ff4b5c;
 
       p {
         color: #fff;
@@ -253,7 +249,7 @@ export default {
           width: 123px;
           font-size: 14px;
           border-radius: 5px;
-          background-color: #c22f2f;
+          background-color: #ff4b5c;
           margin-right: 5px;
         }
 
@@ -262,7 +258,7 @@ export default {
           width: 123px;
           font-size: 14px;
           border-radius: 5px;
-          background-color: #65c1eb;
+          background-color: #4e89ae;
         }
       }
     }

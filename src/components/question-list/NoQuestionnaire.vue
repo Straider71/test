@@ -26,11 +26,11 @@ export default {
   }
 
   p {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: 500;
     line-height: 1.4;
     letter-spacing: -0.2px;
-    color: #2a3774;
+    color: var(--primary-text);
     margin-top: 70px;
     direction: rtl;
   }

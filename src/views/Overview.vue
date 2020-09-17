@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import Chart from '@/components/Chart';
+import Chart from '@/components/global/Chart';
 import { GET_STATS } from '@/store/actions.type.js';
 import { SET_QUESTIONNAIRE_TITLE } from '@/store/mutations.type.js';
 import { mapGetters } from 'vuex';

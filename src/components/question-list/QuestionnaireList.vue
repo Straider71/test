@@ -69,6 +69,7 @@ export default {
 @media (max-width: 890px) {
   .container {
     width: 100%;
+    // overflow: auto;
 
     & .question-list {
       max-height: 80vh;

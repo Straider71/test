@@ -17,6 +17,7 @@
   --green-text: #05d667;
   --dark-text: #4b5a94;
   --gray-text: #747474;
+  --light-gray-text: #c3c6d5;
 }
 
 @font-face {

@@ -24,7 +24,7 @@ export default {
   width: 100vw;
   position: absolute;
   z-index: -2;
-  overflow: hidden;
+  overflow: auto;
 
   .circle {
     z-index: -1;

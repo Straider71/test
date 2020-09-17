@@ -73,13 +73,10 @@ export default {
       width: auto;
       align-items: center;
       justify-content: center;
-      /*flex-flow: column nowrap;*/
     }
 
     @media screen and (max-width: 450px) {
       height: auto;
-      /*padding: 0;*/
-      /*margin: 0;*/
       width: 100%;
       max-width: 100%;
       align-items: center;
@@ -90,7 +87,6 @@ export default {
       max-width: 413px;
       margin: 7.5px;
       @media screen and (max-width: 450px) {
-        /*background-color: #05d667;*/
         margin: 18px;
       }
     }

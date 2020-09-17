@@ -99,7 +99,7 @@ export default {
     box-shadow: 0 2px 5px 0 rgba(69, 112, 245, 0.6);
 
     & p {
-      font-size: 16px;
+      font-size: 1rem;
       line-height: 1.38;
       letter-spacing: -0.16px;
       color: var(--bg-primary);

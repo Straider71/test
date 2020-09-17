@@ -4,7 +4,7 @@
       <slot />
     </a>
 
-    <button v-else :class="classFunc()" :disabled="disable">
+    <button v-else :class="classFunc()">
       <slot />
     </button>
   </div>
@@ -65,23 +65,23 @@ export default {
   }
 }
 
-.disable {
-  width: 119px;
-  height: 50px;
-  border-radius: 10px;
-  opacity: 0.3;
-  background-color: #e6e6e6;
-  border: none;
-  font-size: 16px;
-  letter-spacing: -0.16px;
-  line-height: 1.38;
-  text-decoration: none;
+// .disable {
+//   width: 119px;
+//   height: 50px;
+//   border-radius: 10px;
+//   opacity: 0.3;
+//   background-color: #99f7c3;
+//   border: none;
+//   font-size: 16px;
+//   letter-spacing: -0.16px;
+//   line-height: 1.38;
+//   text-decoration: none;
 
-  color: #b9b9b9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+//   color: #0e0d0d;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
 
 @media (max-width: 640px) {
   .button {

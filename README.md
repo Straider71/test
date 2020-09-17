@@ -1,6 +1,6 @@
 # Part Questionnaire App
 
-The small questionnaire app using vue.js and vuex
+questionnaire app using vue.js and vuex
 
 ### Live dema at
 
@@ -14,7 +14,7 @@ Vue-Router
 axios
 sass
 
-![Vue Questionnaire](https://i.ibb.co/S6zF2sw/ezgif-com-video-to-gif.gif 'Vue Questionnaire')
+![Vue Questionnaire](https://i.ibb.co/swQvwSD/ezgif-com-video-to-gif-1.gif 'Vue Questionnaire')
 
 ## Get Started
 

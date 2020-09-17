@@ -1,8 +1,8 @@
 <template>
   <figure class="figure-hand-image">
-    <div class="before"></div>
+    <!-- <div class="before"></div> -->
     <img alt="hand writing image" src="../../assets/34shndow.png" />
-    <div class="after"></div>
+    <!-- <div class="after"></div> -->
   </figure>
 </template>
 
@@ -24,7 +24,7 @@ export default {
     z-index: 2;
   }
 
-  & .after {
+  &:after {
     content: '';
     width: 108px;
     height: 108px;
@@ -33,12 +33,11 @@ export default {
     position: absolute;
     left: 320px;
     top: 300px;
-
     z-index: 3;
     box-shadow: 10px 10px 26px 0 rgba(0, 0, 0, 0.16);
   }
 
-  & .before {
+  &:before {
     content: '';
     width: 247px;
     height: 247px;

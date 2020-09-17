@@ -91,7 +91,7 @@
 import CustomInput from '../components/global/CustomInput';
 import CustomButton from '../components/global/CustomButton';
 import Avatar from '../components/global/Avatar';
-import Chart from '../components/Chart';
+import Chart from '../components/global/Chart';
 import {
   UPDATE_ME,
   NEW_PASSWORD,

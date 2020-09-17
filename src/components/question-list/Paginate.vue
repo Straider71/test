@@ -75,13 +75,11 @@ export default {
 
 <style lang="scss" scoped>
 .paginate {
-  // max-width: 150px;
-  // min-width: 120px;
   width: auto;
   height: 49px;
   border-radius: 10px;
   box-shadow: 0 5px 10px 0 #f1f1f2;
-  background-color: #fff;
+  background-color: var(--bg-primary);
   margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
@@ -111,10 +109,9 @@ export default {
     margin-right: 10px;
 
     & .page {
-      // width: auto;
       height: 30px;
       width: 30px;
-      font-size: 16px;
+      font-size: 1rem;
       line-height: 1.38;
       color: #aeaeae;
       cursor: pointer;
@@ -127,9 +124,8 @@ export default {
       &:hover,
       &:active,
       &.active {
-        // border-radius: 50%;
-        background-color: #4570f5;
-        color: #fff;
+        background-color: var(--primary-color);
+        color: var(--bg-primary);
       }
     }
   }

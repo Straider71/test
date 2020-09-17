@@ -38,22 +38,22 @@ export default {
 
   & .labels {
     display: flex;
-    color: #7f86aa;
+    color: var(--second-text);
     justify-content: space-between;
     margin-bottom: 5px;
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   & .input {
     height: 16px;
     text-align: right;
-    font-size: 12px;
+    font-size: 0.75rem;
     border: none;
     margin: 0;
   }
 
   & .input::placeholder {
-    color: #c3c6d5;
+    color: var(--light-gray-text);
   }
 
   & .input:focus {

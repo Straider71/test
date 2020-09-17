@@ -4,27 +4,27 @@
 
 <script>
 export default {
-  name: "QuestionSubHeader",
+  name: 'QuestionSubHeader',
   props: {
-    text: String
-  }
+    text: String,
+  },
 };
 </script>
 
 <style scoped lang="scss">
 .question-sub-header {
-  color: #7f86aa;
-  font-size: 16px;
+  color: var(--second-text);
+  font-size: 1rem;
   margin-bottom: 48.5px;
 
   @media screen and (max-width: 844px) {
-    font-size: 14px;
+    font-size: 0.875rem;
     margin-bottom: 33px;
   }
 
   @media screen and (max-width: 450px) {
     margin-bottom: 20px;
-    font-size: 11px;
+    font-size: 0.6875rem;
   }
 }
 </style>

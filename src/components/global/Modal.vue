@@ -58,7 +58,7 @@ $easing: (
 .modal {
   display: flex;
   flex-direction: column;
-  background: white;
+  background: var(--bg-primary);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
 }

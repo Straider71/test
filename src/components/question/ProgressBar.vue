@@ -80,7 +80,7 @@ export default {
 .progress-bar {
   width: 80%;
   height: 70px;
-  box-shadow: 0 5px 10px 0 #f1f1f2;
+  box-shadow: var(--primary-shadow);
   background-color: var(--bg-primary);
   border-radius: 10px;
   margin-left: auto;
@@ -102,7 +102,7 @@ export default {
       font-size: 1rem;
       line-height: 1.38;
       letter-spacing: -0.16px;
-      color: var(--bg-primary);
+      color: var(--white-text);
       padding: 0 0 6px 10px;
       margin-bottom: -3px;
     }
@@ -142,7 +142,7 @@ export default {
       & {
         & .after {
           bottom: 1.35em;
-          color: var(--bg-primary);
+          color: var(--white-text);
           display: flex;
           direction: rtl;
           justify-content: space-between;

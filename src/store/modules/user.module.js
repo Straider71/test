@@ -57,9 +57,11 @@ const actions = {
       commit(SET_USER_DATA, {
         token: res.data.token,
         username: res.data.data.user.name,
+        email: credentials.email,
       });
 
       Vue.toasted.success('اطلاعات شما با موفقیت ثبت گردید');
+      Vue.toasted.success('ابتدا ایمیل خود را تایید فرمایید');
     } catch (error) {
       Vue.toasted.error(error.response.data.message);
     }

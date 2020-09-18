@@ -83,8 +83,8 @@ export default {
           password: this.password,
         };
         this.$store.dispatch(SIGNUP, userData).then(() => {
-          this.$router.push({ name: 'sign-in' });
-          this.$toasted.success('لطفا ابتدا ایمیل خود را تایید فرمایید');
+          // this.$router.push({ name: 'sign-in' });
+          // this.$toasted.success('لطفا ابتدا ایمیل خود را تایید فرمایید');
         });
       }
     },

@@ -12,8 +12,11 @@
   --bg-second: #f3f4f8;
 
   --primary-shadow: 0 5px 10px 0 #f1f1f2;
+  --blue-shadow: 0 2px 5px 0 rgba(69, 112, 245, 0.6);
+
   --primary-text: #2a3774;
   --second-text: #7f86aa;
+  --white-text: #ffffff;
   --green-text: #05d667;
   --dark-text: #4b5a94;
   --gray-text: #747474;

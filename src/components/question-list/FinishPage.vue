@@ -65,7 +65,7 @@ export default {
       font-size: 1rem;
       line-height: 1.38;
       letter-spacing: -0.16px;
-      color: var(--bg-primary);
+      color: var(--white-text);
       padding: 0 0 1px 10px;
     }
   }

@@ -78,7 +78,7 @@ export default {
   width: auto;
   height: 49px;
   border-radius: 10px;
-  box-shadow: 0 5px 10px 0 #f1f1f2;
+  box-shadow: var(--primary-shadow);
   background-color: var(--bg-primary);
   margin-top: 40px;
   margin-left: auto;
@@ -125,7 +125,7 @@ export default {
       &:active,
       &.active {
         background-color: var(--primary-color);
-        color: var(--bg-primary);
+        color: var(--white-text);
       }
     }
   }

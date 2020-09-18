@@ -46,7 +46,7 @@ export default {
   width: 119px;
   height: 50px;
   border-radius: 10px;
-  box-shadow: 0 2px 5px 0 rgba(69, 112, 245, 0.6);
+  box-shadow: var(--blue-shadow);
   background-color: var(--primary-color);
   border: none;
   font-size: 1rem;
@@ -54,7 +54,7 @@ export default {
   line-height: 1.38;
   text-decoration: none;
   cursor: pointer;
-  color: var(--bg-primary);
+  color: var(--white-text);
   display: flex;
   justify-content: center;
   font-family: shabnam;

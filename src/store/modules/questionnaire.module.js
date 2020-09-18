@@ -104,7 +104,6 @@ const actions = {
   async [GET_ALL_ADMIN_QUESTIONNAIRE]({ commit }) {
     try {
       const res = await EventService.getAllAdminQuestionnaire();
-      console.log(res);
       commit(SET_ALL_ADMIN_QUESTIONNAIRE, res.data.data.questionnaires);
     } catch (error) {
       Vue.toasted.error(error.response.data.message);
@@ -152,7 +151,6 @@ const actions = {
 
       Vue.toasted.success('سوال شما با موفقیت ایجاد گردید');
     } catch (error) {
-      console.log(error);
       // Vue.toasted.error(error.response.data.message);
     }
   },
@@ -170,12 +168,10 @@ const actions = {
 
       Vue.toasted.success('سوال شما با موفقیت ایجاد گردید');
     } catch (error) {
-      console.log(error);
       // Vue.toasted.error(error.response.data.message);
     }
   },
   async [DELETE_QUESTIONNAIRE]({ commit }, id) {
-    console.log(id);
     try {
       await EventService.deleteQuestionnaire(id);
       Vue.toasted.success('پرسشنامه شما با موفقیت حذف گردید');
@@ -186,7 +182,6 @@ const actions = {
   async [GET_STATS]({ commit }) {
     try {
       const res = await EventService.getStats();
-      console.log(res.data.data);
       commit(SET_STATS, res.data.data);
     } catch (error) {
       Vue.toasted.error(error.response.data.message);

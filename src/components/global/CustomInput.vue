@@ -50,6 +50,8 @@ export default {
     font-size: 0.75rem;
     border: none;
     margin: 0;
+    background-color: var(--bg-primary);
+    color: var(--dark-text);
   }
 
   & .input::placeholder {

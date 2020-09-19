@@ -4,17 +4,17 @@
       <a
         v-on:click="activetab = 1"
         v-bind:class="[activetab === 1 ? 'active' : '']"
-        >تشریحی</a
+        >‌تشریحی‌</a
       >
       <a
         v-on:click="activetab = 2"
         v-bind:class="[activetab === 2 ? 'active' : '']"
-        >دو گزینه‌ای</a
+        >‌دو‌گزینه‌ای</a
       >
       <a
         v-on:click="activetab = 3"
         v-bind:class="[activetab === 3 ? 'active' : '']"
-        >چهار گزینه‌ای</a
+        >‌چهار‌گزینه‌ای</a
       >
     </div>
 

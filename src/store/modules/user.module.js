@@ -85,6 +85,7 @@ const actions = {
   async [LOGOUT]({ commit }) {
     await EventService.signOut();
     commit(CLEAR_USER_DATA);
+    localStorage.removeItem('theme');
   },
   async [SEND_EMAIL]({ commit }, email) {
     try {

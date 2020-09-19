@@ -4,6 +4,28 @@
   </div>
 </template>
 
+<script>
+export default {
+  mounted() {
+    let theme = localStorage.getItem('theme');
+
+    if (theme == 'dark') {
+      let darkThemeLinkEl = document.createElement('link');
+      darkThemeLinkEl.setAttribute('rel', 'stylesheet');
+      darkThemeLinkEl.setAttribute('href', 'dark.css');
+      darkThemeLinkEl.setAttribute('id', 'dark-theme-style');
+
+      let docHead = document.querySelector('head');
+      docHead.append(darkThemeLinkEl);
+    } else {
+      let darkThemeLinkEl = document.querySelector('#dark-theme-style');
+      let parentNode = darkThemeLinkEl.parentNode;
+      parentNode.removeChild(darkThemeLinkEl);
+    }
+  },
+};
+</script>
+
 <style lang="scss">
 :root {
   --primary-color: #4570f5;

@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-10-17T08:15:12.413Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36" etag="-XPgI-PUOVqLQCcK7fjc" version="15.5.4" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2021-10-17T10:11:53.491Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36" etag="1MFQtCzIReLA7AwpDe8Y" version="15.5.4" type="github" pages="3">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="ERD">
     <mxGraphModel dx="4672" dy="1946" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -3204,7 +3204,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="M_rI209fcR7gYOox1KGU" name="SHARED COLUMN">
-    <mxGraphModel dx="-894" dy="1209" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="-1146" dy="583" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="Z3EgETurju4RAXB6cWSk-0" />
         <mxCell id="Z3EgETurju4RAXB6cWSk-1" parent="Z3EgETurju4RAXB6cWSk-0" />
@@ -3763,6 +3763,43 @@
         </mxCell>
         <mxCell id="pNykyBQCxGEEuNizqx94-41" value="&lt;span style=&quot;font-size: 10px&quot;&gt;unit_assign&lt;/span&gt;" style="ellipse;shape=umlEntity;whiteSpace=wrap;html=1;" vertex="1" parent="Z3EgETurju4RAXB6cWSk-1">
           <mxGeometry x="3391" y="2089.5" width="55" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pNykyBQCxGEEuNizqx94-154" value="&lt;b style=&quot;color: rgb(0 , 153 , 153) ; background-color: rgb(248 , 249 , 250)&quot;&gt;&lt;font style=&quot;font-size: 12px&quot;&gt;Sync Unit_Tag&lt;/font&gt;&lt;/b&gt;" style="swimlane;html=1;childLayout=stackLayout;resizeParent=1;resizeParentMax=0;horizontal=0;startSize=20;horizontalStack=0;" vertex="1" parent="Z3EgETurju4RAXB6cWSk-1">
+          <mxGeometry x="1920" y="3300" width="730" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="pNykyBQCxGEEuNizqx94-155" value="" style="swimlane;html=1;startSize=0;horizontal=0;" vertex="1" parent="pNykyBQCxGEEuNizqx94-154">
+          <mxGeometry x="20" width="710" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="pNykyBQCxGEEuNizqx94-156" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;" edge="1" parent="pNykyBQCxGEEuNizqx94-155" source="pNykyBQCxGEEuNizqx94-157" target="pNykyBQCxGEEuNizqx94-164">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pNykyBQCxGEEuNizqx94-157" value="add Tag" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=12;fontColor=#000000;align=center;" vertex="1" parent="pNykyBQCxGEEuNizqx94-155">
+          <mxGeometry x="112.5" y="40" width="67.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="pNykyBQCxGEEuNizqx94-158" style="edgeStyle=none;curved=1;rounded=0;sketch=1;hachureGap=4;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=12;endArrow=open;startSize=14;endSize=14;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="pNykyBQCxGEEuNizqx94-155" source="pNykyBQCxGEEuNizqx94-159" target="pNykyBQCxGEEuNizqx94-157">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pNykyBQCxGEEuNizqx94-159" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#ff0000;" vertex="1" parent="pNykyBQCxGEEuNizqx94-155">
+          <mxGeometry x="32.5" y="45" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="pNykyBQCxGEEuNizqx94-162" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.003;entryY=0.111;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=10;" edge="1" parent="pNykyBQCxGEEuNizqx94-155" source="pNykyBQCxGEEuNizqx94-164">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="464.98" y="116.58250000000044" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pNykyBQCxGEEuNizqx94-164" value="&lt;font face=&quot;Helvetica&quot; style=&quot;font-size: 10px&quot;&gt;dropped destination == shared column&lt;/font&gt;" style="rhombus;whiteSpace=wrap;html=1;rounded=0;sketch=0;hachureGap=4;pointerEvents=0;fontFamily=Architects Daughter;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DArchitects%2BDaughter;fontSize=12;" vertex="1" parent="pNykyBQCxGEEuNizqx94-155">
+          <mxGeometry x="240" y="32.5" width="122.13" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="pNykyBQCxGEEuNizqx94-173" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="pNykyBQCxGEEuNizqx94-155" target="pNykyBQCxGEEuNizqx94-183">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="901" y="150" />
+              <mxPoint x="520" y="150" />
+              <mxPoint x="520" y="200" />
+              <mxPoint x="653" y="200" />
+            </Array>
+            <mxPoint x="901.0000000000005" y="142.45647144770464" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
